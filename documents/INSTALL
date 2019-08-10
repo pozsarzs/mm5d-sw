@@ -1,0 +1,40 @@
+Installation instruction
+========================
+
+Before install this program please install Raspbian Lite OS to SD-CARD.
+Do not forget to set hostname and network.
+
+Installation
+------------
+  pi@raspberry$ sudo apt-get update
+  pi@raspberry$ sudo apt-get upgrade
+  pi@raspberry$ sudo apt-get install mc wget
+  pi@raspberry$ wget --directory-prefix=$HOME/download http://www.szerafingomba.hu/equipments/mm5d/mm5d-sw-0.1-noarch.tar.gz
+  pi@raspberry$ cd $HOME/download
+  pi@raspberry$ tar -xzf mm5d-sw-0.1-noarch.tar.gz
+  pi@raspberry$ cd mm5d-sw-0.1
+  pi@raspberry$ ./prepare
+  pi@raspberry$ ./install
+
+Configuration
+-------------
+  mm5d@raspberry$ sudo /etc/init.d/mm5d.sh stop
+  mm5d@raspberry$ mm5d-editconf
+  mm5d@raspberry$ sudo mm5d-updatestartpage
+  mm5d@raspberry$ sudo /etc/init.d/mm5d.sh start
+
+Edit example user's controller program
+--------------------------------------
+  mm5d@raspberry$ sudo /etc/init.d/mm5d.sh stop
+  mm5d@raspberry$ mm5d-editcurrentprog
+  mm5d@raspberry$ sudo /etc/init.d/mm5d.sh start
+  
+  or
+  
+  mm5d@raspberry$ cd ~/cfg_example/
+  mm5d@raspberry$ ./cfg_example.sh
+  
+Remove
+------
+  pi@raspberry$ cd mm5d-sw-0.1
+  pi@raspberry$ ./uninstall

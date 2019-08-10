@@ -1,0 +1,58 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | mm5d-override                                                              |
+# | Override output status                                                     |
+# +----------------------------------------------------------------------------+
+#
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+loadconfiguration()
+{
+  CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
+  if [ ! -f $CFGFILE ]
+    then
+      echo "ERROR: Cannot open configuration file!"
+      exit 1
+  fi
+  DIR_VAR=`cat $CFGFILE | grep dir_var= | sed 's/dir_var=//'`
+}
+
+writetofile()
+{
+  if [ $1 = "out1" ] || [ $1 = "out2" ] || [ $1 = "out3" ] || [ $1 = "out4" ]
+  then
+    if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
+    then
+      echo -n $2 > $DIR_VAR$1
+      echo "Port '"$1"' has set to $2."
+      exit 0
+    fi
+  fi
+  usage
+  exit 2
+}
+
+usage()
+{
+  echo ""
+  echo "Usage:"
+  echo "    $0 out1|out2|out3|out4 neutral|on|off"
+  echo ""
+}
+
+# main function
+if [ $# -eq 2 ];
+then
+  loadconfiguration
+  writetofile $1 $2
+  exit 0
+fi
+usage
+exit 2

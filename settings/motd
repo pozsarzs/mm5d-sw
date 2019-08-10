@@ -1,0 +1,10 @@
+
+MM3D v0.1 * Growing house controlling and remote monitoring system
+Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>
+
+Useable commands:
+  mm5d-editconf; mm5d-editcurrentprog; mm5d-maintainlog; mm5d-override;
+  mm5d-startdaemon; mm5d-stopdaemon; mm5d-updatestartpage; mm5d-viewlog.
+
+See manual page of commands for more information.
+

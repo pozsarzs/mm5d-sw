@@ -5,9 +5,10 @@ I. General information
 ----------------------
 
   It is an internal software for MM5D Raspberry Pi based controlling and
-monitoring equipment. It measures temperature and humidity, checks
-programmable inputs, outputs and error lights. You can view actual status
-with a browser application and administrate it with SSH client.
+monitoring equipment. It measures internal and external temperature (or gets
+it from another MM5D) and internal humidity, checks four programmable inputs,
+switch outputs, error lights and three colours light tower. You can view
+actual status with a browser application and administrate it with SSH client.
 
 II. Requirements
 ----------------

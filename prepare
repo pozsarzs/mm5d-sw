@@ -37,6 +37,10 @@ cd $HOME/download
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git
 cd Adafruit_Python_DHT
 sudo python setup.py install
+cd ..
+
+
+
 echo -e "\nCreating a new user..."
 sudo adduser $SWN2
 sudo mkdir --parents /home/$SWN2/programs

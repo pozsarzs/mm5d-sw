@@ -55,7 +55,7 @@ mm5d-sw/programs/mm5d.py
 mm5d-sw/scripts/mm5d-editenvirconf		ready
 mm5d-sw/scripts/mm5d-editmainconf
 mm5d-sw/scripts/mm5d-maintainlog		ready
-mm5d-sw/scripts/mm5d-override
+mm5d-sw/scripts/mm5d-override			ready
 mm5d-sw/scripts/mm5d-startdaemon		ready
 mm5d-sw/scripts/mm5d-stopdaemon			ready
 mm5d-sw/scripts/mm5d-updatestartpage		ready
@@ -63,7 +63,7 @@ mm5d-sw/scripts/mm5d-viewlog			ready
 -----------------------------------------------------
 mm5d-sw/settings/cron.d/mm5d			ready
 mm5d-sw/settings/init.d/mm5d.sh			ready
-mm5d-sw/settings/envir.ini
+mm5d-sw/settings/envir.ini			ready
 mm5d-sw/settings/mm5d.ini
 mm5d-sw/settings/motd				ready
 -----------------------------------------------------

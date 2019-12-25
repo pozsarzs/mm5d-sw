@@ -5,7 +5,12 @@
 # | mm5d-override                                                              |
 # | Override output status                                                     |
 # +----------------------------------------------------------------------------+
-#
+
+# Exit codes:
+#   0: normal exit
+#   1: configuration file is missing
+#   2: no or bad command line parameters
+
 #   This program is free software: you can redistribute it and/or modify it
 # under the terms of the European Union Public License 1.1 version.
 #
@@ -15,7 +20,8 @@
 
 loadconfiguration()
 {
-  CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
+#  CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
+  CFGFILE="./mm5d.ini"
   if [ ! -f $CFGFILE ]
     then
       echo "ERROR: Cannot open configuration file!"
@@ -26,14 +32,19 @@ loadconfiguration()
 
 writetofile()
 {
-  if [ $1 = "out1" ] || [ $1 = "out2" ] || [ $1 = "out3" ] || [ $1 = "out4" ]
+  case $1 in
+    "heater") OF="out1";;
+    "light") OF="out2";;
+    "ventilator") OF="out3";;
+    "humidifier") OF="out4";;
+    *) usage; exit 2;;
+  esac
+  if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
   then
-    if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
-    then
-      sudo echo -n $2 > $DIR_VAR$1
-      echo "Port '"$1"' has set to $2."
-      exit 0
-    fi
+    #sudo
+    echo -n $2 > $DIR_VAR$OF
+    echo "Output '"$1"' is set to $2."
+    exit 0
   fi
   usage
   exit 2
@@ -41,14 +52,22 @@ writetofile()
 
 getstatus()
 {
-  if [ $1 = "out1" ] || [ $1 = "out2" ] || [ $1 = "out3" ] || [ $1 = "out4" ]
-  then
-    echo "Port '"$1"'status is:"
-    cat $DIR_VAR$1
-    exit 0
+  case $1 in
+    "heater") IF="out1";;
+    "light") IF="out2";;
+    "ventilator") IF="out3";;
+    "humidifier") IF="out4";;
+    *) usage; exit 2;;
+  esac
+  echo "Port '"$1"' status is:"
+  if [ ! -f $DIR_VAR$IF ]
+    then
+      echo "neutral"
+      exit 0
   fi
-  usage
-  exit 2
+  cat $DIR_VAR$IF
+  echo ""
+  exit 0
 }
 
 usage()
@@ -56,7 +75,7 @@ usage()
   echo ""
   echo "Usage:"
   echo "    $0 -f|--full-screen"
-  echo "    $0 heat|lamp|vent|humi neutral|on|off"
+  echo "    $0 heater|light|ventilator|humidifier neutral|on|off"
   echo ""
 }
 
@@ -69,8 +88,11 @@ then
 fi
 if [ $# -eq 1 ];
 then
-  getstatus $1
-  exit 0
+  case $1 in
+    "-f") mm5d-override.bin $DIR_VAR; exit 0;;
+    "--full-screen") mm5d-override.bin $DIR_VAR; exit 0;;
+    *) getstatus $1; exit 0;;
+  esac
 fi
 usage
 exit 2

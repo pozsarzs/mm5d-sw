@@ -17,6 +17,7 @@
 #   0: normal exit
 #   1: configuration file is missing
 
+#CFGFILE="/etc/mm5d/envir.ini"
 CFGFILE="/usr/local/etc/mm5d/envir.ini"
 if [ ! -f $CFGFILE ]
 then

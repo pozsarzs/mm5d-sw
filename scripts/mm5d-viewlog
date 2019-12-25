@@ -20,6 +20,7 @@
 
 loadconfiguration()
 {
+  #CFGFILE="/etc/mm5d/mm5d.ini"
   CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
   if [ ! -f $CFGFILE ]
     then
@@ -31,7 +32,7 @@ loadconfiguration()
 
 viewlogfile()
 {
-  echo "Content of mm5d log file:"
+  echo "Content of log file:"
   echo "+------------+-------+------+------+---------+---------+---------+"
   echo "|    Date    | Time  | Temp |  RH  | Inputs  | Outputs | Errors  |"
   echo "+------------+-------+------+------+---------+---------+---------+"

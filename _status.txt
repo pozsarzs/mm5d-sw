@@ -8,8 +8,8 @@ mm5d-sw/documents/INSTALL			ready
 mm5d-sw/documents/README			ready
 mm5d-sw/documents/VERSION			ready
 -----------------------------------------------------
-mm5d-sw/manuals/mm5d-editenvirconf.1.gz
-mm5d-sw/manuals/mm5d-editmainconf.1.gz
+mm5d-sw/manuals/mm5d-editenvirconf.1.gz		ready
+mm5d-sw/manuals/mm5d-editmainconf.1.gz		ready
 mm5d-sw/manuals/mm5d-hwtest.py.1.gz
 mm5d-sw/manuals/mm5d-maintainlog.1.gz
 mm5d-sw/manuals/mm5d-override.1.gz
@@ -53,7 +53,7 @@ mm5d-sw/programs/mm5d-hwtest.py
 mm5d-sw/programs/mm5d.py
 -----------------------------------------------------
 mm5d-sw/scripts/mm5d-editenvirconf		ready
-mm5d-sw/scripts/mm5d-editmainconf
+mm5d-sw/scripts/mm5d-editmainconf		ready
 mm5d-sw/scripts/mm5d-maintainlog		ready
 mm5d-sw/scripts/mm5d-override			ready
 mm5d-sw/scripts/mm5d-startdaemon		ready

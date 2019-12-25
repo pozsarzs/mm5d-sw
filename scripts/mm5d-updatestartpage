@@ -19,6 +19,7 @@
 
 loadconfiguration()
 {
+  #CFGFILE="/etc/mm5d/mm5d.ini"
   CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
   if [ ! -f $CFGFILE ]
     then

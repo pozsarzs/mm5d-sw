@@ -85,12 +85,17 @@ mm5d-sw/source/editenvirconf/incsaveinifile.pas	ready
 mm5d-sw/source/editenvirconf/untcommon.pas	ready
 mm5d-sw/source/editmainconf/Makefile		ready
 
-mm5d-sw/source/override/Makefile		ready
 
+mm5d-sw/source/override/Makefile		ready
+mm5d-sw/source/override/incloadoutfiles.pas	ready
+mm5d-sw/source/override/incpage1screen.pas	ready
+mm5d-sw/source/override/incsaveoutfiles.pas	ready
+mm5d-sw/source/override/override.pas		ready
+mm5d-sw/source/override/untcommon.pas		ready
 mm5d-sw/source/configure			ready
 mm5d-sw/source/configure.in			ready
-mm5d-sw/source/Makefile
-mm5d-sw/source/Makefile.global.in
+mm5d-sw/source/Makefile				ready
+mm5d-sw/source/Makefile.global.in		ready
 -----------------------------------------------------
 mm5d-sw/webpage/cgi-bin/getdata.cgi		ready
 mm5d-sw/webpage/cgi-bin/getpage.cgi		ready

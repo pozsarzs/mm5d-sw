@@ -20,8 +20,7 @@
 
 loadconfiguration()
 {
-#  CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
-  CFGFILE="./mm5d.ini"
+  CFGFILE="/usr/local/etc/mm5d/mm5d.ini"
   if [ ! -f $CFGFILE ]
     then
       echo "ERROR: Cannot open configuration file!"
@@ -41,8 +40,7 @@ writetofile()
   esac
   if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
   then
-    #sudo
-    echo -n $2 > $DIR_VAR$OF
+    sudo echo -n $2 > $DIR_VAR$OF
     echo "Output '"$1"' is set to $2."
     exit 0
   fi
@@ -89,8 +87,8 @@ fi
 if [ $# -eq 1 ];
 then
   case $1 in
-    "-f") mm5d-override.bin $DIR_VAR; exit 0;;
-    "--full-screen") mm5d-override.bin $DIR_VAR; exit 0;;
+    "-f") sudo mm5d-override.bin $DIR_VAR; exit 0;;
+    "--full-screen") sudo mm5d-override.bin $DIR_VAR; exit 0;;
     *) getstatus $1; exit 0;;
   esac
 fi

@@ -39,7 +39,6 @@ case "$1" in
 	    log_end_msg 1 || true
 	fi
 	;;
-
   restart)
 	log_daemon_msg "Restarting MM5D daemon" "mm5d" || true
 	start-stop-daemon --stop --quiet --oknodo --retry 30 --pidfile $PIDFILE
@@ -49,9 +48,12 @@ case "$1" in
 	    log_end_msg 1 || true
 	fi
 	;;
+  reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
   *)
 	log_action_msg "Usage: /etc/init.d/mm5d.sh {start|stop|restart|status}" || true
 	exit 1
+	;;
 esac
-
-exit 0

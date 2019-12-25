@@ -12,6 +12,14 @@
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.
 
+// Exit codes:
+//   0: normal exit, file is saved
+//   1: command line parameter is missing
+//   2: bad terminal size
+//   3: cannot read file
+//   4: cannot write file
+//   5: normal exit, file is not saved
+
 program editenvirconf;
 {$MODE OBJFPC}{$H+}
 uses
@@ -504,7 +512,7 @@ begin
   if not loadinifile(paramstr(1))
     then quit(3,false,'ERROR: Cannot read '+paramstr(1)+' file!');
   if not setvalues
-    then quit(0,true,'File '+paramstr(1)+' is not saved.');
+    then quit(5,true,'File '+paramstr(1)+' is not saved.');
   if not saveinifile(paramstr(1))
     then quit(4,true,'ERROR: Cannot write '+paramstr(1)+' file!');
   quit(0,true,'');

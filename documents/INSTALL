@@ -5,20 +5,20 @@ Do not forget to set hostname and network.
 
 Installation
 ~~~~~~~~~~~~
-  pi@raspberry$ tar -xzf mm5d-sw-0.1-arm.tar.gz
-  pi@raspberry$ cd mm5d-sw
-  pi@raspberry$ ./prepare
-  pi@raspberry$ ./install
+  $ tar -xzf mm5d-sw-0.1-armhf.tar.gz
+  $ cd mm5d-sw
+  $ ./prepare
+  $ ./install
 
 Set program
 ~~~~~~~~~~~
-  mm5d@raspberry$ mm5d-editmainconf
+  $ mm5d-editmainconf
 
 Set environment characteristics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  mm5d@raspberry$ mm5d-editenvirconf
+  $ mm5d-editenvirconf
 
 Removing
 ~~~~~~~~
-  pi@raspberry$ cd mm5d-sw
-  pi@raspberry$ ./uninstall
+  $ cd mm5d-sw
+  $ ./uninstall

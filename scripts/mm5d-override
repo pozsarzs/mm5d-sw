@@ -30,10 +30,22 @@ writetofile()
   then
     if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
     then
-      echo -n $2 > $DIR_VAR$1
+      sudo echo -n $2 > $DIR_VAR$1
       echo "Port '"$1"' has set to $2."
       exit 0
     fi
+  fi
+  usage
+  exit 2
+}
+
+getstatus()
+{
+  if [ $1 = "out1" ] || [ $1 = "out2" ] || [ $1 = "out3" ] || [ $1 = "out4" ]
+  then
+    echo "Port '"$1"'status is:"
+    cat $DIR_VAR$1
+    exit 0
   fi
   usage
   exit 2
@@ -43,15 +55,21 @@ usage()
 {
   echo ""
   echo "Usage:"
-  echo "    $0 out1|out2|out3|out4 neutral|on|off"
+  echo "    $0 -f|--full-screen"
+  echo "    $0 heat|lamp|vent|humi neutral|on|off"
   echo ""
 }
 
 # main function
+loadconfiguration
 if [ $# -eq 2 ];
 then
-  loadconfiguration
   writetofile $1 $2
+  exit 0
+fi
+if [ $# -eq 1 ];
+then
+  getstatus $1
   exit 0
 fi
 usage

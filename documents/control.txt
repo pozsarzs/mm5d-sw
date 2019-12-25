@@ -51,5 +51,5 @@ Input values:
   in1-4			integer		status of input ports #1-4 (1: closed)
 
 Output values
-  out1-4		integer		out ports #1-4, 1: switch on relay
+  out1-7		integer		out ports #1-4, 1: switch on relay
   err1-4		integer		error lights #1-4, 1: switch on LED

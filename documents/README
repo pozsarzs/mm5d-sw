@@ -11,7 +11,7 @@ with a browser application and administrate it with SSH client.
 Requirements
 
   Hardware: Raspberry Pi 3 Model B
-  Software: Raspbian Stretch Lite operation system,
+  Software: Raspbian Lite operation system,
             Apache webserver,
             Perl,
             Python.
@@ -20,10 +20,11 @@ Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 a. Visit homepage (see later) to download installer packages:
 
-  Raspbian OS: mm5d-sw_0.1-1_all.deb
+  Raspbian OS: mm5d-sw-0.1-armhf.tar.gz
+
+               mm5d-sw_0.1-1_armhf.deb
                mm5d-eec_0.1-1_armhf.deb
                mm5d-web_0.1-1_all.deb
-               mm5d-sw-0.1-armhf.tar.gz
 
 b. Download from Github
 
@@ -32,12 +33,12 @@ b. Download from Github
 c. Download from Debian repository
 
   set reporitory:
-  # echo "deb http://www.szerafingomba.hu/deb/ ./" >> /etc/apt/sources.list
-  # wget -q -O - http://www.szerafingomba.hu/deb/KEY.gpg | apt-key add -
-  # apt-get update
+  $ sudo echo "deb http://www.szerafingomba.hu/deb/ ./" >> /etc/apt/sources.list
+  $ sudo wget -q -O - http://www.szerafingomba.hu/deb/KEY.gpg | apt-key add -
+  $ sudo apt-get update
 
   install:
-  # apt-get install mm5d-sw mm5d-eec mm5d-web
+  $ sudo apt-get install mm5d-sw mm5d-eec mm5d-web
 
 3. Contact
 ~~~~~~~~~~

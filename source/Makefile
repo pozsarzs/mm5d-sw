@@ -2,31 +2,30 @@
 # | MM5D v0.1 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
 # | Makefile                                                                   |
-# | Make file for source code                                                  |
+# | Makefile for Unix-like systems                                             |
 # +----------------------------------------------------------------------------+
 
-include Makefile.global
+include ./Makefile.global
 
-srcfiles = editenvirconf.pas
-binfiles = mm5d-editenvirconf.bin
+dirs =  editenvirconf editmainconf override
 
 all:
-	@echo "- Compiling source code..."
-	@mkdir -p ./lib/$(architecture)-$(os)/
-	@for x in $(srcfiles); do \
-	  if [ -e $$x ]; then fpc $(fpflag) $$x; echo ""; fi; \
+	@echo Compiling $(name):
+	@for dir in $(dirs); do \
+	  if [ -e Makefile ]; then make -s -C $$dir all; fi; \
 	done
-	@mv ./lib/$(architecture)-$(os)/editenvirconf ./lib/$(architecture)-$(os)/mm3d-editenvirconf.bin
-	@echo "...done."
+	@echo "Source code is compiled."
 
 clean:
-	@echo -n "- Cleaning source code..."
-	@$(rm) ./lib/$(architecture)-$(os)/*
-	@echo "...done."
+	@echo Cleaning source code:
+	@for dir in $(dirs); do \
+	  if [ -e Makefile ]; then make -s -C $$dir clean; fi; \
+	done
+	@echo "Source code is cleaned."
 
 install:
-	@echo -n "- Installing binary files..."
-	@for x in $(binfiles); do \
-	  if [ -e ./lib/$(architecture)-$(os)/$$x ]; then $(install) -m $(binmode) ./lib/$(architecture)-$(os)/$$x ../binary/; fi; \
+	@echo Installing $(name):
+	@for dir in $(dirs); do \
+	  if [ -e Makefile ]; then make -s -C $$dir install; fi; \
 	done
-	@echo "...done."
+	@echo "Programs are installed."

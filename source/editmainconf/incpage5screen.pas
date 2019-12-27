@@ -13,33 +13,21 @@
 // FOR A PARTICULAR PURPOSE.
 
 procedure page5screen;
-var
-  b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 5/8: Growing mushroom - humidifying');
+  header(PRGNAME+' '+VERSION+' * Page 5/8: Directories');
   textcolor(white);
-  gotoxy(4,3); writeln('Minimal relative humidity:');
-  gotoxy(4,4); writeln('Humidifier switch-on humidity:');
-  gotoxy(4,5); writeln('Humidifier switch-off humidity:');
-  gotoxy(4,6); writeln('Maximal relative humidity:');
-  if mhummin>9 then gotoxy(45,3) else gotoxy(46,3); writeln(mhummin,' %');
-  if mhumon>9 then gotoxy(45,4) else gotoxy(46,4); writeln(mhumon,' %');
-  if mhumoff>9 then gotoxy(45,5) else gotoxy(46,5); writeln(mhumoff,' %');
-  if mhummax>9 then gotoxy(45,6) else gotoxy(46,6); writeln(mhummax,' %');
-  gotoxy(4,9); writeln('Disable humidifier (0/1):');
-  for b:=0 to 9 do
-  begin
-    gotoxy(4,b+10);
-    writeln(' '+inttostr(b)+'.00...'+inttostr(b)+'.59 ',mhumdis[b]);
-  end;
-  for b:=10 to 11 do
-  begin
-    gotoxy(4,b+10);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',mhumdis[b]);
-  end;
-  for b:=12 to 23 do
-  begin
-    gotoxy(22,b-2);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',mhumdis[b]);
-  end;
+  gotoxy(4,3); writeln('HTML files for webserver:');
+  gotoxy(4,4); writeln('lock file:');
+  gotoxy(4,5); writeln('log files:');
+  gotoxy(4,6); writeln('translations:');
+  gotoxy(4,7); writeln('changing files:');
+  gotoxy(4,8); writeln('temporary files:');
+  gotoxy(4,9); writeln('data files:');
+  gotoxy(MINPOSX[5,1],3); writeln(dir_htm);
+  gotoxy(MINPOSX[5,1],4); writeln(dir_lck);
+  gotoxy(MINPOSX[5,1],5); writeln(dir_log);
+  gotoxy(MINPOSX[5,1],6); writeln(dir_msg);
+  gotoxy(MINPOSX[5,1],7); writeln(dir_shr);
+  gotoxy(MINPOSX[5,1],8); writeln(dir_tmp);
+  gotoxy(MINPOSX[5,1],9); writeln(dir_var);
 end;

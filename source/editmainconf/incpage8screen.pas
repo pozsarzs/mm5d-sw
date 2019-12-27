@@ -18,6 +18,15 @@ var
 begin
   header(PRGNAME+' '+VERSION+' * Page 8/8: Growing mushroom - ventilating');
   textcolor(white);
+
+{
+[log]
+; Storing time of log
+day_log=7
+; Enable/disable verbose debug log
+dbg_log=0
+}
+
   gotoxy(4,3); writeln('Ventilators switch-on minute:');
   gotoxy(4,4); writeln('Ventilators switch-off minute:');
   gotoxy(45,3); if mventon<10 then write('0'); write(mventon);

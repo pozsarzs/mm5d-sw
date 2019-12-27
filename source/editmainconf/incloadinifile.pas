@@ -65,6 +65,7 @@ begin
     sensor_type:=iif.ReadString(E,'sensor_type','DHT22');
     // section directories
     dir_htm:=iif.ReadString(D,'dir_htm','/var/www/html/');
+    dir_tmp:=iif.ReadString(D,'dir_tmp','/var/tmp/');
     // dir_lck:=iif.ReadString(D,'dir_lck','/var/lock/');
     // dir_log:=iif.ReadString(D,'dir_log','/var/log/');
     // dir_msg:=iif.ReadString(D,'dir_msg','/usr/share/locale/');

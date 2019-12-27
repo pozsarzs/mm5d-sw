@@ -13,48 +13,33 @@
 // FOR A PARTICULAR PURPOSE.
 
 procedure page3screen;
+var
+  b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 3/8: Growing hyphae - lighting');
+  header(PRGNAME+' '+VERSION+' * Page 3/8: GPIO port numbers');
   textcolor(white);
   for b:=1 to 4 do
   begin
     gotoxy(4,b+2); writeln('Input port #'+inttostr(b)+':');
     gotoxy(4,b+2+4); writeln('Output port #'+inttostr(b)+':');
-    gotoxy(4,b+2+4+4); writeln('Error light #'+inttostr(b)+':');
+    gotoxy(4,b+2+4+4); writeln('Error LED #'+inttostr(b)+':');
   end;
   for b:=1 to 4 do
   begin
-    gotoxy(MINPOSX[2,1],b+2); writeln(nam_in[b]);
-    gotoxy(MINPOSX[2,1],b+2+4); writeln(nam_out[b]);
-    gotoxy(MINPOSX[2,1],b+2+4+4); writeln(nam_err[b]);
+    gotoxy(MINPOSX[3,1],b+2); writeln('GPIO',prt_in[b]);
+    gotoxy(MINPOSX[3,1],b+2+4); writeln('GPIO',prt_out[b]);
+    gotoxy(MINPOSX[3,1],b+2+4+4); writeln('GPIO',prt_err[b]);
   end;
-
-  gotoxy(4,3); writeln('Lights switch-on time #1:');
-  gotoxy(4,4); writeln('Lights switch-off time #1:');
-  gotoxy(4,5); writeln('Lights switch-on time #2:');
-  gotoxy(4,6); writeln('Lights switch-off time #2:');
-
-[ports]
-; GPIO port number of error lights and ports
-prt_act=25
-prt_err1=12
-prt_err2=16
-prt_err3=20
-prt_err4=21
-prt_in1=17
-prt_in2=18
-prt_in3=22
-prt_in4=23
-prt_out1=5
-prt_out2=6
-prt_out3=13
-prt_out4=19
-prt_sensor=24
-prt_switch=26
-prt_twrgreen=3
-prt_twrred=2
-prt_twryellow=4
-
-
-
+  gotoxy(4,15); writeln('T/RH sensor:');
+  gotoxy(4,16); writeln('Mode switch:');
+  gotoxy(4,17); writeln('Active LED:');
+  gotoxy(4,18); writeln('Green light output:');
+  gotoxy(4,19); writeln('Red light output:');
+  gotoxy(4,20); writeln('Yellow light output:');
+  gotoxy(MINPOSX[3,1],15); writeln('GPIO',prt_sensor);
+  gotoxy(MINPOSX[3,1],16); writeln('GPIO',prt_switch);
+  gotoxy(MINPOSX[3,1],17); writeln('GPIO',prt_act);
+  gotoxy(MINPOSX[3,1],18); writeln('GPIO',prt_twrgreen);
+  gotoxy(MINPOSX[3,1],19); writeln('GPIO',prt_twrred);
+  gotoxy(MINPOSX[3,1],20); writeln('GPIO',prt_twryellow);
 end;

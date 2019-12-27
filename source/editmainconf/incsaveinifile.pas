@@ -68,6 +68,7 @@ begin
     iif.writestring(D,'dir_log',dir_log);
     iif.writestring(D,'dir_msg',dir_msg);
     iif.writestring(D,'dir_shr',dir_shr);
+    iif.writestring(D,'dir_tmp',dir_tmp);
     iif.writestring(D,'dir_var',dir_var);
     // section language
     iif.writestring(L,'lng',lng);

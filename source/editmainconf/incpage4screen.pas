@@ -13,51 +13,9 @@
 // FOR A PARTICULAR PURPOSE.
 
 procedure page4screen;
-var
-  b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 4/8: Growing hyphae - ventilating');
+  header(PRGNAME+' '+VERSION+' * Page 4/8: T/RH sensor');
   textcolor(white);
-  gotoxy(4,3); writeln('Ventilators switch-on minute:');
-  gotoxy(4,4); writeln('Ventilators switch-off minute:');
-  gotoxy(45,3); if hventon<10 then write('0'); write(hventon);
-  gotoxy(45,4); if hventoff<10 then write('0'); write(hventoff);
-  gotoxy(4,7); writeln('Disable ventilators (0/1):');
-  for b:=0 to 9 do
-  begin
-    gotoxy(4,b+8);
-    writeln(' '+inttostr(b)+'.00...'+inttostr(b)+'.59 ',hventdis[b]);
-  end;
-  for b:=10 to 11 do
-  begin
-    gotoxy(4,b+8);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',hventdis[b]);
-  end;
-  for b:=12 to 23 do
-  begin
-    gotoxy(22,b-4);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',hventdis[b]);
-  end;
-  gotoxy(40,7); writeln('Disable if ext. temp. is low (0/1):');
-  for b:=0 to 9 do
-  begin
-    gotoxy(40,b+8);
-    writeln(' '+inttostr(b)+'.00...'+inttostr(b)+'.59 ',hventdislowtemp[b]);
-  end;
-  for b:=10 to 11 do
-  begin
-    gotoxy(40,b+8);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',hventdislowtemp[b]);
-  end;
-  for b:=12 to 23 do
-  begin
-    gotoxy(58,b-4);
-    writeln(inttostr(b)+'.00..'+inttostr(b)+'.59 ',hventdislowtemp[b]);
-  end;
-  gotoxy(4,21); writeln('Low external temperature:');
-  gotoxy(46,21);
-  if hventlowtemp>9 then gotoxy(wherex-1,21);
-  if hventlowtemp<0 then gotoxy(wherex-1,21);
-  if hventlowtemp<-9 then gotoxy(wherex-1,21);
-  writeln(hventlowtemp,' °C');
+  gotoxy(4,3); writeln('Type of sensor:');
+  gotoxy(MINPOSX[4,1],3); writeln(sensor_type);
 end;

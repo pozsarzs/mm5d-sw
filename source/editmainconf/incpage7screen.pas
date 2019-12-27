@@ -13,15 +13,23 @@
 // FOR A PARTICULAR PURPOSE.
 
 procedure page7screen;
+code: array[3..15] of string=('cs','de','en','fr','hr',
+                              'hu','pl','ro','ru','sk',
+                              'sl','sr','uk');
 begin
-  header(PRGNAME+' '+VERSION+' * Page 7/8: Growing mushroom - lighting');
+  header(PRGNAME+' '+VERSION+' * Page 7/8: Language of webpages');
   textcolor(white);
-  gotoxy(4,3); writeln('Lights switch-on time #1:');
-  gotoxy(4,4); writeln('Lights switch-off time #1:');
-  gotoxy(4,5); writeln('Lights switch-on time #2:');
-  gotoxy(4,6); writeln('Lights switch-off time #2:');
-  gotoxy(45,3); if mlightson1<10 then write(' '); write(mlightson1,'.00');
-  gotoxy(45,4); if mlightsoff1<10 then write(' '); write(mlightsoff1,'.00');
-  gotoxy(45,5); if mlightson2<10 then write(' '); write(mlightson2,'.00');
-  gotoxy(45,6); if mlightsoff2<10 then write(' '); write(mlightsoff2,'.00');
+  gotoxy(4,3); writeln('Czech');
+  gotoxy(4,4); writeln('German');
+  gotoxy(4,5); writeln('English');
+  gotoxy(4,6); writeln('French');
+  gotoxy(4,7); writeln('Croatian');
+  gotoxy(4,8); writeln('Hungarian');
+  gotoxy(4,9); writeln('Polish');
+  gotoxy(4,10); writeln('Romanian');
+  gotoxy(4,11); writeln('Russian');
+  gotoxy(4,12); writeln('Slovak');
+  gotoxy(4,13); writeln('Slovenian');
+  gotoxy(4,14); writeln('Serbian');
+  gotoxy(4,15); writeln('Ukrainian');
 end;

@@ -64,7 +64,7 @@ mm5d-sw/scripts/mm5d-viewlog			ready
 mm5d-sw/settings/cron.d/mm5d			ready
 mm5d-sw/settings/init.d/mm5d.sh			ready
 mm5d-sw/settings/envir.ini			ready
-mm5d-sw/settings/mm5d.ini
+mm5d-sw/settings/mm5d.ini			ready
 mm5d-sw/settings/motd				ready
 -----------------------------------------------------
 mm5d-sw/source/config/config.guess		ready
@@ -84,8 +84,18 @@ mm5d-sw/source/editenvirconf/incpage8screen.pas	ready
 mm5d-sw/source/editenvirconf/incsaveinifile.pas	ready
 mm5d-sw/source/editenvirconf/untcommon.pas	ready
 mm5d-sw/source/editmainconf/Makefile		ready
-
-
+mm5d-sw/source/editmainconf/editmainconf.pas	ready
+mm5d-sw/source/editmainconf/incloadinifile.pas	ready
+mm5d-sw/source/editmainconf/incpage1screen.pas	ready
+mm5d-sw/source/editmainconf/incpage2screen.pas	ready
+mm5d-sw/source/editmainconf/incpage3screen.pas	ready
+mm5d-sw/source/editmainconf/incpage4screen.pas	ready
+mm5d-sw/source/editmainconf/incpage5screen.pas	ready
+mm5d-sw/source/editmainconf/incpage6screen.pas	ready
+mm5d-sw/source/editmainconf/incpage7screen.pas	ready
+mm5d-sw/source/editmainconf/incpage8screen.pas	ready
+mm5d-sw/source/editmainconf/incsaveinifile.pas	ready
+mm5d-sw/source/editmainconf/untcommon.pas	ready
 mm5d-sw/source/override/Makefile		ready
 mm5d-sw/source/override/incloadoutfiles.pas	ready
 mm5d-sw/source/override/incpage1screen.pas	ready

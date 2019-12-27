@@ -13,9 +13,12 @@
 // FOR A PARTICULAR PURPOSE.
 
 procedure page7screen;
-code: array[3..15] of string=('cs','de','en','fr','hr',
-                              'hu','pl','ro','ru','sk',
-                              'sl','sr','uk');
+var
+  b: byte;
+const
+  code: array[3..15] of string=('cs','de','en','fr','hr',
+                                'hu','pl','ro','ru','sk',
+                                'sl','sr','uk');
 begin
   header(PRGNAME+' '+VERSION+' * Page 7/8: Language of webpages');
   textcolor(white);
@@ -32,4 +35,9 @@ begin
   gotoxy(4,13); writeln('Slovenian');
   gotoxy(4,14); writeln('Serbian');
   gotoxy(4,15); writeln('Ukrainian');
+  b:=0;
+  for b:=3 to 15 do
+    if lng=code[b] then break;
+  if b=0 then b:=5;
+  gotoxy(MINPOSX[7,1],b); writeln('<<');
 end;

@@ -17,19 +17,6 @@ function saveinifile(filename: string): boolean;
 var
   iif: TINIFile;
   b: byte;
-const
-  HEADER1='; +----------------------------------------------------------------------------+';
-  HEADER2='; | MM5D v0.1 * Growing house controlling and remote monitoring system         |';
-  HEADER3='; | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |';
-  HEADER4='; | envir.ini                                                                  |';
-  HEADER5='; | growing environment characteristics                                        |';
-  D: string='directories';
-  E: string='sensors';
-  G: string='log';
-  L: string='language';
-  N: string='names';
-  P: string='ports';
-  U: string='user';
 
 begin
   iif:=TIniFile.Create(filename);
@@ -70,6 +57,10 @@ begin
     iif.writestring(D,'dir_shr',dir_shr);
     iif.writestring(D,'dir_tmp',dir_tmp);
     iif.writestring(D,'dir_var',dir_var);
+    // openweathermap.org
+    iif.ReadString(W,'api_key',api_key);
+    iif.ReadString(W,'base_url',base_url);
+    iif.ReadString(W,'city_name',city_name);
     // section language
     iif.writestring(L,'lng',lng);
     // section log

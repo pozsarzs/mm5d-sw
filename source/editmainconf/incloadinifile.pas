@@ -17,14 +17,6 @@ function loadinifile(filename: string): boolean;
 var
   iif: TINIFile;
   b: byte;
-const
-  D: string='directories';
-  E: string='sensors';
-  G: string='log';
-  L: string='language';
-  N: string='names';
-  P: string='ports';
-  U: string='user';
 
 begin
   iif:=TIniFile.Create(filename);
@@ -76,6 +68,10 @@ begin
     dir_msg:=iif.ReadString(D,'dir_msg','/usr/local/share/locale/');
     dir_shr:=iif.ReadString(D,'dir_shr','/usr/local/share/mm5d/');
     dir_var:=iif.ReadString(D,'dir_var','/var/local/lib/mm5d/');
+    // openweathermap.org
+    api_key:=iif.ReadString(W,'api_key','');
+    base_url:=iif.ReadString(W,'base_url','http://api.openweathermap.org/data/2.5/weather?');
+    city_name:=iif.ReadString(W,'city_name','');
     // section language
     lng:=iif.ReadString(L,'lng','en');
     // section log

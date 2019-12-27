@@ -26,29 +26,8 @@ uses
   INIFiles, SysUtils, character, crt, untcommon;
 var
   bottom: byte;
-
-  // old values
-  hheaterdis, mheaterdis: array[0..23] of byte;
-  hhumdis, mhumdis: array[0..23] of byte;
-  hventdis, mventdis: array[0..23] of byte;
-  hventdislowtemp, mventdislowtemp: array[0..23] of byte;
-  hhummax, mhummax: byte;
-  hhummin, mhummin: byte;
-  hhumoff, mhumoff: byte;
-  hhumon, mhumon: byte;
-  hlightsoff1, mlightsoff1, hlightsoff2, mlightsoff2: byte;
-  hlightson1, mlightson1, hlightson2, mlightson2: byte;
-  htempmax, mtempmax: byte;
-  htempmin, mtempmin: byte;
-  htempoff, mtempoff: byte;
-  htempon, mtempon: byte;
-  hventlowtemp, mventlowtemp: shortint;
-  hventoff, mventoff: byte;
-  hventon, mventon: byte;
-  
-  // new values
-  day_log: byte;
-  dbg_log: byte;
+  api_key, base_url, city_name: string;
+  day_log, dbg_log: byte;
   dir_htm, dir_lck, dir_log, dir_msg, dir_shr, dir_tmp, dir_var: string;
   lng: string;
   nam_err, nam_in, nam_out: array[1..4] of string;
@@ -61,31 +40,39 @@ var
 const
   VERSION: string='v0.1';
   PRGNAME: string='MM5D-EditMainConf';
+  D: string='directories';
+  E: string='sensors';
+  G: string='log';
+  L: string='language';
+  N: string='names';
+  P: string='ports';
+  U: string='user';
+  W: string='openweathermap.org';
   BLOCKS: array[1..8] of byte=(1,1,1,1,1,1,1,1);
   MINPOSX: array[1..8,1..6] of byte=((30,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (26,0,0,0,0,0),
-                                     (36,17,35,0,0,0),
-                                     (46,17,35,0,0,0),
-                                     (46,0,0,0,0,0),
-                                     (46,17,35,53,71,46));
+                                     (36,0,0,0,0,0),
+                                     (26,0,0,0,0,0),
+                                     (16,0,0,0,0,0),
+                                     (46,0,0,0,0,0));
   MINPOSY: array[1..8,1..6] of byte=((3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
-                                     (3,10,10,0,0,0),
-                                     (3,10,10,0,0,0),
                                      (3,0,0,0,0,0),
-                                     (3,8,8,8,8,21));
+                                     (3,0,0,0,0,0),
+                                     (3,0,0,0,0,0),
+                                     (3,0,0,0,0,0));
   MAXPOSY: array[1..8,1..6] of byte=((7,0,0,0,0,0),
                                      (14,0,0,0,0,0),
                                      (20,0,0,0,0,0),
                                      (3,0,0,0,0,0),
-                                     (9,21,21,0,0,0),
-                                     (6,21,21,0,0,0),
-                                     (6,0,0,0,0,0),
-                                     (4,19,19,19,19,21));
+                                     (9,0,0,0,0,0),
+                                     (5,0,0,0,0,0),
+                                     (15,0,0,0,0,0),
+                                     (4,0,0,0,0,0));
   FOOTERS: array[1..4] of string=('<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
                                   '<Enter> accept  <Esc> cancel',
                                   '<Enter> accept  <Esc> cancel',
@@ -133,17 +120,15 @@ begin
   s:='';
   repeat
     c:=readkey;
-    if (block=6) and (length(s)>0) then
-      case c of
-        '-': if strtoint(s)>0 then s:=inttostr(strtoint(s)*(-1));
-        '+': if strtoint(s)<0 then s:=inttostr(strtoint(s)*(-1));
-      end;
-    if isnumber(c) then
-      case block of
-        1: if length(s)<2 then s:=s+c;
-        6: if length(s)<3 then s:=s+c;
-      else if (c='0') or (c='1') then s:=c;
-      end;
+    if (page=3) then
+    begin
+      if isnumber(c) then
+        if length(s)<2 then s:=s+c;
+    end else
+    begin
+      if (length(s)<50) and (c<>#0) and (c<>#8) and
+        (c<>#9) and (c<>#13) and (c<>#27) then s:=s+c;
+    end;
     if c=#8 then delete(s,length(s),1);
     gotoxy(1,bottom); clreol; write('>'+s);
   until (c=#13) or (c=#27);
@@ -157,28 +142,15 @@ begin
       if block=1 then
       begin
         textbackground(blue);
-        gotoxy(MINPOSX[page,block]-1,posy); write('  ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        gotoxy(MINPOSX[page,block],posy); clreol;
+        gotoxy(MINPOSX[page,block],posy);
         case posy of
-          3: begin hhummin:=strtoint(s); write(hhummin); end;
-          4: begin hhumon:=strtoint(s); write(hhumon); end;
-          5: begin hhumoff:=strtoint(s); write(hhumoff); end;
-          6: begin hhummax:=strtoint(s); write(hhummax); end;
+          3: begin usr_nam:=s; write(usr_nam); end;
+          4: begin usr_uid:=s; write(usr_uid); end;
+          5: begin usr_dt[1]:=s; write(usr_dt[1]); end;
+          6: begin usr_dt[2]:=s; write(usr_dt[2]); end;
+          7: begin usr_dt[3]:=s; write(usr_dt[3]); end;
         end;
-      end;
-      // page #1 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hhumdis[posy-10]:=strtoint(s);
-        write(hhumdis[posy-10]);
-      end;
-      // page #1 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hhumdis[posy+2]:=strtoint(s);
-        write(hhumdis[posy+2]);
       end;
     end;
     // -- page #2 --
@@ -188,28 +160,22 @@ begin
       if block=1 then
       begin
         textbackground(blue);
-        gotoxy(MINPOSX[page,block]-1,posy);write('  ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        gotoxy(MINPOSX[page,block],posy); clreol;
+        gotoxy(MINPOSX[page,block],posy);
         case posy of
-          3: begin htempmin:=strtoint(s); write(htempmin); end;
-          4: begin htempon:=strtoint(s); write(htempon); end;
-          5: begin htempoff:=strtoint(s); write(htempoff); end;
-          6: begin htempmax:=strtoint(s); write(htempmax); end;
+           3: begin nam_in[1]:=s; write(nam_in[1]); end;
+           4: begin nam_in[2]:=s; write(nam_in[2]); end;
+           5: begin nam_in[3]:=s; write(nam_in[3]); end;
+           6: begin nam_in[4]:=s; write(nam_in[4]); end;
+           7: begin nam_out[1]:=s; write(nam_out[1]); end;
+           8: begin nam_out[2]:=s; write(nam_out[2]); end;
+           9: begin nam_out[3]:=s; write(nam_out[3]); end;
+          10: begin nam_out[4]:=s; write(nam_out[4]); end;
+          11: begin nam_err[1]:=s; write(nam_err[1]); end;
+          12: begin nam_err[2]:=s; write(nam_err[2]); end;
+          13: begin nam_err[3]:=s; write(nam_err[3]); end;
+          14: begin nam_err[4]:=s; write(nam_err[4]); end;
         end;
-      end;
-      // page #2 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hheaterdis[posy-10]:=strtoint(s);
-        write(hheaterdis[posy-10]);
-      end;
-      // page #2 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hheaterdis[posy+2]:=strtoint(s);
-        write(hheaterdis[posy+2]);
       end;
     end;
     // -- page #3 --
@@ -218,15 +184,28 @@ begin
       // page #3 - block #1
       if block=1 then
       begin
-        if strtoint(s)>23 then s:=inttostr(23);
         textbackground(blue);
-        gotoxy(MINPOSX[page,block]-1,posy); write('  ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        gotoxy(MINPOSX[page,block]+4,posy); clreol;
+        gotoxy(MINPOSX[page,block]+4,posy);
         case posy of
-          3: begin hlightson1:=strtoint(s); write(hlightson1); end;
-          4: begin hlightsoff1:=strtoint(s); write(hlightsoff1); end;
-          5: begin hlightson2:=strtoint(s); write(hlightson2); end;
-          6: begin hlightsoff2:=strtoint(s); write(hlightsoff2); end;
+            3: begin prt_in[1]:=strtoint(s); write(prt_in[1]); end;
+            4: begin prt_in[2]:=strtoint(s); write(prt_in[2]); end;
+            5: begin prt_in[3]:=strtoint(s); write(prt_in[3]); end;
+            6: begin prt_in[4]:=strtoint(s); write(prt_in[4]); end;
+            7: begin prt_out[1]:=strtoint(s); write(prt_out[1]); end;
+            8: begin prt_out[2]:=strtoint(s); write(prt_out[2]); end;
+            9: begin prt_out[3]:=strtoint(s); write(prt_out[3]); end;
+           10: begin prt_out[4]:=strtoint(s); write(prt_out[4]); end;
+           11: begin prt_err[1]:=strtoint(s); write(prt_err[1]); end;
+           12: begin prt_err[2]:=strtoint(s); write(prt_err[2]); end;
+           13: begin prt_err[3]:=strtoint(s); write(prt_err[3]); end;
+           14: begin prt_err[4]:=strtoint(s); write(prt_err[4]); end;
+           15: begin prt_sensor:=strtoint(s); write(prt_sensor); end;
+           16: begin prt_switch:=strtoint(s); write(prt_switch); end;
+           17: begin prt_act:=strtoint(s); write(prt_act); end;
+           18: begin prt_twrgreen:=strtoint(s); write(prt_twrgreen); end;
+           19: begin prt_twrred:=strtoint(s); write(prt_twrred); end;
+           20: begin prt_twryellow:=strtoint(s); write(prt_twryellow); end;
         end;
       end;
     end;
@@ -240,46 +219,10 @@ begin
         textbackground(blue);
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin hventon:=strtoint(s); write(hventon); end;
-          4: begin hventoff:=strtoint(s); write(hventoff); end;
-        end;
-      end;
-      // page #4 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hventdis[posy-8]:=strtoint(s);
-        write(hventdis[posy-8]);
-      end;
-      // page #4 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hventdis[posy+4]:=strtoint(s);
-        write(hventdis[posy+4]);
-      end;
-      // page #4 - block #4
-      if block=4 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hventdislowtemp[posy-8]:=strtoint(s);
-        write(hventdislowtemp[posy-8]);
-      end;
-      // page #4 - block #5
-      if block=5 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        hventdislowtemp[posy+4]:=strtoint(s);
-        write(hventdislowtemp[posy+4]);
-      end;
-      // page #4 - block #6
-      if block=6 then
-      begin
-        textbackground(blue);
-        gotoxy(MINPOSX[page,block]-2,posy); write('   ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        hventlowtemp:=strtoint(s); write(hventlowtemp);
+//        case posy of
+//          3: begin hventon:=strtoint(s); write(hventon); end;
+//          4: begin hventoff:=strtoint(s); write(hventoff); end;
+//        end;
       end;
     end;
     // -- page #5 --
@@ -291,26 +234,12 @@ begin
         textbackground(blue);
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin mhummin:=strtoint(s); write(mhummin); end;
-          4: begin mhumon:=strtoint(s); write(mhumon); end;
-          5: begin mhumoff:=strtoint(s); write(mhumoff); end;
-          6: begin mhummax:=strtoint(s); write(mhummax); end;
-        end;
-      end;
-      // page #5 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mhumdis[posy-10]:=strtoint(s);
-        write(mhumdis[posy-10]);
-      end;
-      // page #5 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mhumdis[posy+2]:=strtoint(s);
-        write(mhumdis[posy+2]);
+//        case posy of
+//          3: begin mhummin:=strtoint(s); write(mhummin); end;
+//          4: begin mhumon:=strtoint(s); write(mhumon); end;
+//          5: begin mhumoff:=strtoint(s); write(mhumoff); end;
+//          6: begin mhummax:=strtoint(s); write(mhummax); end;
+//        end;
       end;
     end;
     // -- page #6 --
@@ -322,26 +251,12 @@ begin
         textbackground(blue);
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin mtempmin:=strtoint(s); write(mtempmin); end;
-          4: begin mtempon:=strtoint(s); write(mtempon); end;
-          5: begin mtempoff:=strtoint(s); write(mtempoff); end;
-          6: begin mtempmax:=strtoint(s); write(mtempmax); end;
-        end;
-      end;
-      // page #6 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mheaterdis[posy-10]:=strtoint(s);
-        write(mheaterdis[posy-10]);
-      end;
-      // page #6 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mheaterdis[posy+2]:=strtoint(s);
-        write(mheaterdis[posy+2]);
+//        case posy of
+//          3: begin mtempmin:=strtoint(s); write(mtempmin); end;
+//          4: begin mtempon:=strtoint(s); write(mtempon); end;
+//          5: begin mtempoff:=strtoint(s); write(mtempoff); end;
+//          6: begin mtempmax:=strtoint(s); write(mtempmax); end;
+//        end;
       end;
     end;
     // -- page #7 --
@@ -354,12 +269,12 @@ begin
         textbackground(blue);
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin mlightson1:=strtoint(s); write(mlightson1); end;
-          4: begin mlightsoff1:=strtoint(s); write(mlightsoff1); end;
-          5: begin mlightson2:=strtoint(s); write(mlightson2); end;
-          6: begin mlightsoff2:=strtoint(s); write(mlightsoff2); end;
-        end;
+//        case posy of
+//          3: begin mlightson1:=strtoint(s); write(mlightson1); end;
+//          4: begin mlightsoff1:=strtoint(s); write(mlightsoff1); end;
+//          5: begin mlightson2:=strtoint(s); write(mlightson2); end;
+//          6: begin mlightsoff2:=strtoint(s); write(mlightsoff2); end;
+//        end;
       end;
     end;
     // -- page #8 --
@@ -372,46 +287,10 @@ begin
         textbackground(blue);
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin mventon:=strtoint(s); write(mventon); end;
-          4: begin mventoff:=strtoint(s); write(mventoff); end;
-        end;
-      end;
-      // page #8 - block #2
-      if block=2 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mventdis[posy-8]:=strtoint(s);
-        write(mventdis[posy-8]);
-      end;
-      // page #8 - block #3
-      if block=3 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mventdis[posy+4]:=strtoint(s);
-        write(mventdis[posy+4]);
-      end;
-      // page #8 - block #4
-      if block=4 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mventdislowtemp[posy-8]:=strtoint(s);
-        write(mventdislowtemp[posy-8]);
-      end;
-      // page #8 - block #5
-      if block=5 then
-      begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mventdislowtemp[posy+4]:=strtoint(s);
-        write(mventdislowtemp[posy+4]);
-      end;
-      // page #8 - block #6
-      if block=6 then
-      begin
-        textbackground(blue);
-        gotoxy(MINPOSX[page,block]-2,posy); write('   ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        mventlowtemp:=strtoint(s); write(mventlowtemp);
+//        case posy of
+//          3: begin mventon:=strtoint(s); write(mventon); end;
+//          4: begin mventoff:=strtoint(s); write(mventoff); end;
+//        end;
       end;
     end;
   end;

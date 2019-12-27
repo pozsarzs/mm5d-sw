@@ -51,8 +51,6 @@ end;
 
 // write header
 procedure header(title: string);
-var
-  b: byte;
 begin
   textbackground(lightgray); textcolor(black);
   gotoxy(1,1); clreol;

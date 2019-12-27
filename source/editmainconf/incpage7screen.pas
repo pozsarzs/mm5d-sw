@@ -15,10 +15,6 @@
 procedure page7screen;
 var
   b: byte;
-const
-  code: array[3..15] of string=('cs','de','en','fr','hr',
-                                'hu','pl','ro','ru','sk',
-                                'sl','sr','uk');
 begin
   header(PRGNAME+' '+VERSION+' * Page 7/8: Language of webpages');
   textcolor(white);
@@ -37,7 +33,7 @@ begin
   gotoxy(4,15); writeln('Ukrainian');
   b:=0;
   for b:=3 to 15 do
-    if lng=code[b] then break;
+    if lng=CODE[b] then break;
   if b=0 then b:=5;
   gotoxy(MINPOSX[7,1],b); writeln('<<');
 end;

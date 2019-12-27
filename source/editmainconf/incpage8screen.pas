@@ -16,8 +16,8 @@ procedure page8screen;
 begin
   header(PRGNAME+' '+VERSION+' * Page 8/8: Logging');
   textcolor(white);
-  gotoxy(4,3); writeln('Storing time of log records in days');
-  gotoxy(4,4); writeln('Enable/disable verbose debug log');
+  gotoxy(4,3); writeln('Storing time of log records in days:');
+  gotoxy(4,4); writeln('Enable debug log (0: disable):');
   gotoxy(MINPOSX[8,1],3); writeln(day_log);
   gotoxy(MINPOSX[8,1],4); writeln(dbg_log);
 end;

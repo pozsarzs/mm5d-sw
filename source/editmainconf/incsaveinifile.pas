@@ -15,7 +15,7 @@
 // save environment characteristics file
 function saveinifile(filename: string): boolean;
 var
-  iif: text;
+  iif: TINIFile;
   b: byte;
 const
   HEADER1='; +----------------------------------------------------------------------------+';
@@ -23,103 +23,59 @@ const
   HEADER3='; | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |';
   HEADER4='; | envir.ini                                                                  |';
   HEADER5='; | growing environment characteristics                                        |';
-  H: string='hyphae';
-  M: string='mushroom';
+  D: string='directories';
+  E: string='sensors';
+  G: string='log';
+  L: string='language';
+  N: string='names';
+  P: string='ports';
+  U: string='user';
 
 begin
+  iif:=TIniFile.Create(filename);
   saveinifile:=true;
   try
-    assign(iif,filename);
-    rewrite(iif);
-    writeln(iif,HEADER1);
-    writeln(iif,HEADER2);
-    writeln(iif,HEADER3);
-    writeln(iif,HEADER4);
-    writeln(iif,HEADER5);
-    writeln(iif,HEADER1);
-    writeln(iif,'');
-    writeln(iif,'['+H+']');
-    writeln(iif,'; humidifier');
-    writeln(iif,'humidity_min=',hhummin);
-    writeln(iif,'humidifier_on=',hhumon);
-    writeln(iif,'humidifier_off=',hhumoff);
-    writeln(iif,'humidity_max=',hhummax);
-    for b:=0 to 9 do
-      writeln(iif,'humidifier_disable_0'+inttostr(b)+'=',hhumdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'humidifier_disable_'+inttostr(b)+'=',hhumdis[b]);
-    writeln(iif,'');
-    writeln(iif,'; heaters');
-    writeln(iif,'temperature_min=',htempmin);
-    writeln(iif,'heater_on=',htempon);
-    writeln(iif,'heater_off=',htempoff);
-    writeln(iif,'temperature_max=',htempmax);
-    for b:=0 to 9 do
-      writeln(iif,'heater_disable_0'+inttostr(b)+'=',hheaterdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'heater_disable_'+inttostr(b)+'=',hheaterdis[b]);
-    writeln(iif,'');
-    writeln(iif,'; lights');
-    writeln(iif,'light_on1=',hlightson1);
-    writeln(iif,'light_off1=',hlightsoff1);
-    writeln(iif,'light_on2=',hlightson2);
-    writeln(iif,'light_off2=',hlightsoff2);
-    writeln(iif,'');
-    writeln(iif,'; ventillators');
-    writeln(iif,'vent_on=',hventon);
-    writeln(iif,'vent_off=',hventoff);
-    for b:=0 to 9 do
-      writeln(iif,'vent_disable_0'+inttostr(b)+'=',hventdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'vent_disable_'+inttostr(b)+'=',hventdis[b]);
-    for b:=0 to 9 do
-      writeln(iif,'vent_disablelowtemp_0'+inttostr(b)+'=',hventdislowtemp[b]);
-    for b:=10 to 23 do
-      writeln(iif,'vent_disablelowtemp_'+inttostr(b)+'=',hventdislowtemp[b]);
-    writeln(iif,'vent_lowtemp=',hventlowtemp);
-    writeln(iif,'');
-    writeln(iif,'['+M+']');
-    writeln(iif,'; humidifier');
-    writeln(iif,'humidity_min=',mhummin);
-    writeln(iif,'humidifier_on=',mhumon);
-    writeln(iif,'humidifier_off=',mhumoff);
-    writeln(iif,'humidity_max=',mhummax);
-    for b:=0 to 9 do
-      writeln(iif,'humidifier_disable_0'+inttostr(b)+'=',mhumdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'humidifier_disable_'+inttostr(b)+'=',mhumdis[b]);
-    writeln(iif,'');
-    writeln(iif,'; heaters');
-    writeln(iif,'temperature_min=',mtempmin);
-    writeln(iif,'heater_on=',mtempon);
-    writeln(iif,'heater_off=',mtempoff);
-    writeln(iif,'temperature_max=',mtempmax);
-    for b:=0 to 9 do
-      writeln(iif,'heater_disable_0'+inttostr(b)+'=',mheaterdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'heater_disable_'+inttostr(b)+'=',mheaterdis[b]);
-    writeln(iif,'');
-    writeln(iif,'; lights');
-    writeln(iif,'light_on1=',mlightson1);
-    writeln(iif,'light_off1=',mlightsoff1);
-    writeln(iif,'light_on2=',mlightson2);
-    writeln(iif,'light_off2=',mlightsoff2);
-    writeln(iif,'');
-    writeln(iif,'; ventillators');
-    writeln(iif,'vent_on=',mventon);
-    writeln(iif,'vent_off=',mventoff);
-    for b:=0 to 9 do
-      writeln(iif,'vent_disable_0'+inttostr(b)+'=',mventdis[b]);
-    for b:=10 to 23 do
-      writeln(iif,'vent_disable_'+inttostr(b)+'=',mventdis[b]);
-    for b:=0 to 9 do
-      writeln(iif,'vent_disablelowtemp_0'+inttostr(b)+'=',mventdislowtemp[b]);
-    for b:=10 to 23 do
-      writeln(iif,'vent_disablelowtemp_'+inttostr(b)+'=',mventdislowtemp[b]);
-    writeln(iif,'vent_lowtemp=',mventlowtemp);
-    writeln(iif,'');
-    close(iif);
+    // section user
+    iif.writestring(U,'usr_nam',usr_nam);
+    iif.writestring(U,'usr_uid',usr_uid);
+    for b:=1 to 3 do
+      iif.writestring(U,'usr_dt'+inttostr(b),usr_dt[b]);
+    // section names
+    for b:=1 to 4 do
+      iif.writestring(N,'nam_err'+inttostr(b),nam_err[b]);
+    for b:=1 to 4 do
+      iif.writestring(N,'nam_in'+inttostr(b),nam_in[b]);
+    for b:=1 to 4 do
+      iif.writestring(N,'nam_out'+inttostr(b),nam_out[b]);
+    // section ports
+    iif.writestring(P,'prt_act',inttostr(prt_act));
+    for b:=1 to 4 do
+      iif.writestring(P,'prt_err'+inttostr(b),inttostr(prt_err[b]));
+    for b:=1 to 4 do
+      iif.writestring(P,'prt_in'+inttostr(b),inttostr(prt_in[b]));
+    for b:=1 to 4 do
+      iif.writestring(P,'prt_out'+inttostr(b),inttostr(prt_out[b]));
+    iif.writestring(P,'prt_sensor',inttostr(prt_sensor));
+    iif.writestring(P,'prt_switch',inttostr(prt_switch));
+    iif.writestring(P,'prt_twrgreen',inttostr(prt_twrgreen));
+    iif.writestring(P,'prt_twrred',inttostr(prt_twrred));
+    iif.writestring(P,'prt_twryellow',inttostr(prt_twryellow));
+    // section sensors
+    iif.writestring(E,'sensor_type',sensor_type);
+    // section directories
+    iif.writestring(D,'dir_htm',dir_htm);
+    iif.writestring(D,'dir_lck',dir_lck);
+    iif.writestring(D,'dir_log',dir_log);
+    iif.writestring(D,'dir_msg',dir_msg);
+    iif.writestring(D,'dir_shr',dir_shr);
+    iif.writestring(D,'dir_var',dir_var);
+    // section language
+    iif.writestring(L,'lng',lng);
+    // section log
+    iif.writestring(G,'day_log',inttostr(day_log));
+    iif.writestring(G,'dbg_log',inttostr(dbg_log));
   except
     saveinifile:=false;
   end;
+  iif.Free;
 end;

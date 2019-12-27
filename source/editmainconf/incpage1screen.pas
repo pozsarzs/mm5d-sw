@@ -23,10 +23,10 @@ begin
   gotoxy(4,5); write('Address - city:');
   gotoxy(4,6); write('Address:');
   gotoxy(4,7); write('Name of growing house:');
-  gotoxy(36,3); write(usr_nam);
-  gotoxy(36,4); write(usr_uid);
+  gotoxy(MINPOSX[1,1],3); write(usr_nam);
+  gotoxy(MINPOSX[1,1],4); write(usr_uid);
   for b:=1 to 3 do
   begin
-    gotoxy(36,b+4); writeln(usr_dt[b]);
+    gotoxy(MINPOSX[1,1],b+4); writeln(usr_dt[b]);
   end;
 end;

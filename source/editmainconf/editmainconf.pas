@@ -62,8 +62,8 @@ const
   VERSION: string='v0.1';
   PRGNAME: string='MM5D-EditMainConf';
   BLOCKS: array[1..8] of byte=(1,1,1,1,1,1,1,1);
-  MINPOSX: array[1..8,1..6] of byte=((36,0,0,0,0,0),
-                                     (46,17,35,0,0,0),
+  MINPOSX: array[1..8,1..6] of byte=((30,0,0,0,0,0),
+                                     (26,0,0,0,0,0),
                                      (46,0,0,0,0,0),
                                      (46,17,35,53,71,46),
                                      (46,17,35,0,0,0),
@@ -71,7 +71,7 @@ const
                                      (46,0,0,0,0,0),
                                      (46,17,35,53,71,46));
   MINPOSY: array[1..8,1..6] of byte=((3,0,0,0,0,0),
-                                     (3,10,10,0,0,0),
+                                     (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,8,8,8,8,21),
                                      (3,10,10,0,0,0),
@@ -79,7 +79,7 @@ const
                                      (3,0,0,0,0,0),
                                      (3,8,8,8,8,21));
   MAXPOSY: array[1..8,1..6] of byte=((7,0,0,0,0,0),
-                                     (6,21,21,0,0,0),
+                                     (14,0,0,0,0,0),
                                      (6,0,0,0,0,0),
                                      (4,19,19,19,19,21),
                                      (6,21,21,0,0,0),
@@ -528,7 +528,7 @@ begin
     then quit(3,false,'ERROR: Cannot read '+paramstr(1)+' file!');
   if not setvalues
     then quit(5,true,'File '+paramstr(1)+' is not saved.');
-//  if not saveinifile(paramstr(1))
-//    then quit(4,true,'ERROR: Cannot write '+paramstr(1)+' file!');
+  if not saveinifile(paramstr(1))
+    then quit(4,true,'ERROR: Cannot write '+paramstr(1)+' file!');
   quit(0,true,'');
 end.

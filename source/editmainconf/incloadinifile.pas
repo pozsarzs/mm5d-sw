@@ -79,7 +79,7 @@ begin
     lng:=iif.ReadString(L,'lng','en');
     // section log
     day_log:=strtoint(iif.ReadString(G,'day_log','7'));
-    dbg_log:=strtoint(iif.ReadString(G,'dbd_log','0'));
+    dbg_log:=strtoint(iif.ReadString(G,'dbg_log','0'));
   except
     loadinifile:=false;
   end;

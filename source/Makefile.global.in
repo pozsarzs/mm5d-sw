@@ -5,7 +5,7 @@
 # | Global makefile for Unix-like systems                                      |
 # +----------------------------------------------------------------------------+
 
-name		= editenvirconf
+name		= mm5d
 version		= @version@
 architecture	= @architecture@
 os              = @os@

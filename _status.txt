@@ -1,6 +1,6 @@
-mm5d-sw/binary/mm5d-editenvirconf.bin
-mm5d-sw/binary/mm5d-editmainconf.bin
-mm5d-sw/binary/mm5d-override.bin
+mm5d-sw/binary/mm5d-editenvirconf.bin		ready
+mm5d-sw/binary/mm5d-editmainconf.bin		ready
+mm5d-sw/binary/mm5d-override.bin		ready
 -----------------------------------------------------
 mm5d-sw/documents/AUTHORS			ready
 mm5d-sw/documents/control.txt			ready

@@ -10,7 +10,7 @@ include ./Makefile.global
 dirs =  editenvirconf editmainconf override
 
 all:
-	@echo Compiling $(name):
+	@echo Compiling source code:
 	@for dir in $(dirs); do \
 	  if [ -e Makefile ]; then make -s -C $$dir all; fi; \
 	done
@@ -24,7 +24,7 @@ clean:
 	@echo "Source code is cleaned."
 
 install:
-	@echo Installing $(name):
+	@echo Installing binaries:
 	@for dir in $(dirs); do \
 	  if [ -e Makefile ]; then make -s -C $$dir install; fi; \
 	done

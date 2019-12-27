@@ -5,7 +5,7 @@
 # | Make file for source code                                                  |
 # +----------------------------------------------------------------------------+
 
-include Makefile.global
+include ../Makefile.global
 
 srcfiles = editmainconf.pas
 binfiles = mm5d-editmainconf.bin
@@ -16,7 +16,7 @@ all:
 	@for x in $(srcfiles); do \
 	  if [ -e $$x ]; then fpc $(fpflag) $$x; echo ""; fi; \
 	done
-	@mv ./lib/$(architecture)-$(os)/editenvirconf ./lib/$(architecture)-$(os)/mm3d-editenvirconf.bin
+	@mv ./lib/$(architecture)-$(os)/editmainconf ./lib/$(architecture)-$(os)/$(name)-editmainconf.bin
 	@echo "...done."
 
 clean:
@@ -27,6 +27,6 @@ clean:
 install:
 	@echo -n "- Installing binary files..."
 	@for x in $(binfiles); do \
-	  if [ -e ./lib/$(architecture)-$(os)/$$x ]; then $(install) -m $(binmode) ./lib/$(architecture)-$(os)/$$x ../binary/; fi; \
+	  if [ -e ./lib/$(architecture)-$(os)/$$x ]; then $(install) -m $(binmode) ./lib/$(architecture)-$(os)/$$x ../../binary/; fi; \
 	done
 	@echo "...done."

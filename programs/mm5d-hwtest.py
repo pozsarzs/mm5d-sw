@@ -1,17 +1,21 @@
 #!/usr/bin/python
 # +----------------------------------------------------------------------------+
-# | MM3D v0.4 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2018-2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>      |
-# | mm3d-hwtest.py                                                             |
+# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | mm5d-hwtest.py                                                             |
 # | Hardware test program                                                      |
 # +----------------------------------------------------------------------------+
-#
+
 #   This program is free software: you can redistribute it and/or modify it
 # under the terms of the European Union Public License 1.1 version.
 #
 #   This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
+
+# Exit codes:
+#   0: normal exit
+#   1: configuration file is missing
 
 import ConfigParser
 import RPi.GPIO as GPIO
@@ -65,6 +69,7 @@ def loadconfiguration(conffile):
       sensor=Adafruit_DHT.DHT22
   except:
     print("ERROR: Cannot open configuration file!");
+    exit(1);
 
 # blink ACT LED
 def blink_act():
@@ -73,8 +78,9 @@ def blink_act():
     GPIO.output(prt_act,0)
     time.sleep(0.5)
 
+#conffile='/etc/mm3d/mm3d.ini'
 conffile='/usr/local/etc/mm3d/mm3d.ini'
-print "\nMM3D hardware test utility * (C)2018-2019 Pozsar Zsolt"
+print "\nMM5D hardware test utility * (C)2019 Pozsar Zsolt"
 print "======================================================"
 print " * load configuration: %s..." % conffile
 loadconfiguration(conffile)

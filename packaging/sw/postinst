@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+if [ "$1" = "configure" ]; then
+  if [ -d /usr/doc -a ! -e /usr/doc/mm5d-sw -a -d /usr/share/doc/mm5d-sw ]; then
+    ln -sf /usr/share/doc/mm5d-sw /usr/doc/mm5d-sw
+  fi
+fi
+mkdir --parents /var/lib/mm5d/
+invoke-rc.d mm5d.sh stop
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc0.d/K01mm5d.sh
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc2.d/S01mm5d.sh
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc3.d/S01mm5d.sh
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc4.d/S01mm5d.sh
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc5.d/S01mm5d.sh
+sudo ln --force -s /etc/init.d/mm5d.sh /etc/rc6.d/K01mm5d.sh
+systemctl daemon-reload
+invoke-rc.d mm5d.sh start
+invoke-rc.d cron restart

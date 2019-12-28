@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+if [ "$1" = "configure" ]; then
+  if [ -d /usr/doc -a ! -e /usr/doc/mm5d-eec -a -d /usr/share/doc/mm5d-eec ]; then
+    ln -sf /usr/share/doc/mm5d-eec /usr/doc/mm5d-eec
+  fi
+fi

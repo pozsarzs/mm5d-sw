@@ -1,17 +1,23 @@
 #!/usr/bin/python
 # +----------------------------------------------------------------------------+
-# | MM3D v0.4 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2018-2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>      |
-# | mm3d.py                                                                    |
+# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | mm5d.py                                                                    |
 # | Main program                                                               |
 # +----------------------------------------------------------------------------+
-#
+
 #   This program is free software: you can redistribute it and/or modify it
 # under the terms of the European Union Public License 1.1 version.
 #
 #   This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
+
+# Exit codes:
+#   0: normal exit
+#   1: main configuration file is missing
+#   2: environment characteristic configuration file is missing
+#   3: cannot create locking file
 
 import ConfigParser
 import daemon
@@ -24,8 +30,6 @@ import time
 import Adafruit_DHT
 import RPi.GPIO as GPIO
 from time import gmtime, strftime
-
-#global exttemp
 
 # write a line to debug logfile
 def writetodebuglog(level,text):
@@ -79,8 +83,8 @@ def loadconfiguration(conffile):
     dbg_log=config.get('others','dbg_log')
     dir_log=config.get('directories','dir_log')
     dir_var=config.get('directories','dir_var')
-    logfile=dir_log+'mm3d.log'
-    lockfile=config.get('directories','dir_lck')+'mm3d.lck'
+    logfile=dir_log+'mm5d.log'
+    lockfile=config.get('directories','dir_lck')+'mm5d.lck'
     prt_act=int(config.get('ports','prt_act'))
     prt_err1=int(config.get('ports','prt_err1'))
     prt_err2=int(config.get('ports','prt_err2'))
@@ -109,6 +113,7 @@ def loadconfiguration(conffile):
     writetodebuglog("i","Configuration is loaded.")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
+    exit(1)
 
 # add a zero char
 def addzero(num):
@@ -221,6 +226,7 @@ def loadenvirchars(conffile):
     writetodebuglog("i","Environment characteristics is loaded.")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
+    exit(2)
 
 # create and remove lock file
 def lckfile(mode):
@@ -257,6 +263,8 @@ def writelog(temperature,humidity,inputs,outputs):
       f.close()
   except:
     writetodebuglog("e","Cannot write "+logfile+"!")
+    lckfile(0)
+    exit(3)
   lckfile(0)
 
 # initializing ports
@@ -446,8 +454,8 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   return outputs
 
 # main program
-loadconfiguration('/usr/local/etc/mm3d/mm3d.ini')
-loadenvirchars('/usr/local/etc/mm3d/envir.ini')
+loadconfiguration('/usr/local/etc/mm5d/mm5d.ini')
+loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
 first=1
 exttemp=18

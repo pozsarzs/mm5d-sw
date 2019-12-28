@@ -1,0 +1,5 @@
+/etc/cron.d/mm5d
+/etc/init.d/mm5d.sh
+/etc/mm5d/envir.ini
+/etc/mm5d/mm5d.ini
+/etc/motd

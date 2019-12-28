@@ -10,14 +10,14 @@ mm5d-sw/documents/VERSION			ready
 -----------------------------------------------------
 mm5d-sw/manuals/mm5d-editenvirconf.1.gz		ready
 mm5d-sw/manuals/mm5d-editmainconf.1.gz		ready
-mm5d-sw/manuals/mm5d-hwtest.py.1.gz
-mm5d-sw/manuals/mm5d-maintainlog.1.gz
-mm5d-sw/manuals/mm5d-override.1.gz
-mm5d-sw/manuals/mm5d.py.1.gz
-mm5d-sw/manuals/mm5d-startdaemon.1.gz
-mm5d-sw/manuals/mm5d-stopdaemon.1.gz
-mm5d-sw/manuals/mm5d-updatestartpage.1.gz
-mm5d-sw/manuals/mm5d-viewlog.1.gz
+mm5d-sw/manuals/mm5d-hwtest.py.1.gz		ready
+mm5d-sw/manuals/mm5d-maintainlog.1.gz		ready
+mm5d-sw/manuals/mm5d-override.1.gz		ready
+mm5d-sw/manuals/mm5d.py.1.gz			ready
+mm5d-sw/manuals/mm5d-startdaemon.1.gz		ready
+mm5d-sw/manuals/mm5d-stopdaemon.1.gz		ready
+mm5d-sw/manuals/mm5d-updatestartpage.1.gz	ready
+mm5d-sw/manuals/mm5d-viewlog.1.gz		ready
 -----------------------------------------------------
 mm5d-sw/messages/mm5d_cs.msg			ready
 mm5d-sw/messages/mm5d_de.msg			ready
@@ -32,24 +32,24 @@ mm5d-sw/messages/mm5d_sl.msg			ready
 mm5d-sw/messages/mm5d_sr.msg			ready
 mm5d-sw/messages/mm5d_uk.msg			ready
 -----------------------------------------------------
-mm5d-sw/packaging/changelog.Debian.gz
-mm5d-sw/packaging/copyright
 mm5d-sw/packaging/eec/control
 mm5d-sw/packaging/eec/md5sums
-mm5d-sw/packaging/eec/postinst
-mm5d-sw/packaging/eec/prerm
-mm5d-sw/packaging/sw/conffiles
+mm5d-sw/packaging/eec/postinst			ready
+mm5d-sw/packaging/eec/prerm			ready
+mm5d-sw/packaging/sw/conffiles			ready
 mm5d-sw/packaging/sw/control
 mm5d-sw/packaging/sw/md5sums
-mm5d-sw/packaging/sw/postinst
+mm5d-sw/packaging/sw/postinst			ready
 mm5d-sw/packaging/sw/preinst
-mm5d-sw/packaging/sw/prerm
+mm5d-sw/packaging/sw/prerm			ready
 mm5d-sw/packaging/web/control
 mm5d-sw/packaging/web/md5sums
-mm5d-sw/packaging/web/postinst
-mm5d-sw/packaging/web/prerm
+mm5d-sw/packaging/web/postinst			ready
+mm5d-sw/packaging/web/prerm			ready
+mm5d-sw/packaging/changelog.Debian.gz		ready
+mm5d-sw/packaging/copyright			ready
 -----------------------------------------------------
-mm5d-sw/programs/mm5d-hwtest.py
+mm5d-sw/programs/mm5d-hwtest.py			ready
 mm5d-sw/programs/mm5d.py
 -----------------------------------------------------
 mm5d-sw/scripts/mm5d-editenvirconf		ready

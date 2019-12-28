@@ -72,7 +72,11 @@ def loadconfiguration(conffile):
   global prt_out2
   global prt_out3
   global prt_out4
-  global prt_sens
+  global prt_sensor
+  global prt_switch
+  global prt_twrgreen
+  global prt_twrred
+  global prt_twryellow
   global sensor
   try:
     with open(conffile) as f:
@@ -94,11 +98,15 @@ def loadconfiguration(conffile):
     prt_in2=int(config.get('ports','prt_in2'))
     prt_in3=int(config.get('ports','prt_in3'))
     prt_in4=int(config.get('ports','prt_in4'))
-    prt_sens=int(config.get('ports','prt_sens'))
     prt_out1=int(config.get('ports','prt_out1'))
     prt_out2=int(config.get('ports','prt_out2'))
     prt_out3=int(config.get('ports','prt_out3'))
     prt_out4=int(config.get('ports','prt_out4'))
+    prt_sensor=int(config.get('ports','prt_sensor'))
+    prt_switch=int(config.get('ports','prt_switch'))
+    prt_twrgreen=int(config.get('ports','prt_twrgreen'))
+    prt_twrred=int(config.get('ports','prt_twrred'))
+    prt_twryellow=int(config.get('ports','prt_twryellow'))
     api_key=config.get('openweathermap.org','api_key')
     base_url=config.get('openweathermap.org','base_url')
     city_name=config.get('openweathermap.org','city_name')
@@ -310,11 +318,11 @@ def blinkactled():
   GPIO.output(prt_act,0)
   time.sleep(0.5)
 
-# auto off OUT #1
-def autooffport1():
-  # aop1:  auto off port after switch on (in s)
-  aop1="5"
-  return aop1
+# auto off OUT #4
+def autooffport4():
+  # aop4:  auto off port after switch on (in s)
+  aop4="5"
+  return aop4
 
 # get external temperature from openweathermap.org
 def getexttemp():
@@ -337,19 +345,20 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   in2=int(inputs[1])
   in3=int(inputs[2])
   in4=int(inputs[3])
+  swi=int(inputs[4])
   h=int(time.strftime("%H"))
   m=int(time.strftime("%M"))
   # -----------------------------------------------------------------------------
   # See control.txt for useable variables!
   # switch on/off outputs:
-  if in3==1: # growing hyphae
-    # humidifier
+  if swi==1: # growing hyphae
+    # heaters
     out1=0
-    if (wrongvalues==0) and (humidity<hhumidifier_on):
+    if (wrongvalues==0) and (temperature<hheater_on):
       out1=1
-    if (wrongvalues==0) and (humidity>hhumidifier_off):
+    if (wrongvalues==0) and (temperature>hheater_off):
       out1=0
-    if hhumidifier_disable[h]==1:
+    if hheater_disable[h]==1:
       out1=0
     # lights
     out2=0
@@ -369,22 +378,22 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       out3=1
     if (hvent_disablelowtemp[h]==1) and (exttemp<hvent_lowtemp):
       out3=0
-    # heaters
+    # humidifier
     out4=0
-    if (wrongvalues==0) and (temperature<hheater_on):
+    if (wrongvalues==0) and (humidity<hhumidifier_on):
       out4=1
-    if (wrongvalues==0) and (temperature>hheater_off):
+    if (wrongvalues==0) and (humidity>hhumidifier_off):
       out4=0
-    if hheater_disable[h]==1:
+    if hhumidifier_disable[h]==1:
       out4=0
   else: # growing mushroom
-    # humidifier
+    # heaters
     out1=0
-    if (wrongvalues==0) and (humidity<mhumidifier_on):
+    if (wrongvalues==0) and (temperature<mheater_on):
       out1=1
-    if (wrongvalues==0) and (humidity>mhumidifier_off):
+    if (wrongvalues==0) and (temperature>mheater_off):
       out1=0
-    if mhumidifier_disable[h]==1:
+    if mheater_disable[h]==1:
       out1=0
     # lights
     out2=0
@@ -404,53 +413,70 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       out3=1
     if (mvent_disablelowtemp[h]==1) and (exttemp<mvent_lowtemp):
       out3=0
-    # heaters
+    # humidifier
     out4=0
-    if (wrongvalues==0) and (temperature<mheater_on):
+    if (wrongvalues==0) and (humidity<mhumidifier_on):
       out4=1
-    if (wrongvalues==0) and (temperature>mheater_off):
+    if (wrongvalues==0) and (humidity>mhumidifier_off):
       out4=0
-    if mheater_disable[h]==1:
+    if mhumidifier_disable[h]==1:
       out4=0
   # -----------------------------------------------------------------------------
   # switch on/off error lights:
-  if in3==1: # growing hyphae
-    # bad relative humidity
-    err1=0
-    if (wrongvalues==0) and (humidity<hhumidity_min):
-      err1=1
-    if (wrongvalues==0) and (humidity>hhumidity_max):
-      err1=1
-    # bad water pressure error light
-    err2=0 if in2==1 else 1
-    # one or more measured values are bad
-    err3=wrongvalues
+  if swi==1: # growing hyphae
     # bad temperature
-    err4=0
+    err1=0
     if (wrongvalues==0) and (temperature<htemperature_min):
-      err4=1
+      err1=1
     if (wrongvalues==0) and (temperature>htemperature_max):
+      err1=1
+    # overcurrent proctection
+    err2=1 if in2==1 else 0
+    # bad water pressure error light
+    err3=0 if in3==1 else 1
+    # bad relative humidity
+    err4=0
+    if (wrongvalues==0) and (humidity<hhumidity_min):
+      err4=1
+    if (wrongvalues==0) and (humidity>hhumidity_max):
       err4=1
   else: # growing mushroom
-    # bad relative humidity
-    err1=0
-    if (wrongvalues==0) and (humidity<mhumidity_min):
-      err1=1
-    if (wrongvalues==0) and (humidity>mhumidity_max):
-      err1=1
-    # bad water pressure error light
-    err2=0 if in2==1 else 1
-    # one or more measured values are bad
-    err3=wrongvalues
     # bad temperature
-    err4=0
+    err1=0
     if (wrongvalues==0) and (temperature<mtemperature_min):
-      err4=1
+      err1=1
     if (wrongvalues==0) and (temperature>mtemperature_max):
+      err1=1
+    # MM4A overcurrent proctection
+    err2=0 if in2==0 else 1
+    # bad water pressure error light
+    err3=0 if in3==1 else 1
+    # bad relative humidity
+    err4=0
+    if (wrongvalues==0) and (humidity<mhumidity_min):
+      err4=1
+    if (wrongvalues==0) and (humidity>mhumidity_max):
       err4=1
   # -----------------------------------------------------------------------------
+  # switch on/off tower signal lights:
+  twrg=0
+  twry=0
+  twrr=0
+  # - green+yellow -
+  # MM4A manual control
+  twry=0 if in1==0 else 1
+  # opened door/window
+  twry=0 if in4==0 else 1
+  # - red -
+  # MM4A overcurrent proctection
+  twrr=0 if in2==0 else 1
+  # bad water pressure error light
+  twrr=0 if in3==1 else 1
+  twrg=1 if twrr==0 else 0
+  # -----------------------------------------------------------------------------
   outputs=str(out1)+str(out2)+str(out3)+str(out4)+ \
-          str(err1)+str(err2)+str(err3)+str(err4)
+          str(err1)+str(err2)+str(err3)+str(err4)+ \
+          str(twrg)+str(twry)+str(twrr)
   return outputs
 
 # main program
@@ -468,7 +494,7 @@ with daemon.DaemonContext() as context:
     while True:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
-      shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sens)
+      shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sensor)
       # shum=75  # !!! Remove it !!!
       # stemp=18 # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
@@ -486,13 +512,14 @@ with daemon.DaemonContext() as context:
       inputs=inputs+str(int(not GPIO.input(prt_in2)))
       inputs=inputs+str(int(not GPIO.input(prt_in3)))
       inputs=inputs+str(int(not GPIO.input(prt_in4)))
+      inputs=inputs+str(int(not GPIO.input(prt_switch)))
       blinkactled()
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
       if (int(time.strftime("%M"))==3):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
-      aop1=autooffport1()
+      aop4=autooffport4()
       blinkactled()
       # override state of outputs
       ss=""
@@ -511,12 +538,15 @@ with daemon.DaemonContext() as context:
       GPIO.output(prt_out2,not int(outputs[1]))
       GPIO.output(prt_out3,not int(outputs[2]))
       GPIO.output(prt_out4,not int(outputs[3]))
-      # auto-off first port
-      if aop1!="0":
-        for i in range(int(aop1)):
+      GPIO.output(prt_twrgreen,not int(outputs[8]))
+      GPIO.output(prt_twrred,not int(outputs[10]))
+      GPIO.output(prt_twryellow,not int(outputs[9]))
+      # auto-off 4th port
+      if aop4!="0":
+        for i in range(int(aop4)):
           blinkactled()
-        GPIO.output(prt_out1,1)
-        writetodebuglog("i","Auto off enabled at first output port.")
+        GPIO.output(prt_out4,1)
+        writetodebuglog("i","Auto off enabled at 4th output port.")
       blinkactled()
       # write logfile if changed
       enablewritelog=0

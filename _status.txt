@@ -1,149 +1,155 @@
-mm5d-sw/binary/mm5d-editenvirconf.bin		ready
-mm5d-sw/binary/mm5d-editmainconf.bin		ready
-mm5d-sw/binary/mm5d-override.bin		ready
------------------------------------------------------
-mm5d-sw/documents/AUTHORS			ready
-mm5d-sw/documents/control.txt			ready
-mm5d-sw/documents/INSTALL			ready
-mm5d-sw/documents/README			ready
-mm5d-sw/documents/VERSION			ready
------------------------------------------------------
-mm5d-sw/manuals/mm5d-editenvirconf.1.gz		ready
-mm5d-sw/manuals/mm5d-editmainconf.1.gz		ready
-mm5d-sw/manuals/mm5d-hwtest.py.1.gz		ready
-mm5d-sw/manuals/mm5d-maintainlog.1.gz		ready
-mm5d-sw/manuals/mm5d-override.1.gz		ready
-mm5d-sw/manuals/mm5d.py.1.gz			ready
-mm5d-sw/manuals/mm5d-startdaemon.1.gz		ready
-mm5d-sw/manuals/mm5d-stopdaemon.1.gz		ready
-mm5d-sw/manuals/mm5d-updatestartpage.1.gz	ready
-mm5d-sw/manuals/mm5d-viewlog.1.gz		ready
------------------------------------------------------
-mm5d-sw/messages/mm5d_cs.msg			ready
-mm5d-sw/messages/mm5d_de.msg			ready
-mm5d-sw/messages/mm5d_fr.msg			ready
-mm5d-sw/messages/mm5d_hr.msg			ready
-mm5d-sw/messages/mm5d_hu.msg			ready
-mm5d-sw/messages/mm5d_pl.msg			ready
-mm5d-sw/messages/mm5d_ro.msg			ready
-mm5d-sw/messages/mm5d_ru.msg			ready
-mm5d-sw/messages/mm5d_sk.msg			ready
-mm5d-sw/messages/mm5d_sl.msg			ready
-mm5d-sw/messages/mm5d_sr.msg			ready
-mm5d-sw/messages/mm5d_uk.msg			ready
------------------------------------------------------
+********************************************************************************
+WARNING!           It is not stable program, cannot use this!           WARNING!
+********************************************************************************
+mm5d-sw/binary/mm5d-editenvirconf.bin					ready
+mm5d-sw/binary/mm5d-editmainconf.bin					ready
+mm5d-sw/binary/mm5d-override.bin					ready
+-----------------------------------------------------------------------------
+mm5d-sw/documents/AUTHORS						ready
+mm5d-sw/documents/control.txt						ready
+mm5d-sw/documents/INSTALL						ready
+mm5d-sw/documents/README						ready
+mm5d-sw/documents/VERSION						ready
+-----------------------------------------------------------------------------
+mm5d-sw/manuals/mm5d-editenvirconf.1.gz					ready
+mm5d-sw/manuals/mm5d-editmainconf.1.gz					ready
+mm5d-sw/manuals/mm5d-hwtest.py.1.gz					ready
+mm5d-sw/manuals/mm5d-maintainlog.1.gz					ready
+mm5d-sw/manuals/mm5d-override.1.gz					ready
+mm5d-sw/manuals/mm5d.py.1.gz						ready
+mm5d-sw/manuals/mm5d-startdaemon.1.gz					ready
+mm5d-sw/manuals/mm5d-stopdaemon.1.gz					ready
+mm5d-sw/manuals/mm5d-updatestartpage.1.gz				ready
+mm5d-sw/manuals/mm5d-viewlog.1.gz					ready
+-----------------------------------------------------------------------------
+mm5d-sw/messages/mm5d_cs.msg						ready
+mm5d-sw/messages/mm5d_de.msg						ready
+mm5d-sw/messages/mm5d_fr.msg						ready
+mm5d-sw/messages/mm5d_hr.msg						ready
+mm5d-sw/messages/mm5d_hu.msg						ready
+mm5d-sw/messages/mm5d_pl.msg						ready
+mm5d-sw/messages/mm5d_ro.msg						ready
+mm5d-sw/messages/mm5d_ru.msg						ready
+mm5d-sw/messages/mm5d_sk.msg						ready
+mm5d-sw/messages/mm5d_sl.msg						ready
+mm5d-sw/messages/mm5d_sr.msg						ready
+mm5d-sw/messages/mm5d_uk.msg						ready
+-----------------------------------------------------------------------------
 mm5d-sw/packaging/eec/control
 mm5d-sw/packaging/eec/md5sums
-mm5d-sw/packaging/eec/postinst			ready
-mm5d-sw/packaging/eec/prerm			ready
-mm5d-sw/packaging/sw/conffiles			ready
+mm5d-sw/packaging/eec/postinst						ready
+mm5d-sw/packaging/eec/prerm						ready
+mm5d-sw/packaging/sw/conffiles						ready
 mm5d-sw/packaging/sw/control
 mm5d-sw/packaging/sw/md5sums
-mm5d-sw/packaging/sw/postinst			ready
+mm5d-sw/packaging/sw/postinst						ready
 mm5d-sw/packaging/sw/preinst
-mm5d-sw/packaging/sw/prerm			ready
+mm5d-sw/packaging/sw/prerm						ready
 mm5d-sw/packaging/web/control
 mm5d-sw/packaging/web/md5sums
-mm5d-sw/packaging/web/postinst			ready
-mm5d-sw/packaging/web/prerm			ready
-mm5d-sw/packaging/changelog.Debian.gz		ready
-mm5d-sw/packaging/copyright			ready
------------------------------------------------------
-mm5d-sw/programs/mm5d-hwtest.py			ready
+mm5d-sw/packaging/web/postinst						ready
+mm5d-sw/packaging/web/prerm						ready
+mm5d-sw/packaging/changelog.Debian.gz					ready
+mm5d-sw/packaging/copyright						ready
+-----------------------------------------------------------------------------
+mm5d-sw/programs/mm5d-hwtest.py						ready
 mm5d-sw/programs/mm5d.py
------------------------------------------------------
-mm5d-sw/scripts/mm5d-editenvirconf		ready
-mm5d-sw/scripts/mm5d-editmainconf		ready
-mm5d-sw/scripts/mm5d-maintainlog		ready
-mm5d-sw/scripts/mm5d-override			ready
-mm5d-sw/scripts/mm5d-startdaemon		ready
-mm5d-sw/scripts/mm5d-stopdaemon			ready
-mm5d-sw/scripts/mm5d-updatestartpage		ready
-mm5d-sw/scripts/mm5d-viewlog			ready
------------------------------------------------------
-mm5d-sw/settings/cron.d/mm5d			ready
-mm5d-sw/settings/init.d/mm5d.sh			ready
-mm5d-sw/settings/envir.ini			ready
-mm5d-sw/settings/mm5d.ini			ready
-mm5d-sw/settings/motd				ready
------------------------------------------------------
-mm5d-sw/source/config/config.guess		ready
-mm5d-sw/source/config/config.sub		ready
-mm5d-sw/source/config/install-sh		ready
-mm5d-sw/source/editenvirconf/Makefilesh		ready
-mm5d-sw/source/editenvirconf/editenvirconf.pas	ready
-mm5d-sw/source/editenvirconf/incloadinifile.pas	ready
-mm5d-sw/source/editenvirconf/incpage1screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage2screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage3screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage4screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage5screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage6screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage7screen.pas	ready
-mm5d-sw/source/editenvirconf/incpage8screen.pas	ready
-mm5d-sw/source/editenvirconf/incsaveinifile.pas	ready
-mm5d-sw/source/editenvirconf/untcommon.pas	ready
-mm5d-sw/source/editmainconf/Makefile		ready
-mm5d-sw/source/editmainconf/editmainconf.pas	ready
-mm5d-sw/source/editmainconf/incloadinifile.pas	ready
-mm5d-sw/source/editmainconf/incpage1screen.pas	ready
-mm5d-sw/source/editmainconf/incpage2screen.pas	ready
-mm5d-sw/source/editmainconf/incpage3screen.pas	ready
-mm5d-sw/source/editmainconf/incpage4screen.pas	ready
-mm5d-sw/source/editmainconf/incpage5screen.pas	ready
-mm5d-sw/source/editmainconf/incpage6screen.pas	ready
-mm5d-sw/source/editmainconf/incpage7screen.pas	ready
-mm5d-sw/source/editmainconf/incpage8screen.pas	ready
-mm5d-sw/source/editmainconf/incsaveinifile.pas	ready
-mm5d-sw/source/editmainconf/untcommon.pas	ready
-mm5d-sw/source/override/Makefile		ready
-mm5d-sw/source/override/incloadoutfiles.pas	ready
-mm5d-sw/source/override/incpage1screen.pas	ready
-mm5d-sw/source/override/incsaveoutfiles.pas	ready
-mm5d-sw/source/override/override.pas		ready
-mm5d-sw/source/override/untcommon.pas		ready
-mm5d-sw/source/configure			ready
-mm5d-sw/source/configure.in			ready
-mm5d-sw/source/Makefile				ready
-mm5d-sw/source/Makefile.global.in		ready
------------------------------------------------------
-mm5d-sw/webpage/cgi-bin/getdata.cgi		ready
-mm5d-sw/webpage/cgi-bin/getpage.cgi		ready
-mm5d-sw/webpage/footer_cs.html			ready
-mm5d-sw/webpage/footer_de.html			ready
-mm5d-sw/webpage/footer_en.html			ready
-mm5d-sw/webpage/footer_fr.html			ready
-mm5d-sw/webpage/footer_hr.html			ready
-mm5d-sw/webpage/footer_hu.html			ready
-mm5d-sw/webpage/footer_pl.html			ready
-mm5d-sw/webpage/footer_ro.html			ready
-mm5d-sw/webpage/footer_ru.html			ready
-mm5d-sw/webpage/footer_sk.html			ready
-mm5d-sw/webpage/footer_sl.html			ready
-mm5d-sw/webpage/footer_sr.html			ready
-mm5d-sw/webpage/footer_uk.html			ready
-mm5d-sw/webpage/header_cs.html			ready
-mm5d-sw/webpage/header_de.html			ready
-mm5d-sw/webpage/header_en.html			ready
-mm5d-sw/webpage/header_fr.html			ready
-mm5d-sw/webpage/header_hr.html			ready
-mm5d-sw/webpage/header_hu.html			ready
-mm5d-sw/webpage/header_pl.html			ready
-mm5d-sw/webpage/header_ro.html			ready
-mm5d-sw/webpage/header_ru.html			ready
-mm5d-sw/webpage/header_sk.html			ready
-mm5d-sw/webpage/header_sl.html			ready
-mm5d-sw/webpage/header_sr.html			ready
-mm5d-sw/webpage/header_uk.html			ready
-mm5d-sw/webpage/pics/dark.png			ready
-mm5d-sw/webpage/pics/green.png			ready
-mm5d-sw/webpage/pics/red.png			ready
-mm5d-sw/webpage/pics/szerafin.ico		ready
-mm5d-sw/webpage/pics/yellow.png			ready
-mm5d-sw/webpage/styles.css			ready
------------------------------------------------------
-mm5d-sw/LICENCE					ready
-mm5d-sw/README					ready
+-----------------------------------------------------------------------------
+mm5d-sw/scripts/mm5d-editenvirconf					ready
+mm5d-sw/scripts/mm5d-editmainconf					ready
+mm5d-sw/scripts/mm5d-maintainlog					ready
+mm5d-sw/scripts/mm5d-override						ready
+mm5d-sw/scripts/mm5d-startdaemon					ready
+mm5d-sw/scripts/mm5d-stopdaemon						ready
+mm5d-sw/scripts/mm5d-updatestartpage					ready
+mm5d-sw/scripts/mm5d-viewlog						ready
+-----------------------------------------------------------------------------
+mm5d-sw/settings/cron.d/mm5d						ready
+mm5d-sw/settings/init.d/mm5d.sh						ready
+mm5d-sw/settings/envir.ini						ready
+mm5d-sw/settings/mm5d.ini						ready
+mm5d-sw/settings/motd							ready
+-----------------------------------------------------------------------------
+mm5d-sw/source/config/config.guess					ready
+mm5d-sw/source/config/config.sub					ready
+mm5d-sw/source/config/install-sh					ready
+mm5d-sw/source/editenvirconf/Makefilesh					ready
+mm5d-sw/source/editenvirconf/editenvirconf.pas				ready
+mm5d-sw/source/editenvirconf/incloadinifile.pas				ready
+mm5d-sw/source/editenvirconf/incpage1screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage2screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage3screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage4screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage5screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage6screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage7screen.pas				ready
+mm5d-sw/source/editenvirconf/incpage8screen.pas				ready
+mm5d-sw/source/editenvirconf/incsaveinifile.pas				ready
+mm5d-sw/source/editenvirconf/untcommon.pas				ready
+mm5d-sw/source/editmainconf/Makefile					ready
+mm5d-sw/source/editmainconf/editmainconf.pas				ready
+mm5d-sw/source/editmainconf/incloadinifile.pas				ready
+mm5d-sw/source/editmainconf/incpage1screen.pas				ready
+mm5d-sw/source/editmainconf/incpage2screen.pas				ready
+mm5d-sw/source/editmainconf/incpage3screen.pas				ready
+mm5d-sw/source/editmainconf/incpage4screen.pas				ready
+mm5d-sw/source/editmainconf/incpage5screen.pas				ready
+mm5d-sw/source/editmainconf/incpage6screen.pas				ready
+mm5d-sw/source/editmainconf/incpage7screen.pas				ready
+mm5d-sw/source/editmainconf/incpage8screen.pas				ready
+mm5d-sw/source/editmainconf/incsaveinifile.pas				ready
+mm5d-sw/source/editmainconf/untcommon.pas				ready
+mm5d-sw/source/override/Makefile					ready
+mm5d-sw/source/override/incloadoutfiles.pas				ready
+mm5d-sw/source/override/incpage1screen.pas				ready
+mm5d-sw/source/override/incsaveoutfiles.pas				ready
+mm5d-sw/source/override/override.pas					ready
+mm5d-sw/source/override/untcommon.pas					ready
+mm5d-sw/source/configure						ready
+mm5d-sw/source/configure.in						ready
+mm5d-sw/source/Makefile							ready
+mm5d-sw/source/Makefile.global.in					ready
+-----------------------------------------------------------------------------
+mm5d-sw/webpage/cgi-bin/getdata.cgi					ready
+mm5d-sw/webpage/cgi-bin/getpage.cgi					ready
+mm5d-sw/webpage/footer_cs.html						ready
+mm5d-sw/webpage/footer_de.html						ready
+mm5d-sw/webpage/footer_en.html						ready
+mm5d-sw/webpage/footer_fr.html						ready
+mm5d-sw/webpage/footer_hr.html						ready
+mm5d-sw/webpage/footer_hu.html						ready
+mm5d-sw/webpage/footer_pl.html						ready
+mm5d-sw/webpage/footer_ro.html						ready
+mm5d-sw/webpage/footer_ru.html						ready
+mm5d-sw/webpage/footer_sk.html						ready
+mm5d-sw/webpage/footer_sl.html						ready
+mm5d-sw/webpage/footer_sr.html						ready
+mm5d-sw/webpage/footer_uk.html						ready
+mm5d-sw/webpage/header_cs.html						ready
+mm5d-sw/webpage/header_de.html						ready
+mm5d-sw/webpage/header_en.html						ready
+mm5d-sw/webpage/header_fr.html						ready
+mm5d-sw/webpage/header_hr.html						ready
+mm5d-sw/webpage/header_hu.html						ready
+mm5d-sw/webpage/header_pl.html						ready
+mm5d-sw/webpage/header_ro.html						ready
+mm5d-sw/webpage/header_ru.html						ready
+mm5d-sw/webpage/header_sk.html						ready
+mm5d-sw/webpage/header_sl.html						ready
+mm5d-sw/webpage/header_sr.html						ready
+mm5d-sw/webpage/header_uk.html						ready
+mm5d-sw/webpage/pics/dark.png						ready
+mm5d-sw/webpage/pics/green.png						ready
+mm5d-sw/webpage/pics/red.png						ready
+mm5d-sw/webpage/pics/szerafin.ico					ready
+mm5d-sw/webpage/pics/yellow.png						ready
+mm5d-sw/webpage/styles.css						ready
+-----------------------------------------------------------------------------
+mm5d-sw/LICENCE								ready
+mm5d-sw/README								ready
 mm5d-sw/install
 mm5d-sw/prepare
 mm5d-sw/uninstall
+********************************************************************************
+WARNING!           It is not stable program, cannot use this!           WARNING!
+********************************************************************************

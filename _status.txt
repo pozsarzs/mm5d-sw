@@ -147,9 +147,9 @@ mm5d-sw/webpage/styles.css						ready
 -----------------------------------------------------------------------------
 mm5d-sw/LICENCE								ready
 mm5d-sw/README								ready
-mm5d-sw/install
-mm5d-sw/prepare
-mm5d-sw/uninstall
+mm5d-sw/install								ready
+mm5d-sw/prepare								ready
+mm5d-sw/uninstall							ready
 ********************************************************************************
 WARNING!           It is not stable program, cannot use this!           WARNING!
 ********************************************************************************

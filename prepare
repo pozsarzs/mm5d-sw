@@ -25,32 +25,34 @@ echo "--------------------------------------------------------------------------
 echo "Installing required components..."
 sudo apt-get install apache2 \
                      build-essential \
-                     dialog \
                      git \
+                     libfreetype6-dev \
+                     libjpeg-dev \
                      libswitch-perl \
                      python-daemon \
                      python-dev \
                      python-openssl \
+                     python-pip \
                      python-rpi.gpio
+echo "Cloning 3rd party softwares from Github..."
 mkdir --parents $HOME/download
 cd $HOME/download
+# clone sensor software
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git
 cd Adafruit_Python_DHT
 sudo python setup.py install
 cd ..
-
-
-
+# clone display software
+git clone http://github.com/rm-hull/luma.led_matrix.git
+cd luma.led_matrix
+sudo python setup.py install
+cd ..
 echo -e "\nCreating a new user..."
 sudo adduser $SWN2
-sudo mkdir --parents /home/$SWN2/programs
-sudo chown -R $SWN2:$SWN2 /home/$SWN2/programs
-sudo mkdir --parents /home/$SWN2/cfg_example
-sudo chown -R $SWN2:$SWN2 /home/$SWN2/cfg_example
 sudo echo "$SWN2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_$SWN2-nopasswd
 echo -e "\nSetting Apache2..."
-sudo ln --symbolic /etc/apache2/mods-available/cgid.load /etc/apache2/mods-enabled/
-sudo ln --symbolic /etc/apache2/mods-available/cgid.conf /etc/apache2/mods-enabled/
-sudo ln --symbolic /etc/apache2/conf-available/serve-cgi-bin.conf /etc/apache2/conf-enabled/
+sudo ln --force --symbolic /etc/apache2/mods-available/cgid.load /etc/apache2/mods-enabled/
+sudo ln --force --symbolic /etc/apache2/mods-available/cgid.conf /etc/apache2/mods-enabled/
+sudo ln --force --symbolic /etc/apache2/conf-available/serve-cgi-bin.conf /etc/apache2/conf-enabled/
 sudo /etc/init.d/apache2 restart
 echo -e "\nDone."

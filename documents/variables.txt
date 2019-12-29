@@ -1,5 +1,5 @@
-Useable values in control function of mm5d.py program
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Useable variables in control function of mm5d.py program
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Values of configuration:
   htemperature_max	integer		maximal temperature
   hheater_off		integer		switch off heater temperature
@@ -49,7 +49,11 @@ Input values:
   temperature		integer		measured temperature in degree Celsius
   wrongvalues		integer		measured data is invalid
   in1-4			integer		status of input ports #1-4 (1: closed)
+  swi			integer		status of mode switch (1: closed)
 
 Output values
   out1-7		integer		out ports #1-4, 1: switch on relay
   err1-4		integer		error lights #1-4, 1: switch on LED
+  twrg			integer		green signal light, 1: switch on
+  twry			integer		yellow signal light, 1: switch on
+  twrr			integer		red signal light, 1: switch on

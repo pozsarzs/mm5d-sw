@@ -6,10 +6,11 @@ mm5d-sw/binary/mm5d-editmainconf.bin					ready
 mm5d-sw/binary/mm5d-override.bin					ready
 -----------------------------------------------------------------------------
 mm5d-sw/documents/AUTHORS						ready
-mm5d-sw/documents/control.txt						ready
 mm5d-sw/documents/INSTALL						ready
 mm5d-sw/documents/README						ready
 mm5d-sw/documents/VERSION						ready
+mm5d-sw/documents/gpioports.txt						ready
+mm5d-sw/documents/variables.txt						ready
 -----------------------------------------------------------------------------
 mm5d-sw/manuals/mm5d-editenvirconf.1.gz					ready
 mm5d-sw/manuals/mm5d-editmainconf.1.gz					ready

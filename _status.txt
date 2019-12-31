@@ -11,6 +11,9 @@ mm5d-sw/documents/README						ready
 mm5d-sw/documents/VERSION						ready
 mm5d-sw/documents/gpioports.txt						ready
 mm5d-sw/documents/variables.txt						ready
+mm5d-sw/documents/debug_codes.txt					ready
+mm5d-sw/documents/error_codes.txt					ready
+mm5d-sw/documents/warning_codes.txt					ready
 -----------------------------------------------------------------------------
 mm5d-sw/manuals/mm5d-editenvirconf.1.gz					ready
 mm5d-sw/manuals/mm5d-editmainconf.1.gz					ready

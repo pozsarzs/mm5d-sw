@@ -1,0 +1,9 @@
+Warning codes
+~~~~~~~~~~~~~
+Displayed format:  "W  #xx"
+
+  #01	Cannot get external temperature from internet.
+  #02	Measured values are bad!
+
+  #51	MM4A in manual control mode.
+  #52	Doors/windows are opened.

@@ -117,7 +117,6 @@ def loadconfiguration(conffile):
       sensor=Adafruit_DHT.DHT11
     if sensor_type=='DHT22':
       sensor=Adafruit_DHT.DHT22
-    writetodebuglog("i","Starting program as daemon.")
     writetodebuglog("i","Configuration is loaded.")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
@@ -489,6 +488,7 @@ prevtemperature=0
 prevhumidity=0
 previnputs=""
 prevoutputs=""
+writetodebuglog("i","Starting program as daemon.")
 with daemon.DaemonContext() as context:
   try:
     while True:

@@ -1,0 +1,21 @@
+Debug codes
+~~~~~~~~~~~
+You can see these on display if verbose debug logging enabled.
+Displayed format:  "D  #xx"
+
+  #00	Configuration is loaded.
+  #01	Environment characteristics is loaded.
+  #02	Starting program as daemon.
+  #03	Initializing GPIO ports.
+  #04	Checking override file.
+  #05	Get external temperature from internet.
+  #06	Measuring T/RH.
+  #07	Measure is done.
+  #08	Reading input ports.
+  #09	Check values and set outputs.
+  #10	Writing output ports.
+  #11	Auto off enabled at 4th output port.
+  #12	Creating lockfile.
+  #13	Writing data to log.
+  #14	Removing lockfile.
+  #15	Waiting 10 s.

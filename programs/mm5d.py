@@ -29,7 +29,82 @@ import sys
 import time
 import Adafruit_DHT
 import RPi.GPIO as GPIO
+from luma.core.interface.serial import spi, noop
+from luma.core.legacy.font import proportional, SINCLAIR_FONT
+from luma.core.legacy import text
+from luma.core.render import canvas
+from luma.core.virtual import viewport
+from luma.led_matrix.device import max7219
 from time import gmtime, strftime
+
+# initializing ports
+def initports():
+  writetodebuglog("i","Initializing GPIO ports.")
+  writedebugtodisplay("03")
+  GPIO.setwarnings(False)
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(prt_in1,GPIO.IN)
+  GPIO.setup(prt_in2,GPIO.IN)
+  GPIO.setup(prt_in3,GPIO.IN)
+  GPIO.setup(prt_in4,GPIO.IN)
+  GPIO.setup(prt_switch,GPIO.IN)
+  GPIO.setup(prt_act,GPIO.OUT,initial=0)
+  GPIO.setup(prt_err1,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_err2,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_err3,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_err4,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_out1,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_out2,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_out3,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_out4,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_twrred,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_twryellow,GPIO.OUT,initial=GPIO.HIGH)
+  GPIO.setup(prt_twrgreen,GPIO.OUT,initial=GPIO.HIGH)
+
+# write text to display
+def writetodisplay(o, t, d):
+  with canvas(virtual) as draw:
+    text(draw, (o, 0), t, fill="white", font=proportional(SINCLAIR_FONT))
+  if d>0:
+    time.sleep(d)
+    with canvas(virtual) as draw:
+      text(draw, (o, 0), "", fill="white", font=proportional(SINCLAIR_FONT))
+
+# write measured data to display
+def writedatatodisplay(sd1, sd2):
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
+    time.sleep(0.5)
+
+# write debug codes to display
+def writedebugtodisplay(n):
+#  if dbg_log=="1":
+#    with canvas(virtual) as draw:
+#      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
+#      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+    time.sleep(0.5)
+
+def writewarningtodisplay(n):
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  time.sleep(0.5)
+
+def writeerrortodisplay(n):
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  time.sleep(0.5)
+
+# initializing display
+def initdisplay():
+  global virtual
+  serial=spi(port=0, device=0, gpio=noop())
+  device=max7219(serial, width=32, height=8, block_orientation=-90)
+  device.contrast(5)
+  virtual=viewport(device, width=32, height=8)
+  writetodisplay(2,"MM5D",2)
 
 # write a line to debug logfile
 def writetodebuglog(level,text):
@@ -84,7 +159,7 @@ def loadconfiguration(conffile):
     config=ConfigParser.RawConfigParser(allow_no_value=True)
     config.readfp(io.BytesIO(sample_config))
     dbg_log='0'
-    dbg_log=config.get('others','dbg_log')
+    dbg_log=config.get('log','dbg_log')
     dir_log=config.get('directories','dir_log')
     dir_var=config.get('directories','dir_var')
     logfile=dir_log+'mm5d.log'
@@ -118,8 +193,10 @@ def loadconfiguration(conffile):
     if sensor_type=='DHT22':
       sensor=Adafruit_DHT.DHT22
     writetodebuglog("i","Configuration is loaded.")
+    writedebugtodisplay("00")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
+    writeerrortodisplay("01")
     exit(1)
 
 # add a zero char
@@ -231,8 +308,10 @@ def loadenvirchars(conffile):
     mvent_off=int(config.get('mushroom','vent_off'))
     mvent_on=int(config.get('mushroom','vent_on'))
     writetodebuglog("i","Environment characteristics is loaded.")
+    writedebugtodisplay("01")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
+    writeerrortodisplay("02")
     exit(2)
 
 # create and remove lock file
@@ -242,17 +321,21 @@ def lckfile(mode):
       lcf=open(lockfile,'w')
       lcf.close()
       writetodebuglog("i","Creating lockfile.")
+      writedebugtodisplay("12")
     else:
       writetodebuglog("i","Removing lockfile.")
+      writedebugtodisplay("14")
       os.remove(lockfile)
   except:
     writetodebuglog("w","Cannot create/remove"+lockfile+"!")
+    writewarningtodisplay("03")
 
 # write data to log with timestamp
 def writelog(temperature,humidity,inputs,outputs):
   dt=(strftime("%Y-%m-%d,%H:%M",gmtime()))
   lckfile(1)
   writetodebuglog("i","Writing data to log.")
+  writedebugtodisplay("13")
   if not os.path.isfile(logfile):
     f=open(logfile,'w')
     f.close()
@@ -270,31 +353,14 @@ def writelog(temperature,humidity,inputs,outputs):
       f.close()
   except:
     writetodebuglog("e","Cannot write "+logfile+"!")
+    writeerrortodisplay("04")
     lckfile(0)
     exit(3)
   lckfile(0)
 
-# initializing ports
-def initports():
-  writetodebuglog("i","Initializing GPIO ports.")
-  GPIO.setwarnings(False)
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(prt_act,GPIO.OUT,initial=0)
-  GPIO.setup(prt_err1,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_err2,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_err3,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_err4,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_in1,GPIO.IN)
-  GPIO.setup(prt_in2,GPIO.IN)
-  GPIO.setup(prt_in3,GPIO.IN)
-  GPIO.setup(prt_in4,GPIO.IN)
-  GPIO.setup(prt_out1,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_out2,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_out3,GPIO.OUT,initial=GPIO.HIGH)
-  GPIO.setup(prt_out4,GPIO.OUT,initial=GPIO.HIGH)
-
 # check external control files
 def extcont(channel,status):
+  writedebugtodisplay("04")
   writetodebuglog("i","Checking override file: "+dir_var+"out"+str(channel)+".")
   if os.path.isfile(dir_var+"out"+str(channel)):
     try:
@@ -326,6 +392,7 @@ def autooffport4():
 # get external temperature from openweathermap.org
 def getexttemp():
   writetodebuglog("i","Get external temperature from internet.")
+  writedebugtodisplay("05")
   response = requests.get(base_url+"appid="+api_key+"&q="+city_name)
   x=response.json()
   if x["cod"]!="404":
@@ -336,6 +403,7 @@ def getexttemp():
     return current_temperature
   else:
     writetodebuglog("w","Cannot get external temperature from internet.")
+    writewarningtodisplay("01")
     return 18
 
 # control output ports and error lights
@@ -429,16 +497,24 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err1=1
     if (wrongvalues==0) and (temperature>htemperature_max):
       err1=1
-    # overcurrent proctection
+    if err1==1:
+      writeerrortodisplay("51")
+    # overcurrent protection
     err2=1 if in2==1 else 0
+    if err2==1:
+      writeerrortodisplay("52")
     # bad water pressure error light
     err3=0 if in3==1 else 1
+    if err3==1:
+      writeerrortodisplay("53")
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<hhumidity_min):
       err4=1
     if (wrongvalues==0) and (humidity>hhumidity_max):
       err4=1
+    if err4==1:
+      writeerrortodisplay("54")
   else: # growing mushroom
     # bad temperature
     err1=0
@@ -446,16 +522,24 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err1=1
     if (wrongvalues==0) and (temperature>mtemperature_max):
       err1=1
+    if err1==1:
+      writeerrortodisplay("51")
     # MM4A overcurrent proctection
     err2=0 if in2==0 else 1
+    if err2==1:
+      writeerrortodisplay("52")
     # bad water pressure error light
     err3=0 if in3==1 else 1
+    if err3==1:
+      writeerrortodisplay("53")
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<mhumidity_min):
       err4=1
     if (wrongvalues==0) and (humidity>mhumidity_max):
       err4=1
+    if err4==1:
+      writeerrortodisplay("54")
   # -----------------------------------------------------------------------------
   # switch on/off tower signal lights:
   twrg=0
@@ -464,8 +548,12 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   # - green+yellow -
   # MM4A manual control
   twry=0 if in1==0 else 1
+  if in1==1:
+    writewarningtodisplay("51")
   # opened door/window
   twry=0 if in4==0 else 1
+  if in4==1:
+    writewarningtodisplay("52")
   # - red -
   # MM4A overcurrent proctection
   twrr=0 if in2==0 else 1
@@ -479,6 +567,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   return outputs
 
 # main program
+initdisplay()
 loadconfiguration('/usr/local/etc/mm5d/mm5d.ini')
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
@@ -489,15 +578,18 @@ prevhumidity=0
 previnputs=""
 prevoutputs=""
 writetodebuglog("i","Starting program as daemon.")
+writedebugtodisplay("02")
 with daemon.DaemonContext() as context:
   try:
     while True:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
-      shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sensor)
-      # shum=75  # !!! Remove it !!!
-      # stemp=18 # !!! Remove it !!!
+      # shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sensor)
+      shum=75  # !!! Remove it !!!
+      stemp=18 # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
+      writedebugtodisplay("07")
+      writedatatodisplay(stemp, shum)
       humidity=int(shum)
       temperature=int(stemp)
       blinkactled()
@@ -506,8 +598,10 @@ with daemon.DaemonContext() as context:
       else:
         wrongvalues=1
         writetodebuglog("w","Measured values are bad!")
+        writewarningtodisplay("02")
       # read input data from GPIO
       writetodebuglog("i","Reading input ports.")
+      writedebugtodisplay("08")
       inputs=str(int(not GPIO.input(prt_in1)))
       inputs=inputs+str(int(not GPIO.input(prt_in2)))
       inputs=inputs+str(int(not GPIO.input(prt_in3)))
@@ -516,6 +610,7 @@ with daemon.DaemonContext() as context:
       blinkactled()
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
+      writedebugtodisplay("09")
       if (int(time.strftime("%M"))==3):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
@@ -526,27 +621,29 @@ with daemon.DaemonContext() as context:
       writetodebuglog("i","Original value of outputs: "+outputs)
       for x in range(0, 4):
         ss=ss+extcont(x+1,outputs[x])
-      outputs=ss+outputs[4]+outputs[5]+outputs[6]+outputs[7]
+      outputs=ss+outputs[4]+outputs[5]+outputs[6]+outputs[7]+outputs[8]+outputs[9]+outputs[10]
       writetodebuglog("i","New value of outputs: "+outputs)
       # write output data to GPIO
       writetodebuglog("i","Writing output ports.")
-      GPIO.output(prt_err1,not int(outputs[4]))
-      GPIO.output(prt_err2,not int(outputs[5]))
-      GPIO.output(prt_err3,not int(outputs[6]))
-      GPIO.output(prt_err4,not int(outputs[7]))
+      writedebugtodisplay("10")
       GPIO.output(prt_out1,not int(outputs[0]))
       GPIO.output(prt_out2,not int(outputs[1]))
       GPIO.output(prt_out3,not int(outputs[2]))
       GPIO.output(prt_out4,not int(outputs[3]))
+      GPIO.output(prt_err1,not int(outputs[4]))
+      GPIO.output(prt_err2,not int(outputs[5]))
+      GPIO.output(prt_err3,not int(outputs[6]))
+      GPIO.output(prt_err4,not int(outputs[7]))
       GPIO.output(prt_twrgreen,not int(outputs[8]))
-      GPIO.output(prt_twrred,not int(outputs[10]))
       GPIO.output(prt_twryellow,not int(outputs[9]))
+      GPIO.output(prt_twrred,not int(outputs[10]))
       # auto-off 4th port
       if aop4!="0":
         for i in range(int(aop4)):
           blinkactled()
         GPIO.output(prt_out4,1)
         writetodebuglog("i","Auto off enabled at 4th output port.")
+        writedebugtodisplay("11")
       blinkactled()
       # write logfile if changed
       enablewritelog=0
@@ -570,6 +667,7 @@ with daemon.DaemonContext() as context:
       blinkactled()
       # wait 10s
       writetodebuglog("i","Waiting 10 s.")
+      writedebugtodisplay("15")
       time.sleep(10)
   except KeyboardInterrupt:
     GPIO.cleanup

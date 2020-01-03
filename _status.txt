@@ -56,7 +56,7 @@ mm5d-sw/packaging/web/prerm						ready
 mm5d-sw/packaging/changelog.Debian.gz					ready
 mm5d-sw/packaging/copyright						ready
 -----------------------------------------------------------------------------
-mm5d-sw/programs/mm5d-hwtest.py						ready
+mm5d-sw/programs/mm5d-hwtest.py
 mm5d-sw/programs/mm5d.py
 -----------------------------------------------------------------------------
 mm5d-sw/scripts/mm5d-editenvirconf					ready

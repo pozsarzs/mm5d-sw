@@ -86,8 +86,8 @@ def blink_act():
     GPIO.output(prt_act,0)
     time.sleep(0.5)
 
-#conffile='/etc/mm3d/mm3d.ini'
-conffile='/usr/local/etc/mm3d/mm3d.ini'
+#conffile='/etc/mm5d/mm5d.ini'
+conffile='/usr/local/etc/mm5d/mm5d.ini'
 print "\nMM5D hardware test utility * (C)2019 Pozsar Zsolt"
 print "======================================================"
 print " * load configuration: %s..." % conffile

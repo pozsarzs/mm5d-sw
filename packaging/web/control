@@ -5,7 +5,7 @@ Priority: extra
 Architecture: all
 Installed-Size: 0 kB
 Maintainer: Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>
-Depends: mm5d-sw, apache2
+Depends: mm5d, mm5d-sw, apache2, libswitch-perl
 Description: Web interface for MM5D software
  This is a software part of MM5D growing house controlling
  and remote monitoring equipment.

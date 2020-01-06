@@ -14,7 +14,7 @@ Requirements
   Software: Raspbian Lite operation system,
             Apache webserver,
             Perl,
-            Python.
+            Python3.
 
 2. How to get installer package for my OS?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

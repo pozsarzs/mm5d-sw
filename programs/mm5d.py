@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # +----------------------------------------------------------------------------+
 # | MM5D v0.1 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
@@ -19,7 +19,7 @@
 #   2: environment characteristic configuration file is missing
 #   3: cannot create locking file
 
-import ConfigParser
+import configparser
 import daemon
 import io
 import json
@@ -72,29 +72,29 @@ def writetodisplay(o, t, d):
 
 # write measured data to display
 def writedatatodisplay(sd1, sd2):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
-    time.sleep(0.5)
+  with canvas(virtual) as draw:
+    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
+    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
+  time.sleep(0.5)
 
 # write debug codes to display
 def writedebugtodisplay(n):
-#  if dbg_log=="1":
-#    with canvas(virtual) as draw:
-#      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
-#      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  if dbg_log=="1":
+    with canvas(virtual) as draw:
+      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
+      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
     time.sleep(0.5)
 
 def writewarningtodisplay(n):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  with canvas(virtual) as draw:
+    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
+    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
 def writeerrortodisplay(n):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  with canvas(virtual) as draw:
+    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
+    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
 # initializing display
@@ -122,7 +122,7 @@ def writetodebuglog(level,text):
         d.write(dt+'  '+lv+' '+text+'\n')
         d.close()
     except:
-      print ""
+      print ("")
 
 # load configuration
 def loadconfiguration(conffile):
@@ -156,8 +156,8 @@ def loadconfiguration(conffile):
   try:
     with open(conffile) as f:
       sample_config=f.read()
-    config=ConfigParser.RawConfigParser(allow_no_value=True)
-    config.readfp(io.BytesIO(sample_config))
+    config=configparser.RawConfigParser(allow_no_value=True)
+    config.read_file(io.StringIO(sample_config))
     dbg_log='0'
     dbg_log=config.get('log','dbg_log')
     dir_log=config.get('directories','dir_log')
@@ -259,8 +259,8 @@ def loadenvirchars(conffile):
   try:
     with open(conffile) as f:
       sample_config=f.read()
-    config=ConfigParser.RawConfigParser(allow_no_value=True)
-    config.readfp(io.BytesIO(sample_config))
+    config=configparser.RawConfigParser(allow_no_value=True)
+    config.read_file(io.StringIO(sample_config))
     for x in range(24):
       hhumidifier_disable[x]=int(config.get('hyphae','humidifier_disable_'+addzero(x)))
     for x in range(24):
@@ -568,7 +568,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
 
 # main program
 initdisplay()
-loadconfiguration('/usr/local/etc/mm5d/mm5d.ini')
+loadconfiguration("/usr/local/etc/mm5d/mm5d.ini")
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
 first=1

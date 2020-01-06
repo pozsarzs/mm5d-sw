@@ -1,2 +1,20 @@
 #!/bin/sh
 set -e
+echo "Installing required components..."
+echo "Cloning 3rd party softwares from Github..."
+mkdir --parents /usr/local/src/
+cd /usr/local/src/
+# clone sensor software
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd Adafruit_Python_DHT
+sudo python3 setup.py install
+cd ..
+# clone display software
+git clone http://github.com/rm-hull/luma.led_matrix.git
+cd luma.led_matrix
+sudo python3 setup.py install
+cd ..
+echo -e "\nCreating a new user..."
+sudo adduser mm5d
+sudo echo "mm5d ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_mm5d-nopasswd
+echo -e "\nDone."

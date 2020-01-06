@@ -7,6 +7,7 @@ Installation
 ~~~~~~~~~~~~
   $ tar -xzf mm5d-sw-0.1-armhf.tar.gz
   $ cd mm5d-sw
+  $ sudo raspi-config
   $ ./prepare
   $ ./install
 

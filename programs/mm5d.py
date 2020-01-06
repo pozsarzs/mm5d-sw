@@ -72,29 +72,29 @@ def writetodisplay(o, t, d):
 
 # write measured data to display
 def writedatatodisplay(sd1, sd2):
-  with canvas(virtual) as draw:
-    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
-    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
 # write debug codes to display
 def writedebugtodisplay(n):
-  if dbg_log=="1":
-    with canvas(virtual) as draw:
-      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
-      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
-    time.sleep(0.5)
+#  if dbg_log=="1":
+#    with canvas(virtual) as draw:
+#      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
+#      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+  time.sleep(0.5)
 
 def writewarningtodisplay(n):
-  with canvas(virtual) as draw:
-    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
-    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
 def writeerrortodisplay(n):
-  with canvas(virtual) as draw:
-    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
-    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
+#  with canvas(virtual) as draw:
+#    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
+#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
 # initializing display
@@ -248,6 +248,8 @@ def loadenvirchars(conffile):
   global mvent_lowtemp
   global mvent_off
   global mvent_on
+  H="hyphae"
+  M="mushroom"
   hheater_disable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
   hhumidifier_disable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
   hvent_disable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
@@ -262,51 +264,51 @@ def loadenvirchars(conffile):
     config=configparser.RawConfigParser(allow_no_value=True)
     config.read_file(io.StringIO(sample_config))
     for x in range(24):
-      hhumidifier_disable[x]=int(config.get('hyphae','humidifier_disable_'+addzero(x)))
+      hhumidifier_disable[x]=int(config.get(H,'humidifier_disable_'+addzero(x)))
     for x in range(24):
-      hheater_disable[x]=int(config.get('hyphae','heater_disable_'+addzero(x)))
+      hheater_disable[x]=int(config.get(H,'heater_disable_'+addzero(x)))
     for x in range(24):
-      hvent_disable[x]=int(config.get('hyphae','vent_disable_'+addzero(x)))
+      hvent_disable[x]=int(config.get(H,'vent_disable_'+addzero(x)))
     for x in range(24):
-      hvent_disablelowtemp[x]=int(config.get('hyphae','vent_disablelowtemp_'+addzero(x)))
-    hheater_off=int(config.get('hyphae','heater_off'))
-    hheater_on=int(config.get('hyphae','heater_on'))
-    hhumidifier_off=int(config.get('hyphae','humidifier_off'))
-    hhumidifier_on=int(config.get('hyphae','humidifier_on'))
-    hhumidity_max=int(config.get('hyphae','humidity_max'))
-    hhumidity_min=int(config.get('hyphae','humidity_min'))
-    hlight_off1=int(config.get('hyphae','light_off1'))
-    hlight_off2=int(config.get('hyphae','light_off2'))
-    hlight_on1=int(config.get('hyphae','light_on1'))
-    hlight_on2=int(config.get('hyphae','light_on2'))
-    htemperature_max=int(config.get('hyphae','temperature_max'))
-    htemperature_min=int(config.get('hyphae','temperature_min'))
-    hvent_lowtemp=int(config.get('hyphae','vent_lowtemp'))
-    hvent_off=int(config.get('hyphae','vent_off'))
-    hvent_on=int(config.get('hyphae','vent_on'))
+      hvent_disablelowtemp[x]=int(config.get(H,'vent_disablelowtemp_'+addzero(x)))
+    hheater_off=int(config.get(H,'heater_off'))
+    hheater_on=int(config.get(H,'heater_on'))
+    hhumidifier_off=int(config.get(H,'humidifier_off'))
+    hhumidifier_on=int(config.get(H,'humidifier_on'))
+    hhumidity_max=int(config.get(H,'humidity_max'))
+    hhumidity_min=int(config.get(H,'humidity_min'))
+    hlight_off1=int(config.get(H,'light_off1'))
+    hlight_off2=int(config.get(H,'light_off2'))
+    hlight_on1=int(config.get(H,'light_on1'))
+    hlight_on2=int(config.get(H,'light_on2'))
+    htemperature_max=int(config.get(H,'temperature_max'))
+    htemperature_min=int(config.get(H,'temperature_min'))
+    hvent_lowtemp=int(config.get(H,'vent_lowtemp'))
+    hvent_off=int(config.get(H,'vent_off'))
+    hvent_on=int(config.get(H,'vent_on'))
     for x in range(24):
-      mhumidifier_disable[x]=int(config.get('mushroom','humidifier_disable_'+addzero(x)))
+      mhumidifier_disable[x]=int(config.get(M,'humidifier_disable_'+addzero(x)))
     for x in range(24):
-      mheater_disable[x]=int(config.get('mushroom','heater_disable_'+addzero(x)))
+      mheater_disable[x]=int(config.get(M,'heater_disable_'+addzero(x)))
     for x in range(24):
-      mvent_disable[x]=int(config.get('mushroom','vent_disable_'+addzero(x)))
+      mvent_disable[x]=int(config.get(M,'vent_disable_'+addzero(x)))
     for x in range(24):
-      mvent_disablelowtemp[x]=int(config.get('mushroom','vent_disablelowtemp_'+addzero(x)))
-    mheater_off=int(config.get('mushroom','heater_off'))
-    mheater_on=int(config.get('mushroom','heater_on'))
-    mhumidifier_off=int(config.get('mushroom','humidifier_off'))
-    mhumidifier_on=int(config.get('mushroom','humidifier_on'))
-    mhumidity_max=int(config.get('mushroom','humidity_max'))
-    mhumidity_min=int(config.get('mushroom','humidity_min'))
-    mlight_off1=int(config.get('mushroom','light_off1'))
-    mlight_off2=int(config.get('mushroom','light_off2'))
-    mlight_on1=int(config.get('mushroom','light_on1'))
-    mlight_on2=int(config.get('mushroom','light_on2'))
-    mtemperature_max=int(config.get('mushroom','temperature_max'))
-    mtemperature_min=int(config.get('mushroom','temperature_min'))
-    mvent_lowtemp=int(config.get('mushroom','vent_lowtemp'))
-    mvent_off=int(config.get('mushroom','vent_off'))
-    mvent_on=int(config.get('mushroom','vent_on'))
+      mvent_disablelowtemp[x]=int(config.get(M,'vent_disablelowtemp_'+addzero(x)))
+    mheater_off=int(config.get(M,'heater_off'))
+    mheater_on=int(config.get(M,'heater_on'))
+    mhumidifier_off=int(config.get(M,'humidifier_off'))
+    mhumidifier_on=int(config.get(M,'humidifier_on'))
+    mhumidity_max=int(config.get(M,'humidity_max'))
+    mhumidity_min=int(config.get(M,'humidity_min'))
+    mlight_off1=int(config.get(M,'light_off1'))
+    mlight_off2=int(config.get(M,'light_off2'))
+    mlight_on1=int(config.get(M,'light_on1'))
+    mlight_on2=int(config.get(M,'light_on2'))
+    mtemperature_max=int(config.get(M,'temperature_max'))
+    mtemperature_min=int(config.get(M,'temperature_min'))
+    mvent_lowtemp=int(config.get(M,'vent_lowtemp'))
+    mvent_off=int(config.get(M,'vent_off'))
+    mvent_on=int(config.get(M,'vent_on'))
     writetodebuglog("i","Environment characteristics is loaded.")
     writedebugtodisplay("01")
   except:

@@ -23,3 +23,6 @@ Removing
 ~~~~~~~~
   $ cd mm5d-sw
   $ ./uninstall
+
+---------------------------------------------------------------------------------
+ MM5D * Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>

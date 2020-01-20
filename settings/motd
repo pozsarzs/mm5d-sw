@@ -1,8 +1,8 @@
 
 MM5D v0.1 * Growing house controlling and remote monitoring system
-Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>
+Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>
 
-Use mm3d-editenvirconf program to set characteristics of growing
-environment and mm3d-override command to override status of outputs.
+Use mm5d-editenvirconf program to set characteristics of growing
+environment and mm5d-override command to override status of outputs.
 
 See manual page of commands for more information.

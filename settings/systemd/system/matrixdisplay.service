@@ -1,0 +1,11 @@
+[Unit]
+Description=Matrix display handler
+
+[Service]
+ExecStart=/usr/local/bin/matrixdisplay.py
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+

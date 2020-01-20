@@ -57,3 +57,6 @@ Output values
   twrg			integer		green signal light, 1: switch on
   twry			integer		yellow signal light, 1: switch on
   twrr			integer		red signal light, 1: switch on
+
+---------------------------------------------------------------------------------
+ MM5D * Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # +----------------------------------------------------------------------------+
 # | MM5D v0.1 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | getpage.cgi                                                                |
 # | CGI program                                                                |
 # +----------------------------------------------------------------------------+
@@ -99,7 +99,7 @@ $msg19 = "Refresh";
 $msg20 = "Latest status";
 $msg21 = "Log";
 $msg22 = "Latest 20 record";
-$msg23 = "If you want to see full log, please login to unit via SSH, and use <i>mm3d-viewlog</i> command.";
+$msg23 = "If you want to see full log, please login to unit via SSH, and use <i>mm5d-viewlog</i> command.";
 
 $msgfile = "$dir_msg/$lang/mm5d.msg";
 open MSG, "< $msgfile";

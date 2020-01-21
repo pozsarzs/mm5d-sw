@@ -122,8 +122,8 @@ sudo ln -sf /etc/init.d/matrixdisplay.sh /etc/rc4.d/S02matrixdisplay.sh
 sudo ln -sf /etc/init.d/matrixdisplay.sh /etc/rc5.d/S02matrixdisplay.sh
 sudo ln -sf /etc/init.d/matrixdisplay.sh /etc/rc6.d/K02matrixdisplay.sh
 sudo systemctl daemon-reload
-sudo systemctl disable $SWN2.service
-sudo systemctl disable matrixdisplay.service
+sudo systemctl enable $SWN2.service
+sudo systemctl enable matrixdisplay.service
 sudo /etc/init.d/$SWN2.sh start
 sudo /etc/init.d/matrixdisplay.sh start
 echo "- set cron.d:"

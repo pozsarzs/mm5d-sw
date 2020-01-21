@@ -29,18 +29,12 @@ import sys
 import time
 import Adafruit_DHT
 import RPi.GPIO as GPIO
-from luma.core.interface.serial import spi, noop
-from luma.core.legacy.font import proportional, SINCLAIR_FONT
-from luma.core.legacy import text
-from luma.core.render import canvas
-from luma.core.virtual import viewport
-from luma.led_matrix.device import max7219
 from time import gmtime, strftime
 
 # initializing ports
 def initports():
   writetodebuglog("i","Initializing GPIO ports.")
-  writedebugtodisplay("03")
+  writedebugtodisplay("D #03")
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(prt_in1,GPIO.IN)
@@ -62,49 +56,19 @@ def initports():
   GPIO.setup(prt_twrgreen,GPIO.OUT,initial=GPIO.HIGH)
 
 # write text to display
-def writetodisplay(o, t, d):
-  with canvas(virtual) as draw:
-    text(draw, (o, 0), t, fill="white", font=proportional(SINCLAIR_FONT))
-  if d>0:
-    time.sleep(d)
-    with canvas(virtual) as draw:
-      text(draw, (o, 0), "", fill="white", font=proportional(SINCLAIR_FONT))
-
-# write measured data to display
-def writedatatodisplay(sd1, sd2):
+def writetodisplay(text):
 #  with canvas(virtual) as draw:
 #    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
 #    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 
-# write debug codes to display
-def writedebugtodisplay(n):
+# write warning/debug code to display
+def writecodetodisplay(n):
 #  if dbg_log=="1":
 #    with canvas(virtual) as draw:
 #      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
 #      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
-
-def writewarningtodisplay(n):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), "W", fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
-  time.sleep(0.5)
-
-def writeerrortodisplay(n):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), "E", fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
-  time.sleep(0.5)
-
-# initializing display
-def initdisplay():
-  global virtual
-  serial=spi(port=0, device=0, gpio=noop())
-  device=max7219(serial, width=32, height=8, block_orientation=-90)
-  device.contrast(5)
-  virtual=viewport(device, width=32, height=8)
-  writetodisplay(2,"MM5D",2)
 
 # write a line to debug logfile
 def writetodebuglog(level,text):
@@ -569,7 +533,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   return outputs
 
 # main program
-initdisplay()
+writetodisplay("MM5D")
 loadconfiguration("/usr/local/etc/mm5d/mm5d.ini")
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
@@ -580,7 +544,7 @@ prevhumidity=0
 previnputs=""
 prevoutputs=""
 writetodebuglog("i","Starting program as daemon.")
-writedebugtodisplay("02")
+writedebugtodisplay("D #02")
 with daemon.DaemonContext() as context:
   try:
     while True:
@@ -590,7 +554,7 @@ with daemon.DaemonContext() as context:
       shum=75  # !!! Remove it !!!
       stemp=18 # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
-      writedebugtodisplay("07")
+      writedebugtodisplay("D #07")
       writedatatodisplay(stemp, shum)
       humidity=int(shum)
       temperature=int(stemp)
@@ -600,10 +564,10 @@ with daemon.DaemonContext() as context:
       else:
         wrongvalues=1
         writetodebuglog("w","Measured values are bad!")
-        writewarningtodisplay("02")
+        writewarningtodisplay("W #02")
       # read input data from GPIO
       writetodebuglog("i","Reading input ports.")
-      writedebugtodisplay("08")
+      writedebugtodisplay("D #08")
       inputs=str(int(not GPIO.input(prt_in1)))
       inputs=inputs+str(int(not GPIO.input(prt_in2)))
       inputs=inputs+str(int(not GPIO.input(prt_in3)))
@@ -612,7 +576,7 @@ with daemon.DaemonContext() as context:
       blinkactled()
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
-      writedebugtodisplay("09")
+      writedebugtodisplay("D #09")
       if (int(time.strftime("%M"))==3):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
@@ -627,7 +591,7 @@ with daemon.DaemonContext() as context:
       writetodebuglog("i","New value of outputs: "+outputs)
       # write output data to GPIO
       writetodebuglog("i","Writing output ports.")
-      writedebugtodisplay("10")
+      writedebugtodisplay("D #10")
       GPIO.output(prt_out1,not int(outputs[0]))
       GPIO.output(prt_out2,not int(outputs[1]))
       GPIO.output(prt_out3,not int(outputs[2]))
@@ -645,7 +609,7 @@ with daemon.DaemonContext() as context:
           blinkactled()
         GPIO.output(prt_out4,1)
         writetodebuglog("i","Auto off enabled at 4th output port.")
-        writedebugtodisplay("11")
+        writedebugtodisplay("D #11")
       blinkactled()
       # write logfile if changed
       enablewritelog=0
@@ -669,7 +633,7 @@ with daemon.DaemonContext() as context:
       blinkactled()
       # wait 10s
       writetodebuglog("i","Waiting 10 s.")
-      writedebugtodisplay("15")
+      writecodetodisplay("D","15")
       time.sleep(10)
   except KeyboardInterrupt:
     GPIO.cleanup

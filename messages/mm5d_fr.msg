@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
 # | MM5D v0.1 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_fr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+

@@ -17,6 +17,7 @@
 #   0: normal exit
 
 import RPi.GPIO as GPIO
+import time
 from luma.core.interface.serial import spi, noop
 from luma.core.legacy.font import proportional, SINCLAIR_FONT
 from luma.core.legacy import text
@@ -30,7 +31,7 @@ serial=spi(port=0, device=0, gpio=noop())
 device=max7219(serial, width=32, height=8, block_orientation=-90)
 device.contrast(5)
 virtual=viewport(device, width=32, height=8)
-n=''
+s=''
 while True:
   try:
     with open(file_pipe, "r") as fifo:
@@ -40,5 +41,6 @@ while True:
     print ("")
   with canvas(virtual) as draw:
     text(draw, (0, 0), s, fill="white", font=proportional(SINCLAIR_FONT))
+  time.sleep(0.5)
 GPIO.cleanup
 exit(0)

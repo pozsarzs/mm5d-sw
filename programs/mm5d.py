@@ -281,7 +281,7 @@ def loadenvirchars(conffile):
     mvent_off=int(config.get(M,'vent_off'))
     mvent_on=int(config.get(M,'vent_on'))
     writetodebuglog("i","Environment characteristics is loaded.")
-    writecodetodisplay("01")
+    writecodetodisplay("D","01")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
     writecodetodisplay("E","02")
@@ -562,7 +562,7 @@ with daemon.DaemonContext() as context:
       stemp=18 # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
       writecodetodisplay("D","07")
-      writetexttodisplay(stemp+' '+shum)
+      # writetexttodisplay(stemp+' '+shum)
       humidity=int(shum)
       temperature=int(stemp)
       blinkactled()

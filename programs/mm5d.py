@@ -541,6 +541,9 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
 
 # main program
 writetexttodisplay("MM5D")
+time.sleep(1)
+writetexttodisplay("init...")
+time.sleep(0.5)
 loadconfiguration("/usr/local/etc/mm5d/mm5d.ini")
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
@@ -554,15 +557,17 @@ writetodebuglog("i","Starting program as daemon.")
 writecodetodisplay("D","02")
 with daemon.DaemonContext() as context:
   try:
+    writetexttodisplay("ready")
+    time.sleep(1)
     while True:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
       # shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sensor)
-      shum=75  # !!! Remove it !!!
-      stemp=18 # !!! Remove it !!!
+      shum="75"  # !!! Remove it !!!
+      stemp="18" # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
       writecodetodisplay("D","07")
-      # writetexttodisplay(stemp+' '+shum)
+      writetexttodisplay(stemp+' '+shum)
       humidity=int(shum)
       temperature=int(stemp)
       blinkactled()

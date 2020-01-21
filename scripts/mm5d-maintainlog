@@ -59,6 +59,6 @@ maintainlogfile()
   gzip -9 $BCKPFILE
 }
 
-# Main function
+# main function
 loadconfiguration
 maintainlogfile

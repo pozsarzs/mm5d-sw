@@ -13,14 +13,12 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
 
-# erase file and write its name to screen
 erase()
 {
   sudo rm --force $1 2> /dev/null
   echo "  $1"
 }
 
-# erase directory and write its name to screen
 erasedir()
 {
   sudo rmdir $1 2> /dev/null

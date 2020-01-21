@@ -14,3 +14,4 @@
 # FOR A PARTICULAR PURPOSE.
 
 sudo /etc/init.d/mm5d.sh stop
+sudo /etc/init.d/matrixdisplay.sh stop

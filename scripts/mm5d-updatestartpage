@@ -165,7 +165,7 @@ EOF
   fi
 }
 
-# Main function
+# main function
 loadconfiguration
 loadmessages
 makehomepage

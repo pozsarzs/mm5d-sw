@@ -13,7 +13,6 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
 
-# copy file and write its name to screen
 copy()
 {
   sudo cp $1 $2

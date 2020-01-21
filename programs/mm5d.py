@@ -31,10 +31,13 @@ import Adafruit_DHT
 import RPi.GPIO as GPIO
 from time import gmtime, strftime
 
+global file_pipe
+file_pipe="/var/tmp/matrixdisplayfifo"
+
 # initializing ports
 def initports():
   writetodebuglog("i","Initializing GPIO ports.")
-  writedebugtodisplay("D #03")
+  writecodetodisplay("D","03")
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(prt_in1,GPIO.IN)
@@ -56,19 +59,23 @@ def initports():
   GPIO.setup(prt_twrgreen,GPIO.OUT,initial=GPIO.HIGH)
 
 # write text to display
-def writetodisplay(text):
-#  with canvas(virtual) as draw:
-#    text(draw, (0, 0), sd1, fill="white", font=proportional(SINCLAIR_FONT))
-#    text(draw, (19, 0), sd2, fill="white", font=proportional(SINCLAIR_FONT))
-  time.sleep(0.5)
+def writetexttodisplay(s):
+  try:
+    with open(file_pipe, "w") as fifo:
+      fifo.write(s+'\n')
+      fifo.close()
+  except:
+    print ("")
 
 # write warning/debug code to display
-def writecodetodisplay(n):
-#  if dbg_log=="1":
-#    with canvas(virtual) as draw:
-#      text(draw, (0, 0), "D", fill="white", font=proportional(SINCLAIR_FONT))
-#      text(draw, (12, 0), '#'+n, fill="white", font=proportional(SINCLAIR_FONT))
-  time.sleep(0.5)
+def writecodetodisplay(c,n):
+  if (c=="D" and dbg_log=="1") or c=="W" or  c=="E":
+    try:
+      with open(file_pipe, "w") as fifo:
+        fifo.write(c+' #'+n+'\n')
+        fifo.close()
+    except:
+      print ("")
 
 # write a line to debug logfile
 def writetodebuglog(level,text):
@@ -157,10 +164,10 @@ def loadconfiguration(conffile):
     if sensor_type=='DHT22':
       sensor=Adafruit_DHT.DHT22
     writetodebuglog("i","Configuration is loaded.")
-    writedebugtodisplay("00")
+    writecodetodisplay("D","00")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
-    writeerrortodisplay("01")
+    writecodetodisplay("E","01")
     exit(1)
 
 # add a zero char
@@ -274,10 +281,10 @@ def loadenvirchars(conffile):
     mvent_off=int(config.get(M,'vent_off'))
     mvent_on=int(config.get(M,'vent_on'))
     writetodebuglog("i","Environment characteristics is loaded.")
-    writedebugtodisplay("01")
+    writecodetodisplay("01")
   except:
     writetodebuglog("e","Cannot open "+conffile+"!")
-    writeerrortodisplay("02")
+    writecodetodisplay("E","02")
     exit(2)
 
 # create and remove lock file
@@ -287,21 +294,21 @@ def lckfile(mode):
       lcf=open(lockfile,'w')
       lcf.close()
       writetodebuglog("i","Creating lockfile.")
-      writedebugtodisplay("12")
+      writecodetodisplay("D","12")
     else:
       writetodebuglog("i","Removing lockfile.")
-      writedebugtodisplay("14")
+      writecodetodisplay("D","14")
       os.remove(lockfile)
   except:
     writetodebuglog("w","Cannot create/remove"+lockfile+"!")
-    writewarningtodisplay("03")
+    writecodetodisplay("W","03")
 
 # write data to log with timestamp
 def writelog(temperature,humidity,inputs,outputs):
   dt=(strftime("%Y-%m-%d,%H:%M",gmtime()))
   lckfile(1)
   writetodebuglog("i","Writing data to log.")
-  writedebugtodisplay("13")
+  writecodetodisplay("D","13")
   if not os.path.isfile(logfile):
     f=open(logfile,'w')
     f.close()
@@ -319,14 +326,14 @@ def writelog(temperature,humidity,inputs,outputs):
       f.close()
   except:
     writetodebuglog("e","Cannot write "+logfile+"!")
-    writeerrortodisplay("04")
+    writecodetodisplay("E","04")
     lckfile(0)
     exit(3)
   lckfile(0)
 
 # check external control files
 def extcont(channel,status):
-  writedebugtodisplay("04")
+  writecodetodisplay("D","04")
   writetodebuglog("i","Checking override file: "+dir_var+"out"+str(channel)+".")
   if os.path.isfile(dir_var+"out"+str(channel)):
     try:
@@ -358,7 +365,7 @@ def autooffport4():
 # get external temperature from openweathermap.org
 def getexttemp():
   writetodebuglog("i","Get external temperature from internet.")
-  writedebugtodisplay("05")
+  writecodetodisplay("D","05")
   response = requests.get(base_url+"appid="+api_key+"&q="+city_name)
   x=response.json()
   if x["cod"]!="404":
@@ -369,7 +376,7 @@ def getexttemp():
     return current_temperature
   else:
     writetodebuglog("w","Cannot get external temperature from internet.")
-    writewarningtodisplay("01")
+    writecodetodisplay("W","01")
     return 18
 
 # control output ports and error lights
@@ -464,15 +471,15 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if (wrongvalues==0) and (temperature>htemperature_max):
       err1=1
     if err1==1:
-      writeerrortodisplay("51")
+      writecodetodisplay("E","51")
     # overcurrent protection
     err2=1 if in2==1 else 0
     if err2==1:
-      writeerrortodisplay("52")
+      writecodetodisplay("E","52")
     # bad water pressure error light
     err3=0 if in3==1 else 1
     if err3==1:
-      writeerrortodisplay("53")
+      writecodetodisplay("E","53")
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<hhumidity_min):
@@ -480,7 +487,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if (wrongvalues==0) and (humidity>hhumidity_max):
       err4=1
     if err4==1:
-      writeerrortodisplay("54")
+      writecodetodisplay("E","54")
   else: # growing mushroom
     # bad temperature
     err1=0
@@ -489,15 +496,15 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if (wrongvalues==0) and (temperature>mtemperature_max):
       err1=1
     if err1==1:
-      writeerrortodisplay("51")
+      writecodetodisplay("E","51")
     # MM4A overcurrent proctection
     err2=0 if in2==0 else 1
     if err2==1:
-      writeerrortodisplay("52")
+      writecodetodisplay("E","52")
     # bad water pressure error light
     err3=0 if in3==1 else 1
     if err3==1:
-      writeerrortodisplay("53")
+      writecodetodisplay("E","53")
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<mhumidity_min):
@@ -505,7 +512,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if (wrongvalues==0) and (humidity>mhumidity_max):
       err4=1
     if err4==1:
-      writeerrortodisplay("54")
+      writecodetodisplay("E","54")
   # -----------------------------------------------------------------------------
   # switch on/off tower signal lights:
   twrg=0
@@ -515,11 +522,11 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   # MM4A manual control
   twry=0 if in1==0 else 1
   if in1==1:
-    writewarningtodisplay("51")
+    writecodetodisplay("W","51")
   # opened door/window
   twry=0 if in4==0 else 1
   if in4==1:
-    writewarningtodisplay("52")
+    writecodetodisplay("W","52")
   # - red -
   # MM4A overcurrent proctection
   twrr=0 if in2==0 else 1
@@ -533,7 +540,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   return outputs
 
 # main program
-writetodisplay("MM5D")
+writetexttodisplay("MM5D")
 loadconfiguration("/usr/local/etc/mm5d/mm5d.ini")
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()
@@ -544,7 +551,7 @@ prevhumidity=0
 previnputs=""
 prevoutputs=""
 writetodebuglog("i","Starting program as daemon.")
-writedebugtodisplay("D #02")
+writecodetodisplay("D","02")
 with daemon.DaemonContext() as context:
   try:
     while True:
@@ -554,8 +561,8 @@ with daemon.DaemonContext() as context:
       shum=75  # !!! Remove it !!!
       stemp=18 # !!! Remove it !!!
       writetodebuglog("i","Measure is done.")
-      writedebugtodisplay("D #07")
-      writedatatodisplay(stemp, shum)
+      writecodetodisplay("D","07")
+      writetexttodisplay(stemp+' '+shum)
       humidity=int(shum)
       temperature=int(stemp)
       blinkactled()
@@ -564,10 +571,10 @@ with daemon.DaemonContext() as context:
       else:
         wrongvalues=1
         writetodebuglog("w","Measured values are bad!")
-        writewarningtodisplay("W #02")
+        writecodetodisplay("W","02")
       # read input data from GPIO
       writetodebuglog("i","Reading input ports.")
-      writedebugtodisplay("D #08")
+      writecodetodisplay("D","08")
       inputs=str(int(not GPIO.input(prt_in1)))
       inputs=inputs+str(int(not GPIO.input(prt_in2)))
       inputs=inputs+str(int(not GPIO.input(prt_in3)))
@@ -576,7 +583,7 @@ with daemon.DaemonContext() as context:
       blinkactled()
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
-      writedebugtodisplay("D #09")
+      writecodetodisplay("D","09")
       if (int(time.strftime("%M"))==3):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
@@ -591,7 +598,7 @@ with daemon.DaemonContext() as context:
       writetodebuglog("i","New value of outputs: "+outputs)
       # write output data to GPIO
       writetodebuglog("i","Writing output ports.")
-      writedebugtodisplay("D #10")
+      writecodetodisplay("D","10")
       GPIO.output(prt_out1,not int(outputs[0]))
       GPIO.output(prt_out2,not int(outputs[1]))
       GPIO.output(prt_out3,not int(outputs[2]))
@@ -609,7 +616,7 @@ with daemon.DaemonContext() as context:
           blinkactled()
         GPIO.output(prt_out4,1)
         writetodebuglog("i","Auto off enabled at 4th output port.")
-        writedebugtodisplay("D #11")
+        writecodetodisplay("D","11")
       blinkactled()
       # write logfile if changed
       enablewritelog=0

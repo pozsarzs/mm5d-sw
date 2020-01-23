@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # +----------------------------------------------------------------------------+
 # | MM5D v0.1 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019 Pozsar Zsolt <pozsar.zsolt@.szerafingomba.hu>           |
+# | Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d.py                                                                    |
 # | Main program                                                               |
 # +----------------------------------------------------------------------------+
@@ -126,9 +126,9 @@ def loadconfiguration(conffile):
   global sensor
   try:
     with open(conffile) as f:
-      sample_config=f.read()
+      mm5d_config=f.read()
     config=configparser.RawConfigParser(allow_no_value=True)
-    config.read_file(io.StringIO(sample_config))
+    config.read_file(io.StringIO(mm5d_config))
     dbg_log='0'
     dbg_log=config.get('log','dbg_log')
     dir_log=config.get('directories','dir_log')
@@ -231,9 +231,9 @@ def loadenvirchars(conffile):
   mvent_disablelowtemp=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
   try:
     with open(conffile) as f:
-      sample_config=f.read()
+      envir_config=f.read()
     config=configparser.RawConfigParser(allow_no_value=True)
-    config.read_file(io.StringIO(sample_config))
+    config.read_file(io.StringIO(envir_config))
     for x in range(24):
       hhumidifier_disable[x]=int(config.get(H,'humidifier_disable_'+addzero(x)))
     for x in range(24):
@@ -366,7 +366,7 @@ def autooffport4():
 def getexttemp():
   writetodebuglog("i","Get external temperature from internet.")
   writecodetodisplay("D","05")
-  response = requests.get(base_url+"appid="+api_key+"&q="+city_name)
+  response=requests.get(base_url+"appid="+api_key+"&q="+city_name)
   x=response.json()
   if x["cod"]!="404":
     y=x["main"] 

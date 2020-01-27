@@ -5,9 +5,9 @@ description         var.    name  pin  |  pin  name    var.          description
 --------------------------------------------------------------------------------
                                      +---+
                            +3.3V   1 |o o|  2  +5V
-Red signal light    twrr   GPIO2   3 |o o|  4  +5V
-Green signal light  twry   GPIO3   5 |o o|  6  GND
-Yellow signal light twrg   GPIO4   7 |o o|  8  TXD             Console connector
+Green signal light  twry   GPIO2   3 |o o|  4  +5V
+Yellow signal light twry   GPIO3   5 |o o|  6  GND
+Red signal light    twrr   GPIO4   7 |o o|  8  TXD             Console connector
                              GND   9 |o o| 10  RXD             Console connector
                           GPIO17  11 |x o| 12  GPIO18                T/RH sensor
 Manual control in    in1  GPIO27  13 |o o| 14  GND

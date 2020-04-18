@@ -127,6 +127,7 @@ device=max7219(serial, width=32, height=8, block_orientation=-90)
 device.contrast(5)
 virtual=viewport(device, width=32, height=8)
 while True:
+  writetodisplay("")
   print(" * What do you like?")
   selection=input(" \
    1: Check input ports\n \
@@ -271,8 +272,9 @@ while True:
     try:
       while True:
         hum,temp=Adafruit_DHT.read_retry(sensor,prt_sensor)
-        writetodisplay("T:"+temp+"C")
-        writetodisplay("RH:"+hum+"%")
+        temp=round(temp)
+        hum=round(hum)
+        writetodisplay(str(temp)+"  "+str(hum))
         time.sleep(1)
     except KeyboardInterrupt:
       print()
@@ -287,9 +289,9 @@ while True:
       p.ChangeFrequency(425)
       p.start(0)
       while True:
-        time.sleep(0.5)
+        writetodisplay("")
         p.ChangeDutyCycle(50)
-        time.sleep(0.5)
+        writetodisplay("Beep...")
         p.ChangeDutyCycle(0)
     except KeyboardInterrupt:
       p.stop()

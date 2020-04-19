@@ -285,7 +285,7 @@ while True:
     print("     Data:  GPIO", prt_speaker)
     print("   Press ^C to exit!")
     try:
-      p=GPIO.PWM(17,100)
+      p=GPIO.PWM(prt_speaker,100)
       p.ChangeFrequency(425)
       p.start(0)
       while True:

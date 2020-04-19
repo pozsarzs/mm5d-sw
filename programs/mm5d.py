@@ -45,6 +45,7 @@ def initports():
   GPIO.setup(prt_in3,GPIO.IN)
   GPIO.setup(prt_in4,GPIO.IN)
   GPIO.setup(prt_switch,GPIO.IN)
+  GPIO.setup(prt_speaker,GPIO.OUT)
   GPIO.setup(prt_act,GPIO.OUT,initial=0)
   GPIO.setup(prt_err1,GPIO.OUT,initial=GPIO.HIGH)
   GPIO.setup(prt_err2,GPIO.OUT,initial=GPIO.HIGH)
@@ -74,6 +75,7 @@ def writecodetodisplay(c,n):
       with open(file_pipe, "w") as fifo:
         fifo.write(c+' #'+n+'\n')
         fifo.close()
+        sleep(0.5)
     except:
       print ("")
 
@@ -119,6 +121,7 @@ def loadconfiguration(conffile):
   global prt_out3
   global prt_out4
   global prt_sensor
+  global prt_speaker
   global prt_switch
   global prt_twrgreen
   global prt_twrred
@@ -149,6 +152,7 @@ def loadconfiguration(conffile):
     prt_out3=int(config.get('ports','prt_out3'))
     prt_out4=int(config.get('ports','prt_out4'))
     prt_sensor=int(config.get('ports','prt_sensor'))
+    prt_speaker=int(config.get('ports','prt_speaker'))
     prt_switch=int(config.get('ports','prt_switch'))
     prt_twrgreen=int(config.get('ports','prt_twrgreen'))
     prt_twrred=int(config.get('ports','prt_twrred'))
@@ -515,24 +519,29 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       writecodetodisplay("E","54")
   # -----------------------------------------------------------------------------
   # switch on/off tower signal lights:
-  twrg=0
+  twrg=1
   twry=0
   twrr=0
   # - green+yellow -
   # MM4A manual control
-  twry=0 if in1==0 else 1
   if in1==1:
+    twry=1
     writecodetodisplay("W","51")
   # opened door/window
-  twry=0 if in4==0 else 1
-  if in4==1:
+  if in4==0:
+    twry=1
     writecodetodisplay("W","52")
   # - red -
   # MM4A overcurrent proctection
-  twrr=0 if in2==0 else 1
+  if in2==1:
+    twrr=1
   # bad water pressure error light
-  twrr=0 if in3==1 else 1
-  twrg=1 if twrr==0 else 0
+  if in3==0:
+    twrr=1
+  # switch of other lights
+  if twrr==1:
+    twrg=0
+    twry=0
   # -----------------------------------------------------------------------------
   outputs=str(out1)+str(out2)+str(out3)+str(out4)+ \
           str(err1)+str(err2)+str(err3)+str(err4)+ \
@@ -562,14 +571,14 @@ with daemon.DaemonContext() as context:
     while True:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
-      # shum,stemp=Adafruit_DHT.read_retry(sensor,prt_sensor)
-      shum="75"  # !!! Remove it !!!
-      stemp="18" # !!! Remove it !!!
+      humidity,temperature=Adafruit_DHT.read_retry(sensor,prt_sensor)
+      temperature=round(temperature)
+      humidity=round(humidity)
+      stemp=str(temperature)
+      shum=str(humidity)
       writetodebuglog("i","Measure is done.")
       writecodetodisplay("D","07")
       writetexttodisplay(stemp+' '+shum)
-      humidity=int(shum)
-      temperature=int(stemp)
       blinkactled()
       if humidity<100:
         wrongvalues=0

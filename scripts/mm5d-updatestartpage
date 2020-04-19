@@ -50,7 +50,7 @@ loadconfiguration()
 
 loadmessages()
 {
-  MSG01="mm5d controlling and monitoring system"
+  MSG01="MM5D controlling and monitoring system"
   MSG02="User's data"
   MSG03="User"
   MSG04="Name of site"

@@ -32,15 +32,16 @@ while True:
   try:
     with open(file_pipe, "r") as fifo:
       s=fifo.read()
-      fifo.close()
-      serial=spi(port=0, device=0, gpio=noop())
-      device=max7219(serial, width=32, height=8, block_orientation=-90)
-      device.contrast(5)
-      virtual=viewport(device, width=32, height=8)
   except:
     print ("")
-  with canvas(virtual) as draw:
-    text(draw, (0, 0), s, fill="white", font=proportional(SINCLAIR_FONT))
+  finally:
+    fifo.close()
+    serial=spi(port=0, device=0, gpio=noop())
+    device=max7219(serial, width=32, height=8, block_orientation=-90)
+    device.contrast(5)
+    virtual=viewport(device, width=32, height=8)
+    with canvas(virtual) as draw:
+      text(draw, (0, 0), s, fill="white", font=proportional(SINCLAIR_FONT))
   time.sleep(0.5)
 GPIO.cleanup
 exit(0)

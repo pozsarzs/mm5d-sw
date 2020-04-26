@@ -8,5 +8,5 @@ Displayed format:  "W  #xx"
   #51	MM4A in manual control mode.
   #52	Doors/windows are opened.
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
  MM5D * Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>

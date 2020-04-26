@@ -12,5 +12,5 @@ Displayed format:  "E  #xx"
   #53	Bad water pressure.
   #54	Bad relative humidity in growing house.
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
  MM5D * Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>

@@ -4,7 +4,7 @@ MM5D * Growing house controlling and remote monitoring equipment
 Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
 - OS: Linux (Raspbian)
 - GUI: CUI
-- Software version: v0.1
+- Software version: v0.1-beta
 - Software licence: EUPL v1.1
 - Software language: en
 - Web interface language: cs, de, en, fr, hr, hu, pl, ro, ru, sk, sl, sr, uk

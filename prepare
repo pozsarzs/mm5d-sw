@@ -51,6 +51,7 @@ sudo python3 setup.py install
 cd ..
 echo -e "\nCreating a new user..."
 sudo adduser $SWN2
+sudo adduser $SWN2 staff
 sudo echo "$SWN2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_$SWN2-nopasswd
 echo -e "\nSetting Apache2..."
 sudo ln --force --symbolic /etc/apache2/mods-available/cgid.load /etc/apache2/mods-enabled/

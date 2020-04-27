@@ -79,6 +79,9 @@ for X in $LANGUAGES; do
   fi;
 done
 sudo chmod 777 /var/$INSTDIR/lib/$SWN2
+sudo chmod 2777 /usr/$INSTDIR/etc/$SWN2
+sudo chmod 664 /usr/$INSTDIR/etc/$SWN2/envir.ini
+sudo chown -R root:staff /usr/$INSTDIR/etc/$SWN2
 echo "- copying files:"
 copy "LICENCE" "/usr/$INSTDIR/share/doc/$SWN2/COPYING"
 copy "documents/*" "/usr/$INSTDIR/share/doc/$SWN2/"

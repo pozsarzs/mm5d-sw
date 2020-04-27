@@ -28,6 +28,6 @@ fi
 sudo mm5d-editenvirconf.bin $CFGFILE
 if [ $? -eq 0 ]
 then
-  mm3d-stopdaemon
-  mm3d-startdaemon
+  mm5d-stopdaemon
+  mm5d-startdaemon
 fi

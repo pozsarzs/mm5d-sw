@@ -571,9 +571,7 @@ with daemon.DaemonContext() as context:
     while True:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
-      # humidity,temperature=Adafruit_DHT.read_retry(sensor,prt_sensor)
-      temperature=18
-      humidity=72
+      humidity,temperature=Adafruit_DHT.read_retry(sensor,prt_sensor)
       temperature=round(temperature)
       humidity=round(humidity)
       stemp=str(temperature)

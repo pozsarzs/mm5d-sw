@@ -272,9 +272,12 @@ while True:
     try:
       while True:
         hum,temp=Adafruit_DHT.read_retry(sensor,prt_sensor)
-        temp=round(temp)
-        hum=round(hum)
-        writetodisplay(str(temp)+"  "+str(hum))
+        if hum is not None and temp is not None:
+          temp=round(temp)
+          hum=round(hum)
+          writetodisplay(str(temp)+"  "+str(hum))
+        else:
+          writetodisplay("--  --")
         time.sleep(1)
     except KeyboardInterrupt:
       print()

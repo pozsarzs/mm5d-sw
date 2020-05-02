@@ -542,6 +542,8 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   if twrr==1:
     twrg=0
     twry=0
+  # comment this line if you use green light
+  twrg=0
   # -----------------------------------------------------------------------------
   outputs=str(out1)+str(out2)+str(out3)+str(out4)+ \
           str(err1)+str(err2)+str(err3)+str(err4)+ \
@@ -572,6 +574,12 @@ with daemon.DaemonContext() as context:
       # read input data from sensor
       writetodebuglog("i","Measuring T/RH.")
       humidity,temperature=Adafruit_DHT.read_retry(sensor,prt_sensor)
+      if humidity is not None and temperature is not None:
+        wrongvalues=0
+      else:
+        wrongvalues=1
+        temperature=18
+        humidity=72
       temperature=round(temperature)
       humidity=round(humidity)
       stemp=str(temperature)
@@ -580,9 +588,7 @@ with daemon.DaemonContext() as context:
       writecodetodisplay("D","07")
       writetexttodisplay(stemp+' '+shum)
       blinkactled()
-      if humidity<100:
-        wrongvalues=0
-      else:
+      if humidity>100:
         wrongvalues=1
         writetodebuglog("w","Measured values are bad!")
         writecodetodisplay("W","02")

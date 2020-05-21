@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | getdata.cgi                                                                |
 # | CGI program                                                                |
@@ -38,6 +38,7 @@ foreach $pair (@pairs)
 }
 
 # load configuration
+#$conffile = "/etc/mm5d/mm5d.ini";
 $conffile = "/usr/local/etc/mm5d/mm5d.ini";
 open CONF, "< $conffile" or die "ERROR: Cannot open configuration file!";
 while (<CONF>)

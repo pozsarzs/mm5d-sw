@@ -1,5 +1,5 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.1 * Growing house controlling and remote monitoring system       | }
+{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
 { | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editmainconf.pas                                                         | }
 { | Full-screen program for edit mm5d.ini file                               | }
@@ -38,7 +38,7 @@ var
   usr_dt: array[1..3] of string;
   usr_nam, usr_uid: string;
 const
-  VERSION: string='v0.1';
+  VERSION: string='v0.2';
   PRGNAME: string='MM5D-EditMainConf';
   D: string='directories';
   E: string='sensors';

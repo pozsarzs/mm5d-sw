@@ -7,6 +7,7 @@
 # Short-Description:	MM5D controlling software
 ### END INIT INFO
 
+#BINFILE=/usr/bin/mm5d.py
 BINFILE=/usr/local/bin/mm5d.py
 PIDFILE=/var/run/mm5d.pid
 

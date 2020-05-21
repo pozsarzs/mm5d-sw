@@ -1,10 +1,9 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_sr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
-
 
 msg01=ММ5Д контролни систем
 msg02=Кориснички подаци
@@ -27,5 +26,5 @@ msg18=Грешка
 msg19=ажурирано
 msg20=Задње стање
 msg21=Дневник
-msg22=Последњих 20 уноса
+msg22=Камере
 msg23=Ако желите да видите комплетан дневник, пријавите се на јединицу са ССХ и користите <и> мм3д-виевлог </и>!

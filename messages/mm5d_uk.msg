@@ -1,5 +1,5 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_uk.msg                                                                |
 # | message file                                                               |
@@ -26,5 +26,5 @@ msg18=Помилка
 msg19=Оновлене
 msg20=Останній стан
 msg21=Журнал
-msg22=Останні двадцять записів
+msg22=Камери
 msg23=Якщо ви хочете побачити повний журнал, увійдіть до пристрою за допомогою SSH і використовуйте <i> mm3d-viewlog </i>!

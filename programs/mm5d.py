@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d.py                                                                    |
 # | Main program                                                               |
@@ -555,6 +555,8 @@ writetexttodisplay("MM5D")
 time.sleep(1)
 writetexttodisplay("init...")
 time.sleep(0.5)
+#loadconfiguration("/etc/mm5d/mm5d.ini")
+#loadenvirchars('/etc/mm5d/envir.ini')
 loadconfiguration("/usr/local/etc/mm5d/mm5d.ini")
 loadenvirchars('/usr/local/etc/mm5d/envir.ini')
 initports()

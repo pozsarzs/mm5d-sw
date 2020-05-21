@@ -1,6 +1,6 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d-editmainconf                                                          |
 # | Edit main configuration file                                               |
@@ -32,5 +32,4 @@ then
   mm5d-updatestartpage
   mm5d-startdaemon
 fi
-
-
+exit 0

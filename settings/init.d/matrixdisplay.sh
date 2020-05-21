@@ -7,6 +7,7 @@
 # Short-Description:	Matrix display handler
 ### END INIT INFO
 
+#BINFILE=/usr/bin/matrixdisplay.py
 BINFILE=/usr/local/bin/matrixdisplay.py
 PIDFILE=/var/run/matrixdisplay.pid
 

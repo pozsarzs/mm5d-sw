@@ -1,0 +1,22 @@
+2020-05-23 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+	*  0.2: web interface: auto-refresh, diagrams from latest record,
+                snapshots from IP cameras, the number of log rows can be set.
+	*  install: modified
+	*  prepare: modified
+	*  README: modified
+	*  document/INSTALL: modified
+	*  document/README: modified
+	*  document/VERSION: modified
+	*  manuals/mm5d-creatediagrams.1.gz: new file
+	*  manuals/mm5d-getsnapshots.1.gz: new file
+	*  manuals/*: modified
+	*  messages/mm5d_??.msg: modified
+	*  packaging/*/*: modified
+	*  packaging/prepare/*/*: new files
+	*  scripts/mm5d-creatediagrams: new file
+	*  scripts/mm5d-getsnapshots: new file
+	*  settings/mm5d/mm5d.ini: modified
+	*  settings/motd: modified
+	*  webpage/cgi-bin/getpage.cgi: modified
+	*  webpage/header_*.html: modified
+	*  webpage/pics/ants.jpg: new file

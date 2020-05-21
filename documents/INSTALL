@@ -5,7 +5,7 @@ Do not forget to set hostname and network and enable SPI module.
 
 Installation
 ~~~~~~~~~~~~
-  $ tar -xzf mm5d-sw-0.1-armhf.tar.gz
+  $ tar -xzf mm5d-sw-0.2-armhf.tar.gz
   $ cd mm5d-sw
   $ sudo raspi-config
   $ ./prepare

@@ -1,11 +1,11 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM5D v0.1 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d-updatestartpage                                                       |
 # | update startpage                                                           |
 # +----------------------------------------------------------------------------+
-
+#
 #   This program is free software: you can redistribute it and/or modify it
 # under the terms of the European Union Public License 1.1 version.
 #
@@ -30,6 +30,7 @@ loadconfiguration()
   DIR_HTM=`cat $CFGFILE | grep dir_htm= | sed 's/dir_htm=//'`
   DIR_MSG=`cat $CFGFILE | grep dir_msg= | sed 's/dir_msg=//'`
   DIR_SHR=`cat $CFGFILE | grep dir_shr= | sed 's/dir_shr=//'`
+  DIR_TMP=`cat $CFGFILE | grep dir_tmp= | sed 's/dir_tmp=//'`
   NAM_ERR1=`cat $CFGFILE | grep nam_err1= | sed 's/nam_err1=//'`
   NAM_ERR2=`cat $CFGFILE | grep nam_err2= | sed 's/nam_err2=//'`
   NAM_ERR3=`cat $CFGFILE | grep nam_err3= | sed 's/nam_err3=//'`
@@ -50,7 +51,7 @@ loadconfiguration()
 
 loadmessages()
 {
-  MSG01="MM5D controlling and monitoring system"
+  MSG01="MM3D controlling and monitoring system"
   MSG02="User's data"
   MSG03="User"
   MSG04="Name of site"
@@ -83,12 +84,12 @@ makehomepage()
 {
   if [ -f "$DIR_SHR/header_$LNG.html" ]
   then
-    cat $DIR_SHR/header_$LNG.html > $DIR_HTM/index.html
+    cat $DIR_SHR/header_$LNG.html > $DIR_TMP/index.html
   else
-    cat $DIR_SHR/header_en.html > $DIR_HTM/index.html
+    cat $DIR_SHR/header_en.html > $DIR_TMP/index.html
   fi
 
-  cat >> $DIR_HTM/index.html << EOF
+  cat >> $DIR_TMP/index.html << EOF
     <table border=0 cellspacing=0 cellpadding=6 width="100%">
       <tbody>
         <tr>
@@ -159,13 +160,16 @@ makehomepage()
 EOF
   if [ -f "$DIR_SHR/footer_$LNG.html" ]
   then
-    cat $DIR_SHR/footer_$LNG.html >> $DIR_HTM/index.html
+    cat $DIR_SHR/footer_$LNG.html >> $DIR_TMP/index.html
   else
-    cat $DIR_SHR/footer_en.html >> $DIR_HTM/index.html
+    cat $DIR_SHR/footer_en.html >> $DIR_TMP/index.html
   fi
+  sudo mv $DIR_TMP/index.html $DIR_HTM/index.html
+  rm --force $DIR_TMP/index.html
 }
 
-# main function
+# Main function
 loadconfiguration
 loadmessages
 makehomepage
+exit 0

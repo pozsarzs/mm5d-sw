@@ -14,7 +14,7 @@
 
 procedure page6screen;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 6/8: OpenWeather.org account');
+  header(PRGNAME+' '+VERSION+' * Page 6/9: OpenWeather.org account');
   textcolor(white);
   gotoxy(4,3); writeln('API key:');
   gotoxy(4,4); writeln('URL:');

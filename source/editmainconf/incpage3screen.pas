@@ -16,7 +16,7 @@ procedure page3screen;
 var
   b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 3/8: GPIO port numbers');
+  header(PRGNAME+' '+VERSION+' * Page 3/9: GPIO port numbers');
   textcolor(white);
   for b:=1 to 4 do
   begin

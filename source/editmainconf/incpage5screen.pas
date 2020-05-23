@@ -14,7 +14,7 @@
 
 procedure page5screen;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 5/8: Directories');
+  header(PRGNAME+' '+VERSION+' * Page 5/9: Directories');
   textcolor(white);
   gotoxy(4,3); writeln('HTML files for webserver:');
   gotoxy(4,4); writeln('lock file:');

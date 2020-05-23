@@ -16,7 +16,7 @@ procedure page7screen;
 var
   b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 7/8: Language of webpages');
+  header(PRGNAME+' '+VERSION+' * Page 7/9: Language of webpages');
   textcolor(white);
   gotoxy(4,3); writeln('Czech');
   gotoxy(4,4); writeln('German');

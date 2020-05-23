@@ -25,9 +25,11 @@ program editmainconf;
 uses
   INIFiles, SysUtils, character, crt, untcommon;
 var
-  bottom: byte;
   api_key, base_url, city_name: string;
-  day_log, dbg_log: byte;
+  bottom: byte;
+  cam1_jpglink, cam2_jpglink: string;
+  cam_show, cam1_enable, cam2_enable: byte;
+  day_log, dbg_log, web_lines: byte;
   dir_htm, dir_lck, dir_log, dir_msg, dir_shr, dir_tmp, dir_var: string;
   lng: string;
   nam_err, nam_in, nam_out: array[1..4] of string;
@@ -43,42 +45,47 @@ const
   D: string='directories';
   E: string='sensors';
   G: string='log';
+  I: string='ipcameras';
   L: string='language';
   N: string='names';
   P: string='ports';
   U: string='user';
   W: string='openweathermap.org';
-  BLOCKS: array[1..8] of byte=(1,1,1,1,1,1,1,1);
-  MINPOSX: array[1..8,1..6] of byte=((30,0,0,0,0,0),
+  BLOCKS: array[1..9] of byte=(1,1,1,1,1,1,1,1,2);
+  MINPOSX: array[1..9,1..6] of byte=((30,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (36,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (16,0,0,0,0,0),
-                                     (46,0,0,0,0,0));
-  MINPOSY: array[1..8,1..6] of byte=((3,0,0,0,0,0),
+                                     (46,0,0,0,0,0),
+                                     (46,12,0,0,0,0));
+  MINPOSY: array[1..9,1..6] of byte=((3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (3,0,0,0,0,0),
-                                     (3,0,0,0,0,0));
-  MAXPOSY: array[1..8,1..6] of byte=((7,0,0,0,0,0),
+                                     (3,0,0,0,0,0),
+                                     (3,7,0,0,0,0));
+  MAXPOSY: array[1..9,1..6] of byte=((7,0,0,0,0,0),
                                      (14,0,0,0,0,0),
                                      (20,0,0,0,0,0),
                                      (3,0,0,0,0,0),
                                      (9,0,0,0,0,0),
                                      (5,0,0,0,0,0),
                                      (15,0,0,0,0,0),
-                                     (4,0,0,0,0,0));
-  FOOTERS: array[1..6] of string=('<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
+                                     (5,0,0,0,0,0),
+                                     (5,8,0,0,0,0));
+  FOOTERS: array[1..7] of string=('<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
                                   '<Enter> accept  <Esc> cancel',
                                   '<F1> AM2302  <F2> DHT11  <F3> DHT22  <Enter> accept  <Esc> cancel',
                                   '<Esc> cancel',
                                   '<Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
-                                  '<Space> select  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit');
+                                  '<Space> select  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
+                                  '<Tab>/<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit');
   CODE: array[3..15] of string=('cs','de','en','fr','hr','hu','pl','ro','ru','sk',
                                 'sl','sr','uk');
 
@@ -90,6 +97,7 @@ const
 {$I incpage6screen.pas}
 {$I incpage7screen.pas}
 {$I incpage8screen.pas}
+{$I incpage9screen.pas}
 {$I incloadinifile.pas}
 {$I incsaveinifile.pas}
 
@@ -105,10 +113,12 @@ begin
     6: page6screen;
     7: page7screen;
     8: page8screen;
+    9: page9screen;
   end;
   case page of
     4: footer(bottom-1,FOOTERS[5]);
     7: footer(bottom-1,FOOTERS[6]);
+    9: footer(bottom-1,FOOTERS[7]);
     else footer(bottom-1,FOOTERS[1]);
   end;
   textbackground(black);
@@ -166,7 +176,14 @@ begin
          end;
       8: begin
            if isnumber(c) then
-             if length(s)<1 then s:=s+c;
+             if length(s)<2 then s:=s+c;
+           if c=#8 then delete(s,length(s),1);
+         end;
+      9: begin
+           case block of
+             1: if (c='0') or (c='1') then s:=c;
+             2: s:=s+c;
+           end;
            if c=#8 then delete(s,length(s),1);
          end;
     else
@@ -315,6 +332,34 @@ begin
         case posy of
           3: begin day_log:=strtoint(s); write(day_log); end;
           4: begin dbg_log:=strtoint(s); write(dbg_log); end;
+          5: begin web_lines:=strtoint(s); write(web_lines); end;
+        end;
+      end;
+    end;
+    // -- page #9 --
+    if page=9 then
+    begin
+      // page #9 - block #1
+      if block=1 then
+      begin
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block],posy); clreol;
+        gotoxy(MINPOSX[page,block],posy);
+        case posy of
+          3: begin cam_show:=strtoint(s); write(cam_show); end;
+          4: begin cam1_enable:=strtoint(s); write(cam1_enable); end;
+          5: begin cam2_enable:=strtoint(s); write(cam2_enable); end;
+        end;
+      end;
+      // page #9 - block #2
+      if block=2 then
+      begin
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block],posy); clreol;
+        gotoxy(MINPOSX[page,block],posy);
+        case posy of
+          7: begin cam1_jpglink:=s; write(cam1_jpglink); end;
+          8: begin cam2_jpglink:=s; write(cam2_jpglink); end;
         end;
       end;
     end;
@@ -370,7 +415,7 @@ begin
       // next page
       #81: begin
              page:=page+1;
-             if page>8 then page:=8;
+             if page>9 then page:=9;
              screen(page);
              block:=1;
              posy:=MINPOSY[page,block];
@@ -378,7 +423,7 @@ begin
            end;
       // last page
       #79: begin
-             page:=8;
+             page:=9;
              screen(page);
              block:=1;
              posy:=MINPOSY[page,block];

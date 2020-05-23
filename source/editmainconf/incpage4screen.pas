@@ -14,7 +14,7 @@
 
 procedure page4screen;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 4/8: T/RH sensor');
+  header(PRGNAME+' '+VERSION+' * Page 4/9: T/RH sensor');
   textcolor(white);
   gotoxy(4,3); writeln('Type of sensor:');
   gotoxy(MINPOSX[4,1],3); writeln(sensor_type);

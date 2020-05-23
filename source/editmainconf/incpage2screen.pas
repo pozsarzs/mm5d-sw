@@ -16,7 +16,7 @@ procedure page2screen;
 var
   b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 2/8: Name of ports and error lights');
+  header(PRGNAME+' '+VERSION+' * Page 2/9: Name of ports and error lights');
   textcolor(white);
   for b:=1 to 4 do
   begin

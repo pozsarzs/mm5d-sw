@@ -58,14 +58,21 @@ begin
     iif.writestring(D,'dir_tmp',dir_tmp);
     iif.writestring(D,'dir_var',dir_var);
     // openweathermap.org
-    iif.ReadString(W,'api_key',api_key);
-    iif.ReadString(W,'base_url',base_url);
-    iif.ReadString(W,'city_name',city_name);
+    iif.writestring(W,'api_key',api_key);
+    iif.writestring(W,'base_url',base_url);
+    iif.writestring(W,'city_name',city_name);
+    // section ip cameras
+    iif.writestring(I,'cam_show',inttostr(cam_show));
+    iif.writestring(I,'cam1_enable',inttostr(cam1_enable));
+    iif.writestring(I,'cam2_enable',inttostr(cam2_enable));
+    iif.writestring(I,'cam1_jpglink',cam1_jpglink);
+    iif.writestring(I,'cam2_jpglink',cam2_jpglink);
     // section language
     iif.writestring(L,'lng',lng);
     // section log
     iif.writestring(G,'day_log',inttostr(day_log));
     iif.writestring(G,'dbg_log',inttostr(dbg_log));
+    iif.writestring(G,'web_lines',inttostr(web_lines));
   except
     saveinifile:=false;
   end;

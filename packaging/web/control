@@ -1,11 +1,11 @@
 Package: mm5d-web
-Version: 0.1
+Version: 0.2
 Section: misc
 Priority: extra
 Architecture: all
 Installed-Size: 0 kB
 Maintainer: Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>
-Depends: mm5d, mm5d-sw, apache2, libswitch-perl
+Depends: mm5d, mm5d-sw, apache2, gnuplot, wget, libswitch-perl
 Description: Web interface for MM5D software
  This is a software part of MM5D growing house controlling
  and remote monitoring equipment.

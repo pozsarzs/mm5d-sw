@@ -1,6 +1,6 @@
 7e9a00faec7ee16f52c186ce00369231  usr/bin/mm5d-creatediagrams
 efc1d3a300e0044f4cf55fd748a20a2c  usr/bin/mm5d-getsnapshots
-c0fd6955843a08f292c680b3c0d064ef  usr/bin/mm5d-updatestartpage
+7682f895fc653eb7039890a3d918816d  usr/bin/mm5d-updatestartpage
 be0ec2dcf09ff553dd644c4066507f6c  usr/lib/cgi-bin/getdata.cgi
 e5795cfea3faa389dcc399821e9539c2  usr/lib/cgi-bin/getpage.cgi
 c8fb9e658b6ad2a4084068e005ae214d  usr/share/doc/mm5d-web/changelog.Debian.gz

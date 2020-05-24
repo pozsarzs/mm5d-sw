@@ -78,6 +78,8 @@ for X in $LANGUAGES; do
     echo "  /usr/$INSTDIR/share/locale/$X"
   fi;
 done
+sudo chown root:www-data /var/www/html/pics
+sudo chmod 775 /var/www/html/pics
 sudo chmod 777 /var/$INSTDIR/lib/$SWN2
 sudo chmod 2777 /usr/$INSTDIR/etc/$SWN2
 sudo chmod 664 /usr/$INSTDIR/etc/$SWN2/envir.ini
@@ -101,8 +103,7 @@ copy "settings/init.d/*" "/etc/init.d/"
 copy "webpage/cgi-bin/*.cgi" "/usr/lib/cgi-bin/"
 copy "webpage/*.css" "/var/www/html/"
 copy "webpage/*.html" "/usr/$INSTDIR/share/$SWN2/"
-copy "webpage/pics/*.ico" "/var/www/html/pics/"
-copy "webpage/pics/*.png" "/var/www/html/pics/"
+copy "webpage/pics/*" "/var/www/html/pics/"
 sudo mkfifo /var/tmp/matrixdisplayfifo
 sudo cat /etc/motd | grep -qv $SWN1 && sudo mv /etc/motd /etc/motd.orig && sudo cp settings/motd /etc/
 echo "- set init.d:"

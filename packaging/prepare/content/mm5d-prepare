@@ -1,8 +1,8 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM3D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2018-2020 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>      |
-# | mm3d-prepare                                                               |
+# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>      |
+# | mm5d-prepare                                                               |
 # | Prepare OS for install MM3D software                                       |
 # +----------------------------------------------------------------------------+
 #
@@ -13,24 +13,32 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
 
-SWN1="MM3D"
-SWN2="mm3d"
-SWV="v0.5"
+SWN1="MM5D"
+SWN2="mm5d"
+SWV="v0.2"
 
 clear
 echo "--------------------------------------------------------------------------------"
 echo "$SWN1 $SWV prepare OS"
-echo "Copyright (C) 2018-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>"
+echo "Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>"
 echo "--------------------------------------------------------------------------------"
 echo -e "\nCreating a new user..."
 sudo adduser $SWN2
 sudo echo "$SWN2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_$SWN2-nopasswd
 echo "Installing required components..."
-sudo apt-get install build-essential git python-dev
+sudo apt-get install build-essential git python3-dev
+echo "Cloning 3rd party softwares from Github..."
 mkdir --parents $HOME/download
 cd $HOME/download
+# clone sensor software
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git
 cd Adafruit_Python_DHT
-sudo python setup.py install
+sudo python3 setup.py install
+cd ..
+# clone display software
+git clone http://github.com/rm-hull/luma.led_matrix.git
+cd luma.led_matrix
+sudo python3 setup.py install
 echo -e "\nDone."
 exit 0
+

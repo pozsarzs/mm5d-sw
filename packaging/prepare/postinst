@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 if [ "$1" = "configure" ]; then
-  if [ -d /usr/doc -a ! -e /usr/doc/mm3d-prepare -a -d /usr/share/doc/mm3d-prepare ]; then
-    ln -sf /usr/share/doc/mm3d-prepare /usr/doc/mm3d-prepare
+  if [ -d /usr/doc -a ! -e /usr/doc/mm5d-prepare -a -d /usr/share/doc/mm5d-prepare ]; then
+    ln -sf /usr/share/doc/mm5d-prepare /usr/doc/mm5d-prepare
   fi
 fi
-echo "Run mm3d-prepare script before install other MM3D packages."
+echo "Run mm5d-prepare script before install other mm5d packages."

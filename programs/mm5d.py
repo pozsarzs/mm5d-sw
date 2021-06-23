@@ -538,6 +538,9 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   # bad water pressure error light
   if in3==0:
     twrr=1
+  # bad sensor
+  if wrongvalues==1:
+    twrr=1
   # switch of other lights
   if twrr==1:
     twrg=0
@@ -582,6 +585,10 @@ with daemon.DaemonContext() as context:
         wrongvalues=1
         temperature=18
         humidity=72
+        # reset sensor with unused green signal light output
+        GPIO.output(prt_twrgreen,0)
+        time.sleep(1)
+        GPIO.output(prt_twrgreen,1)
       temperature=round(temperature)
       humidity=round(humidity)
       stemp=str(temperature)

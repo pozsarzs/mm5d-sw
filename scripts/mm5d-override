@@ -41,7 +41,7 @@ writetofile()
   esac
   if [ $2 = "neutral" ] || [ $2 = "on" ] || [ $2 = "off" ]
   then
-    sudo echo -n $2 > $DIR_VAR$OF
+    echo -n $2 | sudo tee $DIR_VAR$OF > /dev/null
     echo "Output '"$1"' is set to $2."
     exit 0
   fi

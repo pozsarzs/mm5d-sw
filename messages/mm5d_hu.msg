@@ -27,4 +27,4 @@ msg19=Frissít
 msg20=Utolsó állapot
 msg21=Napló
 msg22=Kamerák
-msg23=Ha szeretné látni a teljes naplót, jelentkezzen be az egységbe SSH-val és használja a <i>mm3d-viewlog</i> parancsot!
+msg23=Ha szeretné látni a teljes naplót, jelentkezzen be az egységbe SSH-val és használja a <i>mm5d-viewlog</i> parancsot!

@@ -27,4 +27,4 @@ msg19=Aktualisiert
 msg20=Letzter Zustand
 msg21=Tagebuch
 msg22=Kameras
-msg23=Wenn Sie das vollständige Tagebuch anzeigen möchten, melden Sie sich mit SSH am Gerät an und verwenden Sie <i> mm3d-viewlog </ i>!
+msg23=Wenn Sie das vollständige Tagebuch anzeigen möchten, melden Sie sich mit SSH am Gerät an und verwenden Sie <i> mm5d-viewlog </ i>!

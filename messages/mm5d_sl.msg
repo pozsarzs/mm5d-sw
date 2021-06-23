@@ -27,5 +27,5 @@ msg19=Posodobljeno
 msg20=Zadnje stanje
 msg21=Dnevnik
 msg22=Kamere
-msg23=Če želite videti celoten dnevnik, se prijavite v enoto s SSH in uporabite <i> mm3d-viewlog </i>!
+msg23=Če želite videti celoten dnevnik, se prijavite v enoto s SSH in uporabite <i> mm5d-viewlog </i>!
 

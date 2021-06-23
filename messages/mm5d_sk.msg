@@ -27,4 +27,4 @@ msg19=Aktualizované
 msg20=Posledný stav
 msg21=Dennik
 msg22=Kamery
-msg23=Ak chcete vidieť celý denník, prihláste sa do jednotky pomocou SSH a použite <i> mm3d-viewlog </i>!
+msg23=Ak chcete vidieť celý denník, prihláste sa do jednotky pomocou SSH a použite <i> mm5d-viewlog </i>!

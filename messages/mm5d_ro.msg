@@ -27,5 +27,5 @@ msg19=Actualizat
 msg20=Ultima stare
 msg21=Jurnal
 msg22=Camere
-msg23=Dacă doriți să vedeți jurnalul complet, conectați-vă la unitate cu SSH și folosiți <i> mm3d-viewlog </ i>!
+msg23=Dacă doriți să vedeți jurnalul complet, conectați-vă la unitate cu SSH și folosiți <i> mm5d-viewlog </ i>!
 

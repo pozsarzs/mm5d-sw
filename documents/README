@@ -11,7 +11,7 @@ with a browser application and administrate it with SSH client.
 Requirements
 
   Hardware: Raspberry Pi 3 Model B
-  Software: Raspbian Lite operation system,
+  Software: Raspberry Pi OS Lite operation system,
             Apache webserver,
             Perl,
             Python3.
@@ -20,12 +20,12 @@ Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 a. Visit homepage (see later) to download installer packages:
 
-  Raspbian OS: mm5d-sw-0.2-armhf.tar.gz
+  Raspbian OS: mm5d-sw-0.3-armhf.tar.gz
 
-               mm5d-eec_0.2-1_armhf.deb
-               mm5d-prepare_0.2-1_all.deb
-               mm5d-sw_0.2-1_armhf.deb
-               mm5d-web_0.2-1_all.deb
+               mm5d-eec_0.3-1_armhf.deb
+               mm5d-prepare_0.3-1_all.deb
+               mm5d-sw_0.3-1_armhf.deb
+               mm5d-web_0.3-1_all.deb
 
 b. Download from Github
 
@@ -46,17 +46,10 @@ c. Download from Debian repository
 3. Contact
 ~~~~~~~~~~
    Homepage:             <http://www.szerafingomba.hu/softwares/>
-   Author:               Pozsar Zsolt
-   Tax ID:               60407850-1-36
-   Registration num.:    20703695
-
+   Author:               Pozsár Zsolt
    E-mail:               <pozsar.zsolt@szerafingomba.hu>
    Phone:                +36 56/470-272
    Mobile:               +36 30/249-5030
-   Postal address:       Pozsar Zsolt
-                         Kurazsi Fo ut 1.
-                         HU-5430 Tiszafoldvar
-                         Hungary
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

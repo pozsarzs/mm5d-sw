@@ -1,3 +1,20 @@
+2021-10-31 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+	*  0.3:
+	*  install: modified
+	*  prepare: modified
+	*  uninstall: modified
+	*  README.md: modified
+	*  document/ChangeLog: modified
+	*  document/copyright: new file
+	*  document/INSTALL: modified
+	*  document/README: modified
+	*  document/VERSION: modified
+	*  document/debug_codes.txt: modified
+	*  document/error_codes.txt: modified
+	*  document/gpioports.txt: modified
+	*  document/variables.txt: modified
+	*  document/warning_codes.txt: modified
+
 2020-05-23 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
 	*  0.2: web interface: auto-refresh, diagrams from latest record,
                 snapshots from IP cameras, the number of log rows can be set.

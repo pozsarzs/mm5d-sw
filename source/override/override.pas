@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | override.pas                                                             | }
 { | Full-screen program for override output states                           | }
 { +--------------------------------------------------------------------------+ }
@@ -24,15 +24,15 @@ program ovrride;
 uses
   SysUtils, character, crt, untcommon;
 var
-  bottom: byte;
+  bottom:  byte;
   outputs: array[1..4] of string;
 const
-  VERSION: string='v0.2';
+  VERSION: string='v0.3';
   PRGNAME: string='MM5D-Override';
   MAXPOSY: byte=6;
   MINPOSX: byte=30;
   MINPOSY: byte=3;
-  STATUS: array[0..2] of string=('off','on','neutral');
+  STATUS:  array[0..2] of string=('off','on','neutral');
   FOOTERS: array[1..3] of string=('<Up>/<Down> move  <Enter> edit  <Esc> exit',
                                   '<F1> off  <F2> on  <F3> neutral  <Enter> accept  <Esc> cancel',
                                   '<Esc> cancel');
@@ -41,6 +41,7 @@ const
 {$I incpage1screen.pas}
 {$I incsaveoutfiles.pas}
 
+// make base interface
 procedure screen;
 begin
   background;
@@ -50,6 +51,7 @@ begin
   gotoxy(1,bottom); clreol;
 end;
 
+// get value
 procedure getvalue(posy: byte);
 var
   c: char;
@@ -83,11 +85,12 @@ begin
   gotoxy(1,bottom); clreol;
 end;
 
+// set values
 function setvalues: boolean;
 var
   posy: byte;
-  k : char;
-label back;
+  k:    char;
+label   back;
 begin
   screen;
  back:
@@ -131,6 +134,7 @@ begin
   if k='y' then setvalues:=true else setvalues:=false;
 end;
 
+// check size of terminal window
 function terminalsize: boolean;
 begin
   if (screenwidth>=80) and (screenheight>=25)

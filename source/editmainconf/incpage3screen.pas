@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incpage3screen.pas                                                       | }
 { | Show screen content of page #3                                           | }
 { +--------------------------------------------------------------------------+ }
@@ -12,6 +12,7 @@
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.
 
+// write screen content
 procedure page3screen;
 var
   b: byte;

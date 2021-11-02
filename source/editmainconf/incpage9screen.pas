@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incpage9screen.pas                                                       | }
 { | Show screen content of page #9                                           | }
 { +--------------------------------------------------------------------------+ }
@@ -12,6 +12,7 @@
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.
 
+// write screen content
 procedure page9screen;
 begin
   header(PRGNAME+' '+VERSION+' * Page 9/9: IP cameras');

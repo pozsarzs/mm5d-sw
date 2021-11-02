@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editenvirconf.pas                                                        | }
 { | Full-screen program for edit envir.ini file                              | }
 { +--------------------------------------------------------------------------+ }
@@ -44,7 +44,7 @@ var
   hventoff, mventoff: byte;
   hventon, mventon: byte;
 const
-  VERSION: string='v0.2';
+  VERSION: string='v0.3';
   PRGNAME: string='MM5D-EditEnvirConf';
   BLOCKS: array[1..8] of byte=(3,3,1,6,3,3,1,6);
   MINPOSX: array[1..8,1..6] of byte=((46,17,35,0,0,0),

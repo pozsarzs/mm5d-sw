@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incloadoutfiles.pas                                                      | }
 { | Load out files                                                           | }
 { +--------------------------------------------------------------------------+ }
@@ -12,12 +12,12 @@
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.
 
-// load output files
+// load original output files
 procedure loadoutfiles(directory: string);
 var
   b, bb: byte;
-  outf: text;
-  s: string;
+  outf:  text;
+  s:     string;
 
 begin
   for b:=1 to 4 do

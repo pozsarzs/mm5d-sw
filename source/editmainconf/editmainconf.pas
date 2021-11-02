@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.2 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editmainconf.pas                                                         | }
 { | Full-screen program for edit mm5d.ini file                               | }
 { +--------------------------------------------------------------------------+ }
@@ -25,33 +25,34 @@ program editmainconf;
 uses
   INIFiles, SysUtils, character, crt, untcommon;
 var
-  api_key, base_url, city_name: string;
-  bottom: byte;
-  cam1_jpglink, cam2_jpglink: string;
-  cam_show, cam1_enable, cam2_enable: byte;
-  day_log, dbg_log, web_lines: byte;
-  dir_htm, dir_lck, dir_log, dir_msg, dir_shr, dir_tmp, dir_var: string;
-  lng: string;
-  nam_err, nam_in, nam_out: array[1..4] of string;
-  prt_act, prt_sensor, prt_switch: byte;
-  prt_err, prt_in, prt_out: array[1..4] of byte;
+  api_key, base_url, city_name:            string;
+  bottom:                                  byte;
+  cam1_jpglink, cam2_jpglink:              string;
+  cam_show, cam1_enable, cam2_enable:      byte;
+  day_log, dbg_log, web_lines:             byte;
+  dir_htm, dir_lck, dir_log, dir_msg:      string;
+  dir_shr, dir_tmp, dir_var:               string;
+  lng:                                     string;
+  nam_err, nam_in, nam_out:                array[1..4] of string;
+  prt_act, prt_sensor, prt_switch:         byte;
+  prt_err, prt_in, prt_out:                array[1..4] of byte;
   prt_twrgreen, prt_twrred, prt_twryellow: byte;
-  sensor_type: string;
-  usr_dt: array[1..3] of string;
-  usr_nam, usr_uid: string;
+  sensor_type:                             string;
+  usr_dt:                                  array[1..3] of string;
+  usr_nam, usr_uid:                        string;
 const
-  VERSION: string='v0.2';
+  VERSION: string='v0.3';
   PRGNAME: string='MM5D-EditMainConf';
-  D: string='directories';
-  E: string='sensors';
-  G: string='log';
-  I: string='ipcameras';
-  L: string='language';
-  N: string='names';
-  P: string='ports';
-  U: string='user';
-  W: string='openweathermap.org';
-  BLOCKS: array[1..9] of byte=(1,1,1,1,1,1,1,1,2);
+  D:       string='directories';
+  E:       string='sensors';
+  G:       string='log';
+  I:       string='ipcameras';
+  L:       string='language';
+  N:       string='names';
+  P:       string='ports';
+  U:       string='user';
+  W:       string='openweathermap.org';
+  BLOCKS:  array[1..9] of byte=(1,1,1,1,1,1,1,1,2);
   MINPOSX: array[1..9,1..6] of byte=((30,0,0,0,0,0),
                                      (26,0,0,0,0,0),
                                      (26,0,0,0,0,0),
@@ -86,8 +87,8 @@ const
                                   '<Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
                                   '<Space> select  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
                                   '<Tab>/<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit');
-  CODE: array[3..15] of string=('cs','de','en','fr','hr','hu','pl','ro','ru','sk',
-                                'sl','sr','uk');
+  CODE:    array[3..15] of string=('cs','de','en','fr','hr','hu','pl','ro','ru','sk',
+                                   'sl','sr','uk');
 
 {$I incpage1screen.pas}
 {$I incpage2screen.pas}
@@ -101,6 +102,7 @@ const
 {$I incloadinifile.pas}
 {$I incsaveinifile.pas}
 
+//make base screen content
 procedure screen(page: byte);
 begin
   background;
@@ -125,6 +127,7 @@ begin
   gotoxy(1,bottom); clreol;
 end;
 
+// select item
 procedure selectitem(page,block,posy: byte);
 var
   b: byte;
@@ -148,6 +151,7 @@ begin
   end;
 end;
 
+// get value
 procedure getvalue(page,block,posy: byte);
 var
   c: char;
@@ -372,6 +376,7 @@ begin
   gotoxy(1,bottom); clreol;
 end;
 
+// set values
 function setvalues: boolean;
 var
   page, block, posy: byte;
@@ -474,6 +479,7 @@ begin
   if k='y' then setvalues:=true else setvalues:=false;
 end;
 
+// check size of terminal window
 function terminalsize: boolean;
 begin
   if (screenwidth>=80) and (screenheight>=25)

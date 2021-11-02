@@ -9,9 +9,10 @@
 	*  document/INSTALL: modified
 	*  document/README: modified
 	*  document/VERSION: modified
+	*  source/common/Makefile: new file
+	*  source/*/untcommon.pas: move to ../common/
 	*  webpage/cgi-bin/getdata.cgi: modified
 	*  webpage/cgi-bin/getpage.cgi: modified
-	*  source/*/untcommon.pas: move to ../common/
 
 2020-05-23 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
 	*  0.2: web interface: auto-refresh, diagrams from latest record,

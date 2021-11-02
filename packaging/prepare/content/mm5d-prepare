@@ -1,7 +1,7 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@.szerafingomba.hu>      |
+# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>      |
 # | mm5d-prepare                                                               |
 # | Prepare OS for install MM3D software                                       |
 # +----------------------------------------------------------------------------+
@@ -13,18 +13,24 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.
 
+line()
+{
+  for ((i=0; i<${#SWCR}; i++))
+  do
+    echo -n "-"
+  done
+  echo ""
+}
+
 SWN1="MM5D"
 SWN2="mm5d"
-SWV="v0.2"
+SWV="v0.3"
+SWCR="Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>"
 
-clear
-echo "--------------------------------------------------------------------------------"
-echo "$SWN1 $SWV prepare OS"
-echo "Copyright (C) 2019-2020 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>"
-echo "--------------------------------------------------------------------------------"
-echo -e "\nCreating a new user..."
-sudo adduser $SWN2
-sudo echo "$SWN2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_$SWN2-nopasswd
+# prepare
+echo -e "\n$SWN1 v$SWV prepare OS"
+echo "$SWCR"
+line
 echo "Installing required components..."
 sudo apt-get install build-essential git python3-dev
 echo "Cloning 3rd party softwares from Github..."

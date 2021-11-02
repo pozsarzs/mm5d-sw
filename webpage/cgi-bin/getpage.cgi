@@ -24,12 +24,12 @@ my $red="<img src=\"/pics/red.png\">";
 my $yellow="<img src=\"/pics/yellow.png\">";
 
 # create diagram pictures
-system("/usr/bin/mm5d-creatediagrams");
-#system("/usr/local/bin/mm5d-creatediagrams");
+#system("/usr/bin/mm5d-creatediagrams");
+system("/usr/local/bin/mm5d-creatediagrams");
 
 # load configuration
-my $conffile = "/etc/mm5d/mm5d.ini";
-#my $conffile = "/usr/local/etc/mm5d/mm5d.ini";
+#my $conffile = "/etc/mm5d/mm5d.ini";
+my $conffile = "/usr/local/etc/mm5d/mm5d.ini";
 my $row;
 my $cam1_enable;
 my $cam2_enable;
@@ -363,8 +363,8 @@ print "    <br>";
 # section cameras
 if ($cam_show eq 1)
 {
-  system("/usr/bin/mm5d-getsnapshots");
-  #system("/usr/local/bin/mm5d-getsnapshots");
+  #system("/usr/bin/mm5d-getsnapshots");
+  system("/usr/local/bin/mm5d-getsnapshots");
   print "    <b class=\"title1\">$msg22</b><br>";
   print "    <br>";
   print "    <br>";

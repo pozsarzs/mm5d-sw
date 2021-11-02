@@ -43,8 +43,8 @@ foreach $pair (@pairs)
 }
 
 # load configuration
-my $conffile = "/etc/mm5d/mm5d.ini";
-#my $conffile = "/usr/local/etc/mm5d/mm5d.ini";
+#my $conffile = "/etc/mm5d/mm5d.ini";
+my $conffile = "/usr/local/etc/mm5d/mm5d.ini";
 my $row;
 my $dir_lck;
 my $dir_log;

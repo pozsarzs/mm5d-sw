@@ -125,7 +125,7 @@ my $msg25 = "neutral";
 my $msg26 = "switched on";
 my $msg27 = "switched off";
 my $msg28 = "To set override, please login into unit via SSH, and use <i>mm5d-override</i> command!";
-my $msg29 = "To set switching values, please login into unit via SSH, and use <i>mm5d-editenvirconf</i> command!";
+my $msg29 = "To set environment characteristic, please login into unit via SSH, and use <i>mm5d-editenvirconf</i> command!";
 my $msgfile = "$dir_msg/$lang/mm5d.msg";
 open MSG, "< $msgfile";
 while(<MSG>)

@@ -2,7 +2,15 @@
 MM5D v0.3 * Growing house controlling and remote monitoring system
 Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
 
-Use mm5d-editenvirconf program to set characteristics of growing
-environment and mm5d-override command to override status of outputs.
+Useful commands:
+
+mm5d-editenvirconf      set environment characteristics
+mm5d-editmainconf       edit main configuration
+mm5d-override           override status of outputs
+mm5d-startdaemon        start daemons of program
+mm5d-statusofdaemons    get status of daemons
+mm5d-stopdaemon         stop daemons of program
+mm5d-viewlog            view log file
+mm5d-webpage            open webpage with default browser
 
 See manual page of commands for more information.

@@ -9,6 +9,12 @@
 	*  document/INSTALL: modified
 	*  document/README: modified
 	*  document/VERSION: modified
+	*  manuals/mm5d-statusofdaemon.1.gz: new file
+	*  manuals/mm5d-webpage.1.gz: new file
+	*  manuals/*: modified
+	*  messages/*: modified
+	*  scripts/mm5d-statusofdaemon: new file
+	*  scripts/mm5d-webpage: new file
 	*  source/common/Makefile: new file
 	*  source/*/untcommon.pas: move to ../common/
 	*  webpage/cgi-bin/getdata.cgi: modified

@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.2 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2020 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_hr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -27,4 +27,10 @@ msg19=Ažurirano
 msg20=Zadnje stanje
 msg21=Prijava
 msg22=Kamere
-msg23=Ako želite vidjeti potpuni dnevnik, prijavite se na jedinicu sa SSH-om i koristite <i> mm5d-viewlog </i>!
+msg23=Ako želite vidjeti potpuni dnevnik, prijavite se na jedinicu sa SSH-om i koristite <i>mm5d-viewlog</i>!
+msg24=Nadjačavanje izlaza
+msg25=neutralan
+msg26=uključen
+msg27=isključen
+msg28=Za postavljanje nadjačavanja, prijavite se na jedinicu putem SSH-a i koristite naredbu <i>mm5d-override</i>!
+msg29=Za postavljanje karakteristike okoline, prijavite se na jedinicu putem SSH-a i koristite naredbu <i>mm5d-editenvirconf</i>!

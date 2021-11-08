@@ -9,6 +9,10 @@
 	*  document/INSTALL: modified
 	*  document/README: modified
 	*  document/VERSION: modified
+	*  manuals/getdata.cgi.7.gz: new file
+	*  manuals/matrixdisplay.py.1.gz: renamed to *.8.gz
+	*  manuals/mm5d-getpage.cgi.7.gz: new file
+	*  manuals/mm5d.py.1.gz: renamed to *.8.gz
 	*  manuals/mm5d-statusofdaemon.1.gz: new file
 	*  manuals/mm5d-webpage.1.gz: new file
 	*  manuals/*: modified

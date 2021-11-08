@@ -11,7 +11,7 @@ srcfiles = untcommon.pas
 
 all:
 	@echo "- Compiling source code..."
-	@mkdir -p ./lib/$(architecture)-$(os)/
+	@mkdir -p ../_lib/$(architecture)-$(os)/
 	@for x in $(srcfiles); do \
 	  if [ -e $$x ]; then fpc $(fpflag) $$x; echo ""; fi; \
 	done
@@ -19,5 +19,5 @@ all:
 
 clean:
 	@echo -n "- Cleaning source code..."
-	@$(rm) ./lib/$(architecture)-$(os)/*
+	@$(rm) ../_lib/$(architecture)-$(os)/*
 	@echo "...done."

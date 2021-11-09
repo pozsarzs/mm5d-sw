@@ -5,7 +5,7 @@ Priority: extra
 Architecture: all
 Installed-Size: 44 kB
 Maintainer: Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
-Depends: adduser, lsb-base, build-essential
+Depends: lsb-base, build-essential
 Description: Prepare OS for install MM5D software
  This is a software part of MM5D growing house controlling
  and remote monitoring equipment.

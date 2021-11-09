@@ -1,5 +1,5 @@
-cff79d339e3d359335ace82b7e079a79  usr/bin/mm5d-editenvirconf
-184d01b5d618f83440d29f53b45e23d1  usr/bin/mm5d-editenvirconf.bin
-c8fb9e658b6ad2a4084068e005ae214d  usr/share/doc/mm5d-eec/changelog.Debian.gz
-6f20b8e97e7622fe05cf76ff316bff1a  usr/share/doc/mm5d-eec/copyright
-9e7a2bf9cb3dc1c8d221e872d66bf8f2  usr/share/man/man1/mm5d-editenvirconf.1.gz
+aad118085af2ab173b2ed8031589efcf  usr/bin/mm5d-editenvirconf
+4d9df3b53b51282c41098f3a08232493  usr/bin/mm5d-editenvirconf.bin
+8ee5440d7b5bd3188a3d71a3071faf37  usr/share/doc/mm5d-eec/changelog.Debian.gz
+c36a326490826bca2c8dcf6de4d7acae  usr/share/doc/mm5d-eec/copyright
+dec20c1970a73a1dd616711dd9c36836  usr/share/man/man1/mm5d-editenvirconf.1.gz

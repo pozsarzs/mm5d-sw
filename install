@@ -29,6 +29,7 @@ copy()
 }
 
 # constans
+ARCH=`uname -m`
 SWN1="MM5D"
 SWN2="mm5d"
 SWCR=`cat documents/copyright`
@@ -45,6 +46,8 @@ SUBDIRS="/usr/$INSTDIR/bin \
          /usr/$INSTDIR/share/$SWN2 \
          /usr/$INSTDIR/share/man \
          /usr/$INSTDIR/share/man/man1 \
+         /usr/$INSTDIR/share/man/man7 \
+         /usr/$INSTDIR/share/man/man8 \
          /var/$INSTDIR/lib/$SWN2 \
          /var/$INSTDIR/lock \
          /var/$INSTDIR/log \
@@ -94,7 +97,9 @@ sudo chown -R root:staff /usr/$INSTDIR/etc/$SWN2
 echo "- copying files:"
 copy "LICENCE" "/usr/$INSTDIR/share/doc/$SWN2/COPYING"
 copy "documents/*" "/usr/$INSTDIR/share/doc/$SWN2/"
-copy "manuals/*" "/usr/$INSTDIR/share/man/man1/"
+copy "manuals/*.1.gz" "/usr/$INSTDIR/share/man/man1/"
+copy "manuals/*.7.gz" "/usr/$INSTDIR/share/man/man7/"
+copy "manuals/*.7.gz" "/usr/$INSTDIR/share/man/man8/"
 for X in $LANGUAGES; do
   if [ -e "messages/"$SWN2"_"$X".msg" ];
   then

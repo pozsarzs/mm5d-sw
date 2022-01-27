@@ -1,4 +1,4 @@
-97ed44418d4abe55cc06506997c83070  usr/bin/mm5d-prepare
-8ee5440d7b5bd3188a3d71a3071faf37  usr/share/doc/mm5d-prepare/changelog.Debian.gz
-c36a326490826bca2c8dcf6de4d7acae  usr/share/doc/mm5d-prepare/copyright
-76f6f136f2fd68adc7216885a6558d6e  usr/share/man/man1/mm5d-prepare.1.gz
+575b5f28d282fd97cb95ccf22c310f48  usr/bin/mm5d-prepare
+801ad6f15d0dff0881db8cf3973b5ac1  usr/share/doc/mm5d-prepare/changelog.Debian.gz
+319d80ebf0d5fc4aea12f82c183f1d13  usr/share/doc/mm5d-prepare/copyright
+ee5fe0ffafc25544995c508ade8390df  usr/share/man/man1/mm5d-prepare.1.gz

@@ -5,7 +5,7 @@ Priority: extra
 Architecture: all
 Installed-Size: 332 kB
 Maintainer: Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
-Depends: mm5d-sw, apache2, gnuplot, wget, libswitch-perl
+Depends: mm5d-sw, apache2, gnuplot, wget, libswitch-perl, libconfig-tiny-perl
 Description: Web interface for MM5D software
  This is a software part of MM5D growing house controlling
  and remote monitoring equipment.

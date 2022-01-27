@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_sr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=укључен
 msg27=искључен
 msg28=Да бисте поставили оверриде, пријавите се на јединицу преко ССХ-а и користите команду <i>mm5d-override</i>!
 msg29=Да бисте подесили карактеристике окружења, пријавите се на јединицу преко ССХ-а и користите команду <i>mm5d-editenvirconf</i>!
+msg30=Карактеристика окружења
+msg31=Расте хифе
+msg32=Узгајање печурака
+msg33=грејач
+msg34=овлаживач
+msg35=вентилатор
+msg36=лампа
+msg37=укључено
+msg38=искључено
+msg39=минимум
+msg40=максимум
+msg41=онемогући укључивање
+msg42=временски

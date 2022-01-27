@@ -9,4 +9,4 @@ Displayed format:  "W  #xx"
   #52	Doors/windows are opened.
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_ro.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=pornit
 msg27=inchis
 msg28=Pentru a seta suprascrierea, vă rugăm să vă conectați la unitate prin SSH și să utilizați comanda <i>mm5d-override</i>!
 msg29=Pentru a seta caracteristicile mediului, vă rugăm să vă conectați la unitate prin SSH și să utilizați comanda <i>mm5d-editenvirconf</i>!
+msg30=Caracteristica mediului
+msg31=Hife în creştere
+msg32=Cultură de ciuperci
+msg33=încălzitor
+msg34=umidificator
+msg35=ventilator
+msg36=lampa
+msg37=pornit
+msg38=off
+msg39=minimum
+msg40=maximum
+msg41=dezactivați alimentarea
+msg42=cronometrat

@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_ru.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=включен
 msg27=выключен
 msg28=Чтобы установить переопределение, войдите в систему через SSH и используйте команду <i>mm5d-override</i>!
 msg29=Чтобы установить характеристики среды, войдите в систему через SSH и используйте команду <i>mm5d-editenvirconf</i>!
+msg30=Характеристики среды
+msg31=Растущие гифы
+msg32=Выращивание грибов
+msg33=нагреватель
+msg34=увлажнитель
+msg35=вентилятор
+msg36=лампа
+msg37=включено
+msg38=выкл.
+msg39=минимум
+msg40=максимум
+msg41=отключить питание
+msg42=время

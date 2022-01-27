@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_fr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=allumé
 msg27=éteint
 msg28=Pour définir la dérogation, veuillez vous connecter à l'unité via SSH et utiliser la commande <i>mm5d-override</i>!
 msg29=Pour définir les caractéristiques de l'environnement, veuillez vous connecter à l'unité via SSH et utiliser la commande <i>mm5d-editenvirconf</i>!
+msg30=Caractéristique d'environnement
+msg31=Croissance des hyphes
+msg32=Culture de champignons
+msg33=chauffage
+msg34=humidificateur
+msg35=ventilateur
+msg36=lampe
+msg37=on
+msg38=désactivé
+msg39=minimum
+msg40=maximale
+msg41=désactiver la mise sous tension
+msg42=temporisé

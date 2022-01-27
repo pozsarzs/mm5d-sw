@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d-hwtest.py                                                             |
 # | Hardware test program                                                      |
 # +----------------------------------------------------------------------------+

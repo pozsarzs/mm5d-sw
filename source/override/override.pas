@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | override.pas                                                             | }
 { | Full-screen program for override output states                           | }
 { +--------------------------------------------------------------------------+ }
@@ -27,7 +27,7 @@ var
   bottom:  byte;
   outputs: array[1..4] of string;
 const
-  VERSION: string='v0.3';
+  VERSION: string='v0.4';
   PRGNAME: string='MM5D-Override';
   MAXPOSY: byte=6;
   MINPOSX: byte=30;

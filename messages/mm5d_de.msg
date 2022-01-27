@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_de.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=eingeschaltet
 msg27=ausgeschaltet
 msg28=Um Override zu setzen, loggen Sie sich bitte über SSH in das Gerät ein und verwenden Sie den Befehl <i>mm5d-override</i>!
 msg29=Um die Umgebungseigenschaften einzustellen, melden Sie sich bitte über SSH an der Unit an und verwenden Sie den Befehl <i>mm5d-editenvirconf</i>!
+msg30=Umgebungseigenschaft
+msg31=Wachsende Hyphen
+msg32=Züchtender Pilz
+msg33=Heizung
+msg34=Luftbefeuchter
+msg35=Beatmungsgerät
+msg36=Lampe
+msg37=ein
+msg38=aus
+msg39=Minimum
+msg40=maximal
+msg41=Einschalten deaktivieren
+msg42=zeitgesteuert

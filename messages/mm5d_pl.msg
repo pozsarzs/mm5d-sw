@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_pl.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=włączony
 msg27=wyłączony
 msg28=Aby ustawić nadpisanie, zaloguj się do urządzenia przez SSH i użyj polecenia <i>mm5d-override</i>!
 msg29=Aby ustawić charakterystykę środowiska, zaloguj się do jednostki przez SSH i użyj polecenia <i>mm5d-editenvirconf</i>!
+msg30=Charakterystyka środowiskowa
+msg31=Rosnące strzępki
+msg32=Rosnący grzyb
+msg33=grzałka
+msg34=nawilżacz
+msg35=wentylator
+msg36=lampa
+msg37=wł.
+msg38=wył.
+msg39=minimum
+msg40=maksymalna
+msg41=wyłącz włączenie zasilania
+msg42=czas

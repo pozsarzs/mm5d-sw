@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_hr.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=uključen
 msg27=isključen
 msg28=Za postavljanje nadjačavanja, prijavite se na jedinicu putem SSH-a i koristite naredbu <i>mm5d-override</i>!
 msg29=Za postavljanje karakteristike okoline, prijavite se na jedinicu putem SSH-a i koristite naredbu <i>mm5d-editenvirconf</i>!
+msg30=Karakteristika okruženja
+msg31=Raste hife
+msg32=Uzgoj gljiva
+msg33=grijač
+msg34=ovlaživač zraka
+msg35=ventilator
+msg36=svjetlo
+msg37=uključeno
+msg38=isključeno
+msg39=minimum
+msg40=maksimum
+msg41=isključi uključivanje
+msg42=tempirano

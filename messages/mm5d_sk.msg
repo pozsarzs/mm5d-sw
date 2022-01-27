@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.3 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_sk.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -34,3 +34,16 @@ msg26=zapnuté
 msg27=vypnutý
 msg28=Ak chcete nastaviť prepísanie, prihláste sa do jednotky cez SSH a použite príkaz <i>mm5d-override</i>!
 msg29=Ak chcete nastaviť charakteristiku prostredia, prihláste sa do jednotky cez SSH a použite príkaz <i>mm5d-editenvirconf</i>!
+msg30=Charakteristika prostredia
+msg31=Rastúce hýfy
+msg32=Pestovanie húb
+msg33=ohrievač
+msg34=zvlhčovač
+msg35=ventilátor
+msg36=lampa
+msg37=on
+msg38=vypnuté
+msg39=minimum
+msg40=maximum
+msg41=zakázať zapnutie
+msg42=načasovaný

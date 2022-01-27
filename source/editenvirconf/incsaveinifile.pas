@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.3 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incsaveinifile.pas                                                       | }
 { | Save configuration to ini file                                           | }
 { +--------------------------------------------------------------------------+ }
@@ -19,8 +19,8 @@ var
   b: byte;
 const
   HEADER1='; +----------------------------------------------------------------------------+';
-  HEADER2='; | MM5D v0.3 * Growing house controlling and remote monitoring system         |';
-  HEADER3='; | Copyright (C) 2019-2021 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |';
+  HEADER2='; | MM5D v0.4 * Growing house controlling and remote monitoring system         |';
+  HEADER3='; | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |';
   HEADER4='; | envir.ini                                                                  |';
   HEADER5='; | growing environment characteristics                                        |';
   H: string='hyphae';

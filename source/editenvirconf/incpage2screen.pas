@@ -1,5 +1,5 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
 { | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incpage2screen.pas                                                       | }
 { | Show screen content of page #2                                           | }
@@ -12,11 +12,12 @@
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE.
 
+// write options to screen
 procedure page2screen;
 var
   b: byte;
 begin
-  header(PRGNAME+' '+VERSION+' * Page 2/8: Growing hyphae - heating');
+  header(PRGNAME+' '+VERSION+' * Page 2/11: Growing hyphae - heating');
   textcolor(white);
   gotoxy(4,3); writeln('Minimal temperature:');
   gotoxy(4,4); writeln('Heating switch-on temperature:');

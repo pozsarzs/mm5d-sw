@@ -1,3 +1,17 @@
+2022-03-11 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+	*  0.5: Following files were modified (only important and operational changes).
+	*  README.md: modified
+	*  binary/mm3d-editenvirconf.bin: modified
+	*  document/ChangeLog: modified
+	*  document/copyright: new file
+	*  document/INSTALL: modified
+	*  document/README: modified
+	*  document/VERSION: modified
+	*  programs/mm5d.py: modified
+	*  scripts/mm5d-override: modified
+	*  source/*: modified
+	*  webpage/cgi-bin/getenvirconf: modified
+
 2022-01-27 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
 	*  0.4: Following files were modified (only important and operational changes).
 	*  install: modified
@@ -12,8 +26,8 @@
 	*  manuals/getenvirconf.cgi.7.gz: new file
 	*  manuals/*: modified
 	*  messages/*: modified
-	*  scripts/mm3d-updatestartpage: modified
-	*  scripts/mm3d-webpage: modified
+	*  scripts/mm5d-updatestartpage: modified
+	*  scripts/mm5d-webpage: modified
 	*  webpage/cgi-bin/getenvirconf: new file
 
 2021-10-31 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

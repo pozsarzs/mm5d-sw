@@ -1,6 +1,6 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | install                                                                    |
 # | Installer script                                                           |
@@ -68,10 +68,10 @@ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE.\n"
 sleep 3
 
-if ! [ -x "$(command -v apache2)" ]; then
-  echo 'ERROR: Run prepare script firstly!';
-  exit;
-fi
+#if ! [ -x "$(command -v apache2)" ]; then
+#  echo 'ERROR: Run prepare script firstly!';
+#  exit;
+#fi
 
 echo -e "\nInstalling..."
 echo "- creating directories:"

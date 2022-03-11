@@ -20,12 +20,12 @@ Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 a. Visit homepage (see later) to download installer packages:
 
-  Raspbian OS: mm5d-sw-0.4-armhf.tar.gz
+  Raspbian OS: mm5d-sw-0.5-armhf.tar.gz
 
-               mm5d-eec_0.4-1_armhf.deb
-               mm5d-prepare_0.4-1_all.deb
-               mm5d-sw_0.4-1_armhf.deb
-               mm5d-web_0.4-1_all.deb
+               mm5d-eec_0.5-1_armhf.deb
+               mm5d-prepare_0.5-1_all.deb
+               mm5d-sw_0.5-1_armhf.deb
+               mm5d-web_0.5-1_all.deb
 
 b. Download from Github
 

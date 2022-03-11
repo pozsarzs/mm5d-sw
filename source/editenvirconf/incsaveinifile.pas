@@ -1,5 +1,5 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
 { | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incsaveinifile.pas                                                       | }
 { | Save configuration to ini file                                           | }
@@ -16,27 +16,46 @@
 function saveinifile(filename: string): boolean;
 var
   iif: text;
-  b: byte;
-const
-  HEADER1='; +----------------------------------------------------------------------------+';
-  HEADER2='; | MM5D v0.4 * Growing house controlling and remote monitoring system         |';
-  HEADER3='; | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |';
-  HEADER4='; | envir.ini                                                                  |';
-  HEADER5='; | growing environment characteristics                                        |';
-  H: string='hyphae';
-  M: string='mushroom';
+  b:   byte;
+
+  // write header to file
+  procedure fileheader;
+  var
+    b:  byte;
+    l:  string;
+
+    // completes the line to be 80 chars long
+    function fullline(strin: string): string;
+    begin
+      fullline:='; | '+strin;
+      repeat
+        fullline:=fullline+' ';
+      until length(fullline)>=79;
+      fullline:=fullline+'|';
+    end;
+
+    begin
+    l:='; +';
+    for b:=1 to 76 do l:=l+'-';
+    l:=l+'+';
+    writeln(iif,l);
+    writeln(iif,fullline('MM5D v'+VERSION+' * Growing house controlling and remote monitoring system'));
+    writeln(iif,fullline(COPYRIGHT));
+    writeln(iif,fullline('envir.ini'));
+    writeln(iif,fullline('Growing environment characteristic'));
+    writeln(iif,l);
+    writeln(iif,'');
+  end;
 
 begin
   saveinifile:=true;
   try
     assign(iif,filename);
     rewrite(iif);
-    writeln(iif,HEADER1);
-    writeln(iif,HEADER2);
-    writeln(iif,HEADER3);
-    writeln(iif,HEADER4);
-    writeln(iif,HEADER5);
-    writeln(iif,HEADER1);
+    fileheader;
+    writeln(iif,'['+C+']');
+    writeln(iif,'; common parameters');
+    writeln(iif,'gasconcentrate_max=',gasconmax);
     writeln(iif,'');
     writeln(iif,'['+H+']');
     writeln(iif,'; humidifier');
@@ -77,6 +96,11 @@ begin
     for b:=10 to 23 do
       writeln(iif,'vent_disablelowtemp_'+inttostr(b)+'=',hventdislowtemp[b]);
     writeln(iif,'vent_lowtemp=',hventlowtemp);
+    for b:=0 to 9 do
+      writeln(iif,'vent_disablehightemp_0'+inttostr(b)+'=',hventdishightemp[b]);
+    for b:=10 to 23 do
+      writeln(iif,'vent_disablehightemp_'+inttostr(b)+'=',hventdishightemp[b]);
+    writeln(iif,'vent_hightemp=',hventhightemp);
     writeln(iif,'');
     writeln(iif,'['+M+']');
     writeln(iif,'; humidifier');
@@ -117,6 +141,11 @@ begin
     for b:=10 to 23 do
       writeln(iif,'vent_disablelowtemp_'+inttostr(b)+'=',mventdislowtemp[b]);
     writeln(iif,'vent_lowtemp=',mventlowtemp);
+    for b:=0 to 9 do
+      writeln(iif,'vent_disablehightemp_0'+inttostr(b)+'=',mventdishightemp[b]);
+    for b:=10 to 23 do
+      writeln(iif,'vent_disablehightemp_'+inttostr(b)+'=',mventdishightemp[b]);
+    writeln(iif,'vent_hightemp=',mventhightemp);
     writeln(iif,'');
     close(iif);
   except

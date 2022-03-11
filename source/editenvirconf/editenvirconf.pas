@@ -1,5 +1,5 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
 { | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editenvirconf.pas                                                        | }
 { | Full-screen program for edit envir.ini file                              | }
@@ -14,68 +14,83 @@
 
 // Exit codes:
 //   0: normal exit, file is saved
-//   1: command line parameter is missing
-//   2: bad terminal size
-//   3: cannot read file
-//   4: cannot write file
-//   5: normal exit, file is not saved
+//   1: cannot open configuration file
+//   12: bad terminal size
+//   13: cannot write configuration file
 
 program editenvirconf;
 {$MODE OBJFPC}{$H+}
 uses
   INIFiles, SysUtils, character, crt, untcommon;
 var
-  bottom: byte;
-  hheaterdis, mheaterdis: array[0..23] of byte;
-  hhumdis, mhumdis: array[0..23] of byte;
-  hventdis, mventdis: array[0..23] of byte;
-  hventdislowtemp, mventdislowtemp: array[0..23] of byte;
-  hhummax, mhummax: byte;
-  hhummin, mhummin: byte;
-  hhumoff, mhumoff: byte;
-  hhumon, mhumon: byte;
-  hlightsoff1, mlightsoff1, hlightsoff2, mlightsoff2: byte;
-  hlightson1, mlightson1, hlightson2, mlightson2: byte;
-  htempmax, mtempmax: byte;
-  htempmin, mtempmin: byte;
-  htempoff, mtempoff: byte;
-  htempon, mtempon: byte;
-  hventlowtemp, mventlowtemp: shortint;
-  hventoff, mventoff: byte;
-  hventon, mventon: byte;
+  bottom:                             byte;
+  gasconmax:                          byte;
+  hheaterdis, mheaterdis:             array[0..23] of byte;
+  hhumdis, mhumdis:                 array[0..23] of byte;
+  hhummax, mhummax:                   byte;
+  hhummin, mhummin:                   byte;
+  hhumoff, mhumoff:                   byte;
+  hhumon, mhumon:                     byte;
+  hlightsoff1, mlightsoff1:           byte;
+  hlightsoff2, mlightsoff2:           byte;
+  hlightson1, mlightson1:             byte;
+  hlightson2, mlightson2:             byte;
+  htempmax, mtempmax:                 byte;
+  htempmin, mtempmin:                 byte;
+  htempoff, mtempoff:                 byte;
+  htempon, mtempon:                   byte;
+  hventdishightemp, mventdishightemp: array[0..23] of byte;
+  hventdislowtemp, mventdislowtemp:   array[0..23] of byte;
+  hventdis, mventdis:                 array[0..23] of byte;
+  hventhightemp, mventhightemp:       shortint;
+  hventlowtemp, mventlowtemp:         shortint;
+  hventoff, mventoff:                 byte;
+  hventon, mventon:                   byte;
 const
-  VERSION: string='v0.4';
-  PRGNAME: string='MM5D-EditEnvirConf';
-  BLOCKS: array[1..8] of byte=(3,3,1,6,3,3,1,6);
-  MINPOSX: array[1..8,1..6] of byte=((46,17,35,0,0,0),
-                                     (46,17,35,0,0,0),
-                                     (46,0,0,0,0,0),
-                                     (46,17,35,53,71,46),
-                                     (46,17,35,0,0,0),
-                                     (46,17,35,0,0,0),
-                                     (46,0,0,0,0,0),
-                                     (46,17,35,53,71,46));
-  MINPOSY: array[1..8,1..6] of byte=((3,10,10,0,0,0),
-                                     (3,10,10,0,0,0),
-                                     (3,0,0,0,0,0),
-                                     (3,8,8,8,8,21),
-                                     (3,10,10,0,0,0),
-                                     (3,10,10,0,0,0),
-                                     (3,0,0,0,0,0),
-                                     (3,8,8,8,8,21));
-  MAXPOSY: array[1..8,1..6] of byte=((6,21,21,0,0,0),
-                                     (6,21,21,0,0,0),
-                                     (6,0,0,0,0,0),
-                                     (4,19,19,19,19,21),
-                                     (6,21,21,0,0,0),
-                                     (6,21,21,0,0,0),
-                                     (6,0,0,0,0,0),
-                                     (4,19,19,19,19,21));
-  FOOTERS: array[1..4] of string=('<Tab>/<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
-                                  '<Enter> accept  <Esc> cancel',
-                                  '<+>/<-> sign change  <Enter> accept  <Esc> cancel',
-                                  '<Esc> cancel');
+  C:                                  string='common';
+  H:                                  string='hyphae';
+  M:                                  string='mushroom';
+  FOOTERS:                            array[1..4] of string=(
+                                        '<Tab>/<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit',
+                                        '<Enter> accept  <Esc> cancel',
+                                        '<+>/<-> sign change  <Enter> accept  <Esc> cancel',
+                                        '<Esc> cancel');
+  BLOCKS:                             array[1..11] of byte=(3,3,1,6,3,3,3,1,6,6,1);
+  MINPOSX:                            array[1..11,1..6] of byte=((46,17,35,0,0,0),
+                                                                 (46,17,35,0,0,0),
+                                                                 (46,0,0,0,0,0),
+                                                                 (46,17,35,53,71,46),
+                                                                 (17,35,46,0,0,0),
+                                                                 (46,17,35,0,0,0),
+                                                                 (46,17,35,0,0,0),
+                                                                 (46,0,0,0,0,0),
+                                                                 (46,17,35,53,71,46),
+                                                                 (17,35,46,0,0,0),
+                                                                 (46,0,0,0,0,0));
+  MINPOSY:                            array[1..11,1..6] of byte=((3,10,10,0,0,0),
+                                                                 (3,10,10,0,0,0),
+                                                                 (3,0,0,0,0,0),
+                                                                 (3,8,8,8,8,21),
+                                                                 (4,4,17,0,0,0),
+                                                                 (3,10,10,0,0,0),
+                                                                 (3,10,10,0,0,0),
+                                                                 (3,0,0,0,0,0),
+                                                                 (3,8,8,8,8,21),
+                                                                 (4,4,17,0,0,0),
+                                                                 (3,0,0,0,0,0));
+  MAXPOSY:                            array[1..11,1..6] of byte=((6,21,21,0,0,0),
+                                                                 (6,21,21,0,0,0),
+                                                                 (6,0,0,0,0,0),
+                                                                 (4,19,19,19,19,21),
+                                                                 (15,15,17,0,0,0),
+                                                                 (6,21,21,0,0,0),
+                                                                 (6,21,21,0,0,0),
+                                                                 (6,0,0,0,0,0),
+                                                                 (4,19,19,19,19,21),
+                                                                 (15,15,17,0,0,0),
+                                                                 (3,0,0,0,0,0));
 
+{$I config.pas}
 {$I incpage1screen.pas}
 {$I incpage2screen.pas}
 {$I incpage3screen.pas}
@@ -84,9 +99,13 @@ const
 {$I incpage6screen.pas}
 {$I incpage7screen.pas}
 {$I incpage8screen.pas}
+{$I incpage9screen.pas}
+{$I incpage10screen.pas}
+{$I incpage11screen.pas}
 {$I incloadinifile.pas}
 {$I incsaveinifile.pas}
 
+// draw base screen
 procedure screen(page: byte);
 begin
   background;
@@ -99,12 +118,16 @@ begin
     6: page6screen;
     7: page7screen;
     8: page8screen;
+    9: page9screen;
+    10: page10screen;
+    11: page11screen;
   end;
   footer(bottom-1,FOOTERS[1]);
   textbackground(black);
   gotoxy(1,bottom); clreol;
 end;
 
+// get value from keyboard
 procedure getvalue(page,block,posy: byte);
 var
   c: char;
@@ -124,10 +147,19 @@ begin
         '+': if strtoint(s)<0 then s:=inttostr(strtoint(s)*(-1));
       end;
     if isnumber(c) then
-      case block of
-        1: if length(s)<2 then s:=s+c;
-        6: if length(s)<3 then s:=s+c;
-      else if (c='0') or (c='1') then s:=c;
+      if (page=5) or (page=10) then
+      begin
+        case block of
+          3: if length(s)<3 then s:=s+c;
+        else if (c='0') or (c='1') then s:=c;
+        end;
+      end else
+      begin
+        case block of
+          1: if length(s)<2 then s:=s+c;
+          6: if length(s)<3 then s:=s+c;
+        else if (c='0') or (c='1') then s:=c;
+        end;
       end;
     if c=#8 then delete(s,length(s),1);
     gotoxy(1,bottom); clreol; write('>'+s);
@@ -273,29 +305,24 @@ begin
       // page #5 - block #1
       if block=1 then
       begin
-        textbackground(blue);
-        gotoxy(MINPOSX[page,block]-1,posy); write('  ');
-        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
-        case posy of
-          3: begin mhummin:=strtoint(s); write(mhummin); end;
-          4: begin mhumon:=strtoint(s); write(mhumon); end;
-          5: begin mhumoff:=strtoint(s); write(mhumoff); end;
-          6: begin mhummax:=strtoint(s); write(mhummax); end;
-        end;
+        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
+        hventdishightemp[posy-4]:=strtoint(s);
+        write(hventdishightemp[posy-4]);
       end;
       // page #5 - block #2
       if block=2 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mhumdis[posy-10]:=strtoint(s);
-        write(mhumdis[posy-10]);
+        hventdishightemp[posy+8]:=strtoint(s);
+        write(hventdishightemp[posy+8]);
       end;
       // page #5 - block #3
       if block=3 then
       begin
-        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
-        mhumdis[posy+2]:=strtoint(s);
-        write(mhumdis[posy+2]);
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block]-2,posy); write('   ');
+        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        hventhightemp:=strtoint(s); write(hventhightemp);
       end;
     end;
     // -- page #6 --
@@ -308,20 +335,51 @@ begin
         gotoxy(MINPOSX[page,block]-1,posy); write('  ');
         gotoxy(MINPOSX[page,block]-length(s)+1,posy);
         case posy of
-          3: begin mtempmin:=strtoint(s); write(mtempmin); end;
-          4: begin mtempon:=strtoint(s); write(mtempon); end;
-          5: begin mtempoff:=strtoint(s); write(mtempoff); end;
-          6: begin mtempmax:=strtoint(s); write(mtempmax); end;
+          3: begin mhummin:=strtoint(s); write(mhummin); end;
+          4: begin mhumon:=strtoint(s); write(mhumon); end;
+          5: begin mhumoff:=strtoint(s); write(mhumoff); end;
+          6: begin mhummax:=strtoint(s); write(mhummax); end;
         end;
       end;
       // page #6 - block #2
       if block=2 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
+        mhumdis[posy-10]:=strtoint(s);
+        write(mhumdis[posy-10]);
+      end;
+      // page #6 - block #3
+      if block=3 then
+      begin
+        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
+        mhumdis[posy+2]:=strtoint(s);
+        write(mhumdis[posy+2]);
+      end;
+    end;
+    // -- page #7 --
+    if page=7 then
+    begin
+      // page #7 - block #1
+      if block=1 then
+      begin
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block]-1,posy); write('  ');
+        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        case posy of
+          3: begin mtempmin:=strtoint(s); write(mtempmin); end;
+          4: begin mtempon:=strtoint(s); write(mtempon); end;
+          5: begin mtempoff:=strtoint(s); write(mtempoff); end;
+          6: begin mtempmax:=strtoint(s); write(mtempmax); end;
+        end;
+      end;
+      // page #7 - block #2
+      if block=2 then
+      begin
+        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
         mheaterdis[posy-10]:=strtoint(s);
         write(mheaterdis[posy-10]);
       end;
-      // page #6 - block #3
+      // page #7 - block #3
       if block=3 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
@@ -329,10 +387,10 @@ begin
         write(mheaterdis[posy+2]);
       end;
     end;
-    // -- page #7 --
-    if page=7 then
+    // -- page #8 --
+    if page=8 then
     begin
-      // page #7 - block #1
+      // page #8 - block #1
       if block=1 then
       begin
         if strtoint(s)>23 then s:=inttostr(23);
@@ -347,10 +405,10 @@ begin
         end;
       end;
     end;
-    // -- page #8 --
-    if page=8 then
+    // -- page #9 --
+    if page=9 then
     begin
-      // page #8 - block #1
+      // page #9 - block #1
       if block=1 then
       begin
         if strtoint(s)>59 then s:=inttostr(59);
@@ -362,35 +420,35 @@ begin
           4: begin mventoff:=strtoint(s); write(mventoff); end;
         end;
       end;
-      // page #8 - block #2
+      // page #9 - block #2
       if block=2 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
         mventdis[posy-8]:=strtoint(s);
         write(mventdis[posy-8]);
       end;
-      // page #8 - block #3
+      // page #9 - block #3
       if block=3 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
         mventdis[posy+4]:=strtoint(s);
         write(mventdis[posy+4]);
       end;
-      // page #8 - block #4
+      // page #9 - block #4
       if block=4 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
         mventdislowtemp[posy-8]:=strtoint(s);
         write(mventdislowtemp[posy-8]);
       end;
-      // page #8 - block #5
+      // page #9 - block #5
       if block=5 then
       begin
         gotoxy(MINPOSX[page,block],posy); textbackground(blue);
         mventdislowtemp[posy+4]:=strtoint(s);
         write(mventdislowtemp[posy+4]);
       end;
-      // page #8 - block #6
+      // page #9 - block #6
       if block=6 then
       begin
         textbackground(blue);
@@ -399,11 +457,52 @@ begin
         mventlowtemp:=strtoint(s); write(mventlowtemp);
       end;
     end;
+    // -- page #10 --
+    if page=10 then
+    begin
+      // page #10 - block #1
+      if block=1 then
+      begin
+        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
+        mventdishightemp[posy-8]:=strtoint(s);
+        write(mventdishightemp[posy-8]);
+      end;
+      // page #10 - block #2
+      if block=2 then
+      begin
+        gotoxy(MINPOSX[page,block],posy); textbackground(blue);
+        mventdishightemp[posy+4]:=strtoint(s);
+        write(mventdishightemp[posy+4]);
+      end;
+      // page #10 - block #3
+      if block=3 then
+      begin
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block]-2,posy); write('   ');
+        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        mventhightemp:=strtoint(s); write(mventhightemp);
+      end;
+    end;
+    // -- page #11 --
+    if page=11 then
+    begin
+      // page #11 - block #1
+      if block=1 then
+      begin
+        textbackground(blue);
+        gotoxy(MINPOSX[page,block]-1,posy); write('  ');
+        gotoxy(MINPOSX[page,block]-length(s)+1,posy);
+        case posy of
+          3: begin gasconmax:=strtoint(s); write(gasconmax); end;
+        end;
+      end;
+    end;
   end;
   footer(bottom-1,FOOTERS[1]);
   gotoxy(1,bottom); clreol;
 end;
 
+// set value
 function setvalues: boolean;
 var
   page, block, posy: byte;
@@ -443,7 +542,7 @@ begin
       // next page
       #81: begin
              page:=page+1;
-             if page>8 then page:=8;
+             if page>11 then page:=11;
              screen(page);
              block:=1;
              posy:=MINPOSY[page,block];
@@ -451,7 +550,7 @@ begin
            end;
       // last page
       #79: begin
-             page:=8;
+             page:=11;
              screen(page);
              block:=1;
              posy:=MINPOSY[page,block];
@@ -495,25 +594,23 @@ begin
   if k='y' then setvalues:=true else setvalues:=false;
 end;
 
-function terminalsize: boolean;
-begin
-  if (screenwidth>=80) and (screenheight>=25)
-    then terminalsize:=true
-    else terminalsize:=false;
-  bottom:=screenheight;
-end;
-
 begin
   textcolor(lightgray); textbackground(black);
-  if paramcount=0 then
-    quit(1,false,'Usage:'+#10+'    '+paramstr(0)+' /path/envir.ini');
+  if paramcount=0
+  then
+    quit(0,false,'Usage: '+paramstr(0)+' /path/envir.ini');
   if not terminalsize
-    then quit(2,false,'ERROR: Minimal terminal size is 80x25!');
+  then
+    quit(12,false,'ERROR #12: Minimal terminal size is 80x25!');
+    bottom:=screenheight;
   if not loadinifile(paramstr(1))
-    then quit(3,false,'ERROR: Cannot read '+paramstr(1)+' file!');
+  then
+    quit(1,false,'ERROR #1: Cannot open '+paramstr(1)+' configuration file!');
   if not setvalues
-    then quit(5,true,'File '+paramstr(1)+' is not saved.');
+  then
+    quit(0,true,'Warning: File '+paramstr(1)+' is not saved.');
   if not saveinifile(paramstr(1))
-    then quit(4,true,'ERROR: Cannot write '+paramstr(1)+' file!');
+  then
+    quit(13,true,'ERROR #13: Cannot write '+paramstr(1)+' configuration file!');
   quit(0,true,'');
 end.

@@ -1,5 +1,5 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | Makefile                                                                   |
 # | Make file for source code                                                  |
@@ -21,6 +21,7 @@ all:
 
 clean:
 	@echo -n "- Cleaning source code..."
+	@$(rm) config.pas
 	@$(rm) ../_lib/$(architecture)-$(os)/*
 	@echo "...done."
 

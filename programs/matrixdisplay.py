@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # +----------------------------------------------------------------------------+
-# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2022 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | matrixdisplay.py                                                           |
 # | Matrix display handler daemon                                              |

@@ -1,13 +1,13 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.4 * Growing house controlling and remote monitoring system         |
+# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
 # | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | Makefile                                                                   |
-# | Makefile for Unix-like systems                                             |
+# | Make file for source code                                                  |
 # +----------------------------------------------------------------------------+
 
 include ./Makefile.global
 
-dirs =  common editenvirconf editmainconf override
+dirs =  editenvirconf editmainconf override
 
 all:
 	@echo Compiling source code:

@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM3D v0.8 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2018-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | untcommon.pas                                                            | }
 { | Common functions and procedures                                          | }
 { +--------------------------------------------------------------------------+ }
@@ -17,12 +17,21 @@ interface
 uses
   crt;
 
+function terminalsize: boolean;
 procedure background;
 procedure footer(ypos: byte; title: string);
 procedure header(title: string);
 procedure quit(halt_code: byte; clear: boolean; message: string);
 
 implementation
+
+// check terminal size
+function terminalsize: boolean;
+begin
+  if (screenwidth>=80) and (screenheight>=25)
+    then terminalsize:=true
+    else terminalsize:=false;
+end;
 
 procedure background;
 begin
@@ -51,8 +60,6 @@ end;
 
 // write header
 procedure header(title: string);
-var
-  b: byte;
 begin
   textbackground(lightgray); textcolor(black);
   gotoxy(1,1); clreol;

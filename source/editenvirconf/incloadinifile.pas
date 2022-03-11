@@ -1,5 +1,5 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.4 * Growing house controlling and remote monitoring system       | }
+{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
 { | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | incloadinifile.pas                                                       | }
 { | Load configuration from ini file                                         | }
@@ -16,15 +16,13 @@
 function loadinifile(filename: string): boolean;
 var
   iif: TINIFile;
-  b: byte;
-const
-  H: string='hyphae';
-  M: string='mushroom';
+  b:   byte;
 
 begin
   iif:=TIniFile.Create(filename);
   loadinifile:=true;
   try
+    gasconmax:=strtoint(iif.ReadString(C,'gasconcentrate_max','0'));
     hhummax:=strtoint(iif.ReadString(H,'humidity_max','0'));
     hhummin:=strtoint(iif.ReadString(H,'humidity_min','0'));
     hhumoff:=strtoint(iif.ReadString(H,'humidifier_off','0'));
@@ -56,6 +54,11 @@ begin
     for b:=10 to 23 do
       hventdislowtemp[b]:=strtoint(iif.ReadString(H,'vent_disablelowtemp_'+inttostr(b),'0'));
     hventlowtemp:=strtoint(iif.ReadString(H,'vent_lowtemp','0'));
+    for b:=0 to 9 do
+      hventdishightemp[b]:=strtoint(iif.ReadString(H,'vent_disablehightemp_0'+inttostr(b),'0'));
+    for b:=10 to 23 do
+      hventdishightemp[b]:=strtoint(iif.ReadString(H,'vent_disablehightemp_'+inttostr(b),'0'));
+    hventhightemp:=strtoint(iif.ReadString(H,'vent_hightemp','0'));
     mhummax:=strtoint(iif.ReadString(M,'humidity_max','0'));
     mhummin:=strtoint(iif.ReadString(M,'humidity_min','0'));
     mhumoff:=strtoint(iif.ReadString(M,'humidifier_off','0'));
@@ -87,6 +90,11 @@ begin
     for b:=10 to 23 do
       mventdislowtemp[b]:=strtoint(iif.ReadString(M,'vent_disablelowtemp_'+inttostr(b),'0'));
     mventlowtemp:=strtoint(iif.ReadString(M,'vent_lowtemp','0'));
+    for b:=0 to 9 do
+      mventdishightemp[b]:=strtoint(iif.ReadString(M,'vent_disablehightemp_0'+inttostr(b),'0'));
+    for b:=10 to 23 do
+      mventdishightemp[b]:=strtoint(iif.ReadString(M,'vent_disablehightemp_'+inttostr(b),'0'));
+    mventhightemp:=strtoint(iif.ReadString(M,'vent_hightemp','0'));
   except
     loadinifile:=false;
   end;

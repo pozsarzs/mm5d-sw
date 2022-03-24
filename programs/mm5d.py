@@ -382,15 +382,20 @@ def autooffport4():
 def getexttemp():
   writetodebuglog("i","Get external temperature from internet.")
   writecodetodisplay("D","05")
-  response=requests.get(base_url+"appid="+api_key+"&q="+city_name)
-  x=response.json()
-  if x["cod"]!="404":
-    y=x["main"] 
-    current_temperature=y["temp"]
-    current_temperature=round(current_temperature-273)
-    writetodebuglog("i","External temperature: "+str(current_temperature)+" degree Celsius")
-    return current_temperature
-  else:
+  try:
+    response=requests.get(base_url+"appid="+api_key+"&q="+city_name)
+    x=response.json()
+    if x["cod"]!="404":
+      y=x["main"] 
+      current_temperature=y["temp"]
+      current_temperature=round(current_temperature-273)
+      writetodebuglog("i","External temperature: "+str(current_temperature)+" degree Celsius")
+      return current_temperature
+    else:
+      writetodebuglog("w","Cannot get external temperature from internet.")
+      writecodetodisplay("W","01")
+      return 18
+  except:
     writetodebuglog("w","Cannot get external temperature from internet.")
     writecodetodisplay("W","01")
     return 18
@@ -629,7 +634,7 @@ with daemon.DaemonContext() as context:
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
       writecodetodisplay("D","09")
-      if (int(time.strftime("%M"))==3):
+      if (int(time.strftime("%M"))==5):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
       aop4=autooffport4()

@@ -10,4 +10,5 @@ GitHub: <https://github.com/pozsarzs/mm5d-sw>
  - version:            v0.5
  - language:           en (cs, de, fr, hr, hu, pl, ro, ru, sk, sl, sr, uk)
  - licence:            EUPL v1.1
- - user interface:     CUI via SSH and serial console, and webpage
+ - user interface:     CLI, TUI, WUI
+ - remote access:      HTTP, SSH, serial console

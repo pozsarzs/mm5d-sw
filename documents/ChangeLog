@@ -1,53 +1,33 @@
 2022-03-11 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
-	*  0.5: Following files were modified (only important and operational changes).
-	*  README.md: modified
+	*  0.5: Following important files were modified (only important and operational changes).
 	*  binary/mm3d-editenvirconf.bin: modified
-	*  document/ChangeLog: modified
-	*  document/copyright: new file
-	*  document/INSTALL: modified
-	*  document/README: modified
-	*  document/VERSION: modified
 	*  programs/mm5d.py: modified
 	*  scripts/mm5d-override: modified
 	*  source/*: modified
 	*  webpage/cgi-bin/getenvirconf: modified
 
 2022-01-27 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
-	*  0.4: Following files were modified (only important and operational changes).
+	*  0.4: Following important files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
 	*  uninstall: modified
-	*  README.md: modified
-	*  document/ChangeLog: modified
-	*  document/copyright: new file
-	*  document/INSTALL: modified
-	*  document/README: modified
-	*  document/VERSION: modified
 	*  manuals/getenvirconf.cgi.7.gz: new file
-	*  manuals/*: modified
 	*  messages/*: modified
 	*  scripts/mm5d-updatestartpage: modified
 	*  scripts/mm5d-webpage: modified
 	*  webpage/cgi-bin/getenvirconf: new file
 
 2021-10-31 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
-	*  0.3: Following files were modified (only important and operational changes).
+	*  0.3: Following important files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
 	*  uninstall: modified
-	*  README.md: modified
-	*  document/ChangeLog: modified
-	*  document/copyright: new file
-	*  document/INSTALL: modified
-	*  document/README: modified
-	*  document/VERSION: modified
 	*  manuals/getdata.cgi.7.gz: new file
 	*  manuals/matrixdisplay.py.1.gz: renamed to *.8.gz
 	*  manuals/mm5d-getpage.cgi.7.gz: new file
 	*  manuals/mm5d.py.1.gz: renamed to *.8.gz
 	*  manuals/mm5d-statusofdaemon.1.gz: new file
 	*  manuals/mm5d-webpage.1.gz: new file
-	*  manuals/*: modified
 	*  messages/*: modified
 	*  scripts/mm5d-statusofdaemon: new file
 	*  scripts/mm5d-webpage: new file
@@ -61,16 +41,8 @@
                 snapshots from IP cameras, the number of log rows can be set.
 	*  install: modified
 	*  prepare: modified
-	*  README: modified
-	*  document/INSTALL: modified
-	*  document/README: modified
-	*  document/VERSION: modified
 	*  manuals/mm5d-creatediagrams.1.gz: new file
 	*  manuals/mm5d-getsnapshots.1.gz: new file
-	*  manuals/*: modified
-	*  messages/mm5d_??.msg: modified
-	*  packaging/*/*: modified
-	*  packaging/prepare/*/*: new files
 	*  scripts/mm5d-creatediagrams: new file
 	*  scripts/mm5d-getsnapshots: new file
 	*  settings/mm5d/mm5d.ini: modified
@@ -78,3 +50,6 @@
 	*  webpage/cgi-bin/getpage.cgi: modified
 	*  webpage/header_*.html: modified
 	*  webpage/pics/ants.jpg: new file
+
+2020-04-26 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+	*  0.1: initial version

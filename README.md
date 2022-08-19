@@ -7,7 +7,7 @@ GitHub: <https://github.com/pozsarzs/mm5d-sw>
 
  - architecture:       armhf
  - operation system:   Raspberry Pi OS (formerly Raspbian GNU/Linux)
- - version:            v0.5
+ - version:            v0.5.1
  - language:           en (cs, de, fr, hr, hu, pl, ro, ru, sk, sl, sr, uk)
  - licence:            EUPL v1.1
  - user interface:     CLI, TUI, WUI

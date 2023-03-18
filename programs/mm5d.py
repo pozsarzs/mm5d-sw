@@ -29,7 +29,7 @@ import sys
 import time
 import Adafruit_DHT
 import RPi.GPIO as GPIO
-from time import gmtime, strftime
+from time import localtime, strftime
 
 global file_pipe
 file_pipe="/var/tmp/matrixdisplayfifo"
@@ -89,7 +89,7 @@ def writetodebuglog(level,text):
     if level=="e":
       lv="ERROR  "
     debugfile=dir_log+time.strftime("debug-%Y%m%d.log")
-    dt=(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+    dt=(strftime("%Y-%m-%d %H:%M:%S", localtime()))
     try:
       with open(debugfile, "a") as d:
         d.write(dt+'  '+lv+' '+text+'\n')
@@ -321,7 +321,7 @@ def lckfile(mode):
 
 # write data to log with timestamp
 def writelog(temperature,humidity,inputs,outputs):
-  dt=(strftime("%Y-%m-%d,%H:%M",gmtime()))
+  dt=(strftime("%Y-%m-%d,%H:%M",localtime()))
   lckfile(1)
   writetodebuglog("i","Writing data to log.")
   writecodetodisplay("D","13")
@@ -382,15 +382,20 @@ def autooffport4():
 def getexttemp():
   writetodebuglog("i","Get external temperature from internet.")
   writecodetodisplay("D","05")
-  response=requests.get(base_url+"appid="+api_key+"&q="+city_name)
-  x=response.json()
-  if x["cod"]!="404":
-    y=x["main"] 
-    current_temperature=y["temp"]
-    current_temperature=round(current_temperature-273)
-    writetodebuglog("i","External temperature: "+str(current_temperature)+" degree Celsius")
-    return current_temperature
-  else:
+  try:
+    response=requests.get(base_url+"appid="+api_key+"&q="+city_name)
+    x=response.json()
+    if x["cod"]!="404":
+      y=x["main"] 
+      current_temperature=y["temp"]
+      current_temperature=round(current_temperature-273)
+      writetodebuglog("i","External temperature: "+str(current_temperature)+" degree Celsius")
+      return current_temperature
+    else:
+      writetodebuglog("w","Cannot get external temperature from internet.")
+      writecodetodisplay("W","01")
+      return 18
+  except:
     writetodebuglog("w","Cannot get external temperature from internet.")
     writecodetodisplay("W","01")
     return 18
@@ -493,7 +498,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if err1==1:
       writecodetodisplay("E","51")
     # overcurrent protection
-    err2=1 if in2==1 else 0
+    err2=0 if in2==1 else 1
     if err2==1:
       writecodetodisplay("E","52")
     # bad water pressure error light
@@ -518,7 +523,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if err1==1:
       writecodetodisplay("E","51")
     # MM4A overcurrent proctection
-    err2=0 if in2==0 else 1
+    err2=0 if in2==1 else 1
     if err2==1:
       writecodetodisplay("E","52")
     # bad water pressure error light
@@ -549,7 +554,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     writecodetodisplay("W","52")
   # - red -
   # MM4A overcurrent proctection
-  if in2==1:
+  if in2==0:
     twrr=1
   # bad water pressure error light
   if in3==0:
@@ -629,7 +634,7 @@ with daemon.DaemonContext() as context:
       # check values and set outputs
       writetodebuglog("i","Check values and set outputs.")
       writecodetodisplay("D","09")
-      if (int(time.strftime("%M"))==3):
+      if (int(time.strftime("%M"))==5):
         exttemp=getexttemp()
       outputs=control(temperature,humidity,inputs,exttemp,wrongvalues)
       aop4=autooffport4()

@@ -33,21 +33,22 @@ loadconfiguration()
 viewlogfile()
 {
   echo "Content of log file:"
-  echo "+------------+-------+------+------+---------+---------+---------+"
-  echo "|    Date    | Time  | Temp |  RH  | Inputs  | Outputs | Errors  |"
-  echo "+------------+-------+------+------+---------+---------+---------+"
+  echo "+------------+-------+------+------+------+---------+---------+---------+"
+  echo "|    Date    | Time  | Temp |  RH  | Mode | Inputs  | Outputs | Errors  |"
+  echo "+------------+-------+------+------+------+---------+---------+---------+"
   DATAFILE="$DIR_LOG/mm5d.log"
   OLDIFS=$IFS
   IFS=,
   [ ! -f $DATAFILE ] && { echo "Log file (mm5d.log) is not exist!"; exit 2; }
-  while read C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16
+  while read C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16 C17
   do
     if [ ${#C3} -eq "1" ]; then C3=" $C3"; fi
     if [ ${#C4} -eq "1" ]; then C4="  $C4"; fi
     if [ ${#C4} -eq "2" ]; then C4=" $C4"; fi
-      echo "| $C1 | $C2 | $C3°C | $C4% | $C5 $C6 $C7 $C8 | $C9 $C10 $C11 $C12 | $C13 $C14 $C15 $C16 |"
+    if [ ${#C5} -eq "1" ]; then C5="H"; else C5="M"; fi
+      echo "| $C1 | $C2 | $C3°C | $C4% |  $C5   | $C6 $C7 $C8 $C9 | $C10 $C11 $C12 $C13 | $C14 $C15 $C16 $C17 |"
   done < $DATAFILE
-  echo "+------------+-------+------+------+---------+---------+---------+"
+  echo "+------------+-------+------+------+------+---------+---------+---------+"
   IFS=$OLDIFS
 }
 

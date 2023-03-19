@@ -221,18 +221,20 @@ if ( $serialnumber eq $usr_uid )
         print "    <time>$columns[1]</time>\n";
         print "    <temperature>$columns[2]</temperature>\n";
         print "    <humidity>$columns[3]</humidity>\n";
-        print "    <input1>$columns[4]</input1>\n";
-        print "    <input2>$columns[5]</input2>\n";
-        print "    <input3>$columns[6]</input3>\n";
-        print "    <input4>$columns[7]</input4>\n";
-        print "    <errorlight1>$columns[12]</errorlight1>\n";
-        print "    <errorlight2>$columns[13]</errorlight2>\n";
-        print "    <errorlight3>$columns[14]</errorlight3>\n";
-        print "    <errorlight4>$columns[15]</errorlight4>\n";
-        print "    <output1>$columns[8]</output1>\n";
-        print "    <output2>$columns[9]</output2>\n";
-        print "    <output3>$columns[10]</output3>\n";
-        print "    <output4>$columns[11]</output4>\n";
+        if ($columns[4] eq 1) { $columns[4] = "H" } else { $columns[4] = "M" };
+        print "    <operationmode>$columns[4]</operationmode>\n";
+        print "    <input1>$columns[5]</input1>\n";
+        print "    <input2>$columns[6]</input2>\n";
+        print "    <input3>$columns[7]</input3>\n";
+        print "    <input4>$columns[8]</input4>\n";
+        print "    <errorlight1>$columns[13]</errorlight2>\n";
+        print "    <errorlight2>$columns[14]</errorlight3>\n";
+        print "    <errorlight3>$columns[15]</errorlight4>\n";
+        print "    <errorlight4>$columns[16]</errorlight4>\n";
+        print "    <output1>$columns[9]</output1>\n";
+        print "    <output2>$columns[10]</output2>\n";
+        print "    <output3>$columns[11]</output3>\n";
+        print "    <output4>$columns[12]</output4>\n";
         print "  </environment>\n";
         print "</xml>\n";
       } else
@@ -241,6 +243,7 @@ if ( $serialnumber eq $usr_uid )
         print "$columns[1]\n";
         print "$columns[2]\n";
         print "$columns[3]\n";
+        if ($columns[4] eq 1) { $columns[4] = "H" } else { $columns[4] = "M" };
         print "$columns[4]\n";
         print "$columns[5]\n";
         print "$columns[6]\n";
@@ -253,6 +256,7 @@ if ( $serialnumber eq $usr_uid )
         print "$columns[13]\n";
         print "$columns[14]\n";
         print "$columns[15]\n";
+        print "$columns[16]\n";
       }
       last;
     }

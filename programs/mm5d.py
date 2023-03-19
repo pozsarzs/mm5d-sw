@@ -333,7 +333,7 @@ def writelog(temperature,humidity,inputs,outputs):
       first_line=f.readline()
       lines=f.readlines()
       f.seek(0)
-      f.write(dt+','+str(temperature)+','+str(humidity)+','+
+      f.write(dt+','+str(temperature)+','+str(humidity)+','+inputs[4]+','+
               inputs[0]+','+inputs[1]+','+inputs[2]+','+inputs[3]+','+
               outputs[0]+','+outputs[1]+','+outputs[2]+','+outputs[3]+','+
               outputs[4]+','+outputs[5]+','+outputs[6]+','+outputs[7]+'\n')
@@ -575,6 +575,7 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   return outputs
 
 # main program
+global operationmode
 writetexttodisplay("MM5D")
 time.sleep(1)
 writetexttodisplay("init...")

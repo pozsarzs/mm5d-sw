@@ -235,6 +235,10 @@ if ( $serialnumber eq $usr_uid )
         print "    <output2>$columns[10]</output2>\n";
         print "    <output3>$columns[11]</output3>\n";
         print "    <output4>$columns[12]</output4>\n";
+        if ($columns[17] eq 1) { $columns[17] = "0" } else { $columns[17] = "1" };
+        print "    <greenlight>$columns[17]</greenlight>\n";
+        print "    <yellowlight>$columns[18]</yellowlight>\n";
+        print "    <redlight>$columns[19]</redlight>\n";
         print "  </environment>\n";
         print "</xml>\n";
       } else
@@ -257,6 +261,10 @@ if ( $serialnumber eq $usr_uid )
         print "$columns[14]\n";
         print "$columns[15]\n";
         print "$columns[16]\n";
+        if ($columns[17] eq 1) { $columns[17] = "0" } else { $columns[17] = "1" };
+        print "$columns[17]\n";
+        print "$columns[18]\n";
+        print "$columns[19]\n";
       }
       last;
     }

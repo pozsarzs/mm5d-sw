@@ -1,6 +1,8 @@
-Useable variables in control function of mm5d.py program
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Used variables in control function of mm5d.py program
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Values of configuration:
+
   htemperature_max	integer		maximal temperature
   hheater_off		integer		switch off heater temperature
   hheater_on		integer		switch on heater temperature
@@ -40,18 +42,25 @@ Values of configuration:
   mvent_lowtemp		integer		switch off ventilator temperature
   mvent_disablelowtemp	list of int.	hours when disable vent. if cold outside
 
+
 Other values:
+
   h			integer		hours of time
   m			integer		minutes of time
 
+
+
 Input values:
+
   humidity		integer		measured relative humidity in %
   temperature		integer		measured temperature in degree Celsius
   wrongvalues		integer		measured data is invalid
   in1-4			integer		status of input ports #1-4 (1: closed)
   swi			integer		status of mode switch (1: closed)
 
-Output values
+
+Output values:
+
   out1-7		integer		out ports #1-4, 1: switch on relay
   err1-4		integer		error lights #1-4, 1: switch on LED
   twrg			integer		green signal light, 1: switch on
@@ -59,4 +68,4 @@ Output values
   twrr			integer		red signal light, 1: switch on
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

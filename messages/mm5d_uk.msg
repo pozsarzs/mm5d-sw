@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.6 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_uk.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -39,7 +39,7 @@ msg31=Зростання гіф
 msg32=Вирощування грибів
 msg33=обігрівач
 msg34=зволожувач повітря
-msg35 = вентилятор
+msg35=вентилятор
 msg36=лампа
 msg37=увімкнено
 msg38=вимкнено
@@ -47,3 +47,6 @@ msg39=мінімум
 msg40=максимум
 msg41=вимкнути живлення
 msg42=заплановано
+msg43=Режим
+msg44=Стан
+

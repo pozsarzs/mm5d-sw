@@ -4,25 +4,25 @@ Before install this program please install Raspberry Pi OS to SD-CARD.
 Do not forget to set hostname and network and enable SPI module.
 
 Installation
-~~~~~~~~~~~~
-  $ tar -xzf mm5d-sw-0.5.1-armhf.tar.gz
+------------
+  $ tar -xzf mm5d-sw-0.6-armhf.tar.gz
   $ cd mm5d-sw
   $ sudo raspi-config
   $ ./prepare
   $ ./install
 
 Set program
-~~~~~~~~~~~
+-----------
   $ mm5d-editmainconf
 
 Set environment characteristics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
   $ mm5d-editenvirconf
 
 Removing
-~~~~~~~~
+--------
   $ cd mm5d-sw
   $ ./uninstall
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

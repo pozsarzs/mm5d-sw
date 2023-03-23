@@ -336,7 +336,8 @@ def writelog(temperature,humidity,inputs,outputs):
       f.write(dt+','+str(temperature)+','+str(humidity)+','+inputs[4]+','+
               inputs[0]+','+inputs[1]+','+inputs[2]+','+inputs[3]+','+
               outputs[0]+','+outputs[1]+','+outputs[2]+','+outputs[3]+','+
-              outputs[4]+','+outputs[5]+','+outputs[6]+','+outputs[7]+'\n')
+              outputs[4]+','+outputs[5]+','+outputs[6]+','+outputs[7]+','+
+              outputs[8]+','+outputs[9]+','+outputs[10]+'\n')
       f.write(first_line)
       f.writelines(lines)
       f.close()
@@ -539,11 +540,13 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     if err4==1:
       writecodetodisplay("E","54")
   # -----------------------------------------------------------------------------
+  # In this case, we use twrg output to restart (off and on again) T/RH sensor.
+  # The green light is switch by NC contacts of the twry and twrr relays.
   # switch on/off tower signal lights:
-  twrg=1
-  twry=0
-  twrr=0
-  # - green+yellow -
+  twrg=0 # 0: on
+  twry=0 # 1: on
+  twrr=0 # 1: on
+  # - yellow -
   # MM4A manual control
   if in1==1:
     twry=1
@@ -552,6 +555,9 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   if in4==0:
     twry=1
     writecodetodisplay("W","52")
+  # switch of green lights
+  if twry==1:
+    twrg=1
   # - red -
   # MM4A overcurrent proctection
   if in2==0:
@@ -564,10 +570,8 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
     twrr=1
   # switch of other lights
   if twrr==1:
-    twrg=0
+    twrg=1
     twry=0
-  # comment this line if you use green light
-  twrg=0
   # -----------------------------------------------------------------------------
   outputs=str(out1)+str(out2)+str(out3)+str(out4)+ \
           str(err1)+str(err2)+str(err3)+str(err4)+ \
@@ -658,7 +662,8 @@ with daemon.DaemonContext() as context:
       GPIO.output(prt_err2,not int(outputs[5]))
       GPIO.output(prt_err3,not int(outputs[6]))
       GPIO.output(prt_err4,not int(outputs[7]))
-      GPIO.output(prt_twrgreen,not int(outputs[8]))
+      # next line is commented, because the twrg output is used to reset the T/RH sensor
+      # GPIO.output(prt_twrgreen,not int(outputs[8]))
       GPIO.output(prt_twryellow,not int(outputs[9]))
       GPIO.output(prt_twrred,not int(outputs[10]))
       # auto-off 4th port

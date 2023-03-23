@@ -1,7 +1,7 @@
 #!/bin/bash
 # +----------------------------------------------------------------------------+
-# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.6 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d-viewlog                                                               |
 # | View log file                                                              |
 # +----------------------------------------------------------------------------+
@@ -33,22 +33,23 @@ loadconfiguration()
 viewlogfile()
 {
   echo "Content of log file:"
-  echo "+------------+-------+------+------+------+---------+---------+---------+"
-  echo "|    Date    | Time  | Temp |  RH  | Mode | Inputs  | Outputs | Errors  |"
-  echo "+------------+-------+------+------+------+---------+---------+---------+"
+  echo "+------------+-------+------+------+------+---------+---------+---------+--------+"
+  echo "|    Date    | Time  | Temp |  RH  | Mode | Inputs  | Outputs | Errors  | Status |"
+  echo "+------------+-------+------+------+------+---------+---------+---------+--------+"
   DATAFILE="$DIR_LOG/mm5d.log"
   OLDIFS=$IFS
   IFS=,
   [ ! -f $DATAFILE ] && { echo "Log file (mm5d.log) is not exist!"; exit 2; }
-  while read C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16 C17
+  while read C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16 C17 C18 C19 C20
   do
     if [ ${#C3} -eq "1" ]; then C3=" $C3"; fi
     if [ ${#C4} -eq "1" ]; then C4="  $C4"; fi
     if [ ${#C4} -eq "2" ]; then C4=" $C4"; fi
-    if [ ${#C5} -eq "1" ]; then C5="H"; else C5="M"; fi
-      echo "| $C1 | $C2 | $C3°C | $C4% |  $C5   | $C6 $C7 $C8 $C9 | $C10 $C11 $C12 $C13 | $C14 $C15 $C16 $C17 |"
+    if [ ${C5} -eq "1" ]; then C5="H"; else C5="M"; fi
+    if [ ${C18} -eq "1" ]; then C18="0"; else C18="1"; fi
+      echo "| $C1 | $C2 | $C3°C | $C4% |  $C5   | $C6 $C7 $C8 $C9 | $C10 $C11 $C12 $C13 | $C14 $C15 $C16 $C17 | $C18 $C19 $C20  |"
   done < $DATAFILE
-  echo "+------------+-------+------+------+------+---------+---------+---------+"
+  echo "+------------+-------+------+------+------+---------+---------+---------+--------+"
   IFS=$OLDIFS
 }
 

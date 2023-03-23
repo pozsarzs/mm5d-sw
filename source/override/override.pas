@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.6 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | override.pas                                                             | }
 { | Full-screen program for override output states                           | }
 { +--------------------------------------------------------------------------+ }
@@ -27,8 +27,6 @@ var
   bottom:  byte;
   outputs: array[1..4] of string;
 const
-  VERSION: string='v0.5';
-  PRGNAME: string='MM5D-Override';
   MAXPOSY: byte=6;
   MINPOSX: byte=30;
   MINPOSY: byte=3;
@@ -37,8 +35,9 @@ const
                                   '<F1> off  <F2> on  <F3> neutral  <Enter> accept  <Esc> cancel',
                                   '<Esc> cancel');
 
+{$I config.pas}
 {$I incloadoutfiles.pas}
-{$I incpage1screen.pas}
+{$I incpage01screen.pas}
 {$I incsaveoutfiles.pas}
 
 // make base interface
@@ -146,13 +145,13 @@ end;
 begin
   textcolor(lightgray); textbackground(black);
   if paramcount=0 then
-    quit(1,false,'Usage:'+#10+'    '+paramstr(0)+' /path_of_out_files/');
+    quit(0,false,'Usage:'+#10+'    '+paramstr(0)+' /path_of_out_files/');
   if not terminalsize
-    then quit(2,false,'ERROR: Minimal terminal size is 80x25!');
+    then quit(12,false,'ERROR: Minimal terminal size is 80x25!');
   loadoutfiles(paramstr(1));
   if not setvalues
-    then quit(5,true,'Files are not saved.');
+    then quit(0,true,'Files are not saved.');
   if not saveoutfiles(paramstr(1))
-    then quit(4,true,'ERROR: Cannot write files!');
+    then quit(8,true,'ERROR: Cannot write files!');
   quit(0,true,'');
 end.

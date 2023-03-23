@@ -127,6 +127,7 @@ my $msg27 = "switched off";
 my $msg28 = "To set override, please login into unit via SSH, and use <i>mm5d-override</i> command!";
 my $msg29 = "To set environment characteristic, please login into unit via SSH, and use <i>mm5d-editenvirconf</i> command!";
 my $msg43 = "Mode";
+my $msg44 = "Status";
 my $msgfile = "$dir_msg/$lang/mm5d.msg";
 open MSG, "< $msgfile";
 while(<MSG>)
@@ -169,6 +170,7 @@ while(<MSG>)
     case "msg28" { $msg28 = $columns[1]; }
     case "msg29" { $msg29 = $columns[1]; }
     case "msg43" { $msg43 = $columns[1]; }
+    case "msg44" { $msg44 = $columns[1]; }
   }
 }
 close MSG;
@@ -247,6 +249,7 @@ print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th><th
 print "          <th>$msg16 #1</th><th>$msg16 #2</th><th>$msg16 #3</th><th>$msg16 #4</th>";
 print "          <th>$msg17 #1</th><th>$msg17 #2</th><th>$msg17 #3</th><th>$msg17 #4</th>";
 print "          <th>$msg18 #1</th><th>$msg18 #2</th><th>$msg18 #3</th><th>$msg18 #4</th>";
+print "          <th>$msg44</th>";
 print "        </tr>";
 open DATA, "< $datafile" or die "Cannot open log file!";
 while (<DATA>)
@@ -279,6 +282,9 @@ while (<DATA>)
   if ($columns[14] eq 1) { $columns[14] = $red } else { $columns[14] = $dark };
   if ($columns[15] eq 1) { $columns[15] = $red } else { $columns[15] = $dark };
   if ($columns[16] eq 1) { $columns[16] = $red } else { $columns[16] = $dark };
+  if ($columns[17] eq 0) { $columns[17] = $green } else { $columns[17] = $dark };
+  if ($columns[18] eq 1) { $columns[18] = $yellow } else { $columns[18] = $dark };
+  if ($columns[19] eq 1) { $columns[19] = $red } else { $columns[19] = $dark };
   print "          <td>$columns[4]</td>";
   print "          <td>$columns[5]</td>";
   print "          <td>$columns[6]</td>";
@@ -292,6 +298,7 @@ while (<DATA>)
   print "          <td>$columns[14]</td>";
   print "          <td>$columns[15]</td>";
   print "          <td>$columns[16]</td>";
+  print "          <td>$columns[17] $columns[18] $columns[19] </td>";
   print "        </tr>";
   last;
 }
@@ -404,6 +411,7 @@ print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th><th
 print "          <th>$msg16 #1</th><th>$msg16 #2</th><th>$msg16 #3</th><th>$msg16 #4</th>";
 print "          <th>$msg17 #1</th><th>$msg17 #2</th><th>$msg17 #3</th><th>$msg17 #4</th>";
 print "          <th>$msg18 #1</th><th>$msg18 #2</th><th>$msg18 #3</th><th>$msg18 #4</th>";
+print "          <th>$msg44</th>";
 print "        </tr>";
 my $line = 0;
 open DATA, "< $datafile" or die "Cannot open log file!";
@@ -437,6 +445,9 @@ while (<DATA>)
   if ($columns[14] eq 1) { $columns[14] = $red } else { $columns[14] = $dark };
   if ($columns[15] eq 1) { $columns[15] = $red } else { $columns[15] = $dark };
   if ($columns[16] eq 1) { $columns[16] = $red } else { $columns[16] = $dark };
+  if ($columns[17] eq 0) { $columns[17] = $green } else { $columns[17] = $dark };
+  if ($columns[18] eq 1) { $columns[18] = $yellow } else { $columns[18] = $dark };
+  if ($columns[19] eq 1) { $columns[19] = $red } else { $columns[19] = $dark };
   print "          <td>$columns[4]</td>";
   print "          <td>$columns[5]</td>";
   print "          <td>$columns[6]</td>";
@@ -450,6 +461,7 @@ while (<DATA>)
   print "          <td>$columns[14]</td>";
   print "          <td>$columns[15]</td>";
   print "          <td>$columns[16]</td>";
+  print "          <td>$columns[17] $columns[18] $columns[19] </td>";
   print "        </tr>";
   $line = $line + 1;
   if ($line eq $web_lines) { last };

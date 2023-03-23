@@ -1,6 +1,6 @@
 # +----------------------------------------------------------------------------+
-# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.6 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d_ru.msg                                                                |
 # | message file                                                               |
 # +----------------------------------------------------------------------------+
@@ -47,3 +47,6 @@ msg39=минимум
 msg40=максимум
 msg41=отключить питание
 msg42=время
+msg43=Режим
+msg44=Статус
+

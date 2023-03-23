@@ -1,8 +1,8 @@
 MM5D - Growing house controlling and remote monitoring system
 -------------------------------------------------------------
 
-1. About software
-~~~~~~~~~~~~~~~~~
+About software
+--------------
   It is an internal software for MM5D Raspberry Pi based controlling and
 monitoring equipment. It measures temperature and humidity, checks
 programmable inputs, outputs and error lights. You can view actual status
@@ -16,16 +16,16 @@ Requirements
             Perl,
             Python3.
 
-2. How to get installer package for my OS?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to get installer package for my OS?
+---------------------------------------
 a. Visit homepage (see later) to download installer packages:
 
-  Raspbian OS: mm5d-sw-0.5.1-armhf.tar.gz
+  Raspbian OS: mm5d-sw-0.6-armhf.tar.gz
 
-               mm5d-eec_0.5.1-1_armhf.deb
-               mm5d-prepare_0.5.1-1_all.deb
-               mm5d-sw_0.5.1-1_armhf.deb
-               mm5d-web_0.5.1-1_all.deb
+               mm5d-eec_0.6-1_armhf.deb
+               mm5d-prepare_0.6-1_all.deb
+               mm5d-sw_0.6-1_armhf.deb
+               mm5d-web_0.6-1_all.deb
 
 b. Download from Github
 
@@ -43,8 +43,8 @@ c. Download from Debian repository
   $ mm5d-prepare
   $ sudo apt-get install mm5d-sw mm5d-eec mm5d-web
 
-3. Contact
-~~~~~~~~~~
+Contact
+-------
    Homepage:             <http://www.szerafingomba.hu/softwares/>
    Author:               Pozsár Zsolt
    E-mail:               <pozsar.zsolt@szerafingomba.hu>
@@ -52,4 +52,4 @@ c. Download from Debian repository
    Mobile:               +36 30/249-5030
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

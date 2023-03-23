@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.6 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editmainconf.pas                                                         | }
 { | Full-screen program for edit mm5d.ini file                               | }
 { +--------------------------------------------------------------------------+ }
@@ -41,8 +41,6 @@ var
   usr_dt:                                  array[1..3] of string;
   usr_nam, usr_uid:                        string;
 const
-  VERSION: string='v0.5';
-  PRGNAME: string='MM5D-EditMainConf';
   D:       string='directories';
   E:       string='sensors';
   G:       string='log';
@@ -89,16 +87,16 @@ const
                                   '<Tab>/<Up>/<Down> move  <Enter> edit  <Home>/<PgUp>/<PgDn>/<End> paging  <Esc> exit');
   CODE:    array[3..15] of string=('cs','de','en','fr','hr','hu','pl','ro','ru','sk',
                                    'sl','sr','uk');
-
-{$I incpage1screen.pas}
-{$I incpage2screen.pas}
-{$I incpage3screen.pas}
-{$I incpage4screen.pas}
-{$I incpage5screen.pas}
-{$I incpage6screen.pas}
-{$I incpage7screen.pas}
-{$I incpage8screen.pas}
-{$I incpage9screen.pas}
+{$I config.pas}
+{$I incpage01screen.pas}
+{$I incpage02screen.pas}
+{$I incpage03screen.pas}
+{$I incpage04screen.pas}
+{$I incpage05screen.pas}
+{$I incpage06screen.pas}
+{$I incpage07screen.pas}
+{$I incpage08screen.pas}
+{$I incpage09screen.pas}
 {$I incloadinifile.pas}
 {$I incsaveinifile.pas}
 
@@ -491,14 +489,14 @@ end;
 begin
   textcolor(lightgray); textbackground(black);
   if paramcount=0 then
-    quit(1,false,'Usage:'+#10+'    '+paramstr(0)+' /path/mm5d.ini');
+    quit(0,false,'Usage:'+#10+'    '+paramstr(0)+' /path/mm5d.ini');
   if not terminalsize
-    then quit(2,false,'ERROR: Minimal terminal size is 80x25!');
+    then quit(12,false,'ERROR: Minimal terminal size is 80x25!');
   if not loadinifile(paramstr(1))
-    then quit(3,false,'ERROR: Cannot read '+paramstr(1)+' file!');
+    then quit(1,false,'ERROR: Cannot read '+paramstr(1)+' file!');
   if not setvalues
-    then quit(5,true,'File '+paramstr(1)+' is not saved.');
+    then quit(0,true,'File '+paramstr(1)+' is not saved.');
   if not saveinifile(paramstr(1))
-    then quit(4,true,'ERROR: Cannot write '+paramstr(1)+' file!');
+    then quit(8,true,'ERROR: Cannot write '+paramstr(1)+' file!');
   quit(0,true,'');
 end.

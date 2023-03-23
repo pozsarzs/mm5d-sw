@@ -1,0 +1,42 @@
+Content of log files
+~~~~~~~~~~~~~~~~~~~~
+
+mm5d.log:
+
+  Example line: "2023-03-20,18:23,11,98,1,0,1,1,1,0,0,1,0,1,0,0,1,0,0,0"
+
+  Columns:
+    1:  date
+    2:  time
+    3:  temperature in °C
+    4:  relative humidity
+    5:  operation mode                                0: mushroom 1: hyphae
+    6:  status of input #1 (MM4A manual control)      0: auto     1: manual
+    7:  status of input #2 (MM4A overcurrent breaker) 0: opened   1: closed
+    8:  status of input #3 (water pressure sensor)    0: opened   1: closed
+    9:  status of input #4 (opened door/window)       0: opened   1: closed
+   10:  status of output #1 (heating)                 0: off      1: on
+   11:  status of output #2 (lighting)                0: off      1: on
+   12:  status of output #3 (ventilation)             0: off      1: on
+   13:  status of output #4 (humidifying)             0: off      1: on
+   14:  status of error light #1 (bad temperature)    0: good     1: bad
+   15:  status of error light #2 (breaker)            0: good     1: bad
+   16:  status of error light #3 (water pressure)     0: good     1: bad
+   17:  status of error light #4 (bad humidity)       0: good     1: bad
+   18:  status of green light                         0: on       1: off
+   19:  status of yellow light                        0: off      1: on
+   20:  status of red light                           0: off      1: on
+
+
+debug-YYMMDD.log:
+
+  Example line: "2020-09-19 21:01:33  INFO Initializing I/O ports."
+
+  Columns:
+    1:  date
+    2:  time
+    3:  level of record: INFO | WARNING | ERROR
+    4:  content of record
+
+--------------------------------------------------------------------------------
+ MM8D * Copyright (C) 2020-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

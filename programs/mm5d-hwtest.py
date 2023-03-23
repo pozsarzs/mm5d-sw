@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # +----------------------------------------------------------------------------+
-# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2022 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.6 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2023 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | mm5d-hwtest.py                                                             |
 # | Hardware test program                                                      |
 # +----------------------------------------------------------------------------+
@@ -15,7 +15,7 @@
 
 # Exit codes:
 #   0: normal exit
-#   1: configuration file is missing
+#   1: cannot open configuration file
 
 import Adafruit_DHT
 import configparser
@@ -140,7 +140,7 @@ while True:
   if selection is "Q" or selection is "q":
         print(" * Quitting.")
         GPIO.cleanup()
-        sys.exit()
+        sys.exit(0)
   if selection is "1":
     print(" * Check input ports")
     print("   used ports:")

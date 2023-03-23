@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.6 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | config.pas(.in)                                                          | }
 { | Setting for source code                                                  | }
 { +--------------------------------------------------------------------------+ }
@@ -15,4 +15,4 @@
 const
   VERSION: string='@version@';
   PRGNAME: string='MM5D-EditEnvirConf';
-  COPYRIGHT: string='Copyright (C) 2019-2022 Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>';
+  COPYRIGHT: string='@copyright@';

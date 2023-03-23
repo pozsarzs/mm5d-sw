@@ -1,6 +1,6 @@
 { +--------------------------------------------------------------------------+ }
-{ | MM5D v0.5 * Growing house controlling and remote monitoring system       | }
-{ | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
+{ | MM5D v0.6 * Growing house controlling and remote monitoring system       | }
+{ | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     | }
 { | editenvirconf.pas                                                        | }
 { | Full-screen program for edit envir.ini file                              | }
 { +--------------------------------------------------------------------------+ }
@@ -91,15 +91,15 @@ const
                                                                  (3,0,0,0,0,0));
 
 {$I config.pas}
-{$I incpage1screen.pas}
-{$I incpage2screen.pas}
-{$I incpage3screen.pas}
-{$I incpage4screen.pas}
-{$I incpage5screen.pas}
-{$I incpage6screen.pas}
-{$I incpage7screen.pas}
-{$I incpage8screen.pas}
-{$I incpage9screen.pas}
+{$I incpage01screen.pas}
+{$I incpage02screen.pas}
+{$I incpage03screen.pas}
+{$I incpage04screen.pas}
+{$I incpage05screen.pas}
+{$I incpage06screen.pas}
+{$I incpage07screen.pas}
+{$I incpage08screen.pas}
+{$I incpage09screen.pas}
 {$I incpage10screen.pas}
 {$I incpage11screen.pas}
 {$I incloadinifile.pas}

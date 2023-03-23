@@ -1,6 +1,6 @@
 dnl +--------------------------------------------------------------------------+
-dnl | MM5D v0.5 * Growing house controlling and remote monitoring system       |
-dnl | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     |
+dnl | MM5D v0.6 * Growing house controlling and remote monitoring system       |
+dnl | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     |
 dnl | configure.in                                                             |
 dnl | Autoconf input file for unix-like systems                                |
 dnl +--------------------------------------------------------------------------+
@@ -35,7 +35,9 @@ AC_SUBST(os)
 AC_SUBST(rm)
 AC_SUBST(version)
 AC_OUTPUT(Makefile.global\
-          editenvirconf/config.pas)
+          editenvirconf/config.pas\
+          editmainconf/config.pas\
+          override/config.pas)
 
 echo "
 Summary

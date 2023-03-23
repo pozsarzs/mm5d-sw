@@ -1,0 +1,30 @@
+Arguments of CGI programs
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+getenvirconf.cgi:
+
+  Example line: "http://.../cgi-bin/getenvirconf.cgi"
+
+getdata.cgi:
+
+  Example lines: "http://.../cgi-bin/getdata.cgi?uid=....&value=2"
+                 "http://.../cgi-bin/getdata.cgi?uid=....&value=2&type=xml"
+
+  Arguments:
+    uid:        user identity, you can set in mm8d.ini
+    value:      0:      name and version of this program
+                1:      user's data
+                2:      name of the inputs, outputs and error lights
+                3:      status of controller
+                4:      override of the outputs
+    type:     xml:      XML output format
+
+getpage.cgi:
+
+  Example line: "http://.../cgi-bin/getpage.cgi"
+
+
+  See manual pages of getenvirconf.cgi, getdata.cgi and getpage.cgi for details.
+
+--------------------------------------------------------------------------------
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

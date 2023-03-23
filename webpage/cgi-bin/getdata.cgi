@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # +----------------------------------------------------------------------------+
-# | MM5D v0.5 * Growing house controlling and remote monitoring system         |
-# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | MM5D v0.6 * Growing house controlling and remote monitoring system         |
+# | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
 # | getdata.cgi                                                                |
 # | CGI program                                                                |
 # +----------------------------------------------------------------------------+
@@ -19,7 +19,7 @@ use strict;
 use warnings;
 
 my $contname = 'MM5D';
-my $contversion = 'v0.5';
+my $contversion = 'v0.6';
 
 # get data
 my $buffer;

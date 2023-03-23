@@ -47,3 +47,4 @@ msg39=minimum
 msg40=maximum
 msg41=bekapcsolás tiltása
 msg42=időzített
+msg43=Mód

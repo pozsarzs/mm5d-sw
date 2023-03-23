@@ -126,6 +126,7 @@ my $msg26 = "switched on";
 my $msg27 = "switched off";
 my $msg28 = "To set override, please login into unit via SSH, and use <i>mm5d-override</i> command!";
 my $msg29 = "To set environment characteristic, please login into unit via SSH, and use <i>mm5d-editenvirconf</i> command!";
+my $msg43 = "Mode";
 my $msgfile = "$dir_msg/$lang/mm5d.msg";
 open MSG, "< $msgfile";
 while(<MSG>)
@@ -167,6 +168,7 @@ while(<MSG>)
     case "msg27" { $msg27 = $columns[1]; }
     case "msg28" { $msg28 = $columns[1]; }
     case "msg29" { $msg29 = $columns[1]; }
+    case "msg43" { $msg43 = $columns[1]; }
   }
 }
 close MSG;
@@ -241,7 +243,7 @@ print "    <br>";
 print "    <table border=\"1\" cellpadding=\"3\" cellspacing=\"0\" width=\"100%\">";
 print "      <tbody>";
 print "        <tr>";
-print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th>";
+print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th><th>$msg43</th>";
 print "          <th>$msg16 #1</th><th>$msg16 #2</th><th>$msg16 #3</th><th>$msg16 #4</th>";
 print "          <th>$msg17 #1</th><th>$msg17 #2</th><th>$msg17 #3</th><th>$msg17 #4</th>";
 print "          <th>$msg18 #1</th><th>$msg18 #2</th><th>$msg18 #3</th><th>$msg18 #4</th>";
@@ -264,18 +266,19 @@ while (<DATA>)
   print "          <td>$columns[1]</td>";
   print "          <td>$columns[2] &deg;C</td>";
   print "          <td>$columns[3] %</td>";
-  if ($columns[4] eq 1) { $columns[4] = $green } else { $columns[4] = $dark };
+  if ($columns[4] eq 1) { $columns[4] = "H" } else { $columns[4] = "M" };
   if ($columns[5] eq 1) { $columns[5] = $green } else { $columns[5] = $dark };
   if ($columns[6] eq 1) { $columns[6] = $green } else { $columns[6] = $dark };
   if ($columns[7] eq 1) { $columns[7] = $green } else { $columns[7] = $dark };
-  if ($columns[8] eq 1) { $columns[8] = $yellow } else { $columns[8] = $dark };
+  if ($columns[8] eq 1) { $columns[8] = $green } else { $columns[8] = $dark };
   if ($columns[9] eq 1) { $columns[9] = $yellow } else { $columns[9] = $dark };
   if ($columns[10] eq 1) { $columns[10] = $yellow } else { $columns[10] = $dark };
   if ($columns[11] eq 1) { $columns[11] = $yellow } else { $columns[11] = $dark };
-  if ($columns[12] eq 1) { $columns[12] = $red } else { $columns[12] = $dark };
+  if ($columns[12] eq 1) { $columns[12] = $yellow } else { $columns[12] = $dark };
   if ($columns[13] eq 1) { $columns[13] = $red } else { $columns[13] = $dark };
   if ($columns[14] eq 1) { $columns[14] = $red } else { $columns[14] = $dark };
   if ($columns[15] eq 1) { $columns[15] = $red } else { $columns[15] = $dark };
+  if ($columns[16] eq 1) { $columns[16] = $red } else { $columns[16] = $dark };
   print "          <td>$columns[4]</td>";
   print "          <td>$columns[5]</td>";
   print "          <td>$columns[6]</td>";
@@ -288,6 +291,7 @@ while (<DATA>)
   print "          <td>$columns[13]</td>";
   print "          <td>$columns[14]</td>";
   print "          <td>$columns[15]</td>";
+  print "          <td>$columns[16]</td>";
   print "        </tr>";
   last;
 }
@@ -396,7 +400,7 @@ print "    <br>";
 print "    <table border=\"1\" cellpadding=\"3\" cellspacing=\"0\" width=\"100%\">";
 print "      <tbody>";
 print "        <tr>";
-print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th>";
+print "          <th>$msg12</th><th>$msg13</th><th>$msg14</th><th>$msg15</th><th>$msg43</th>";
 print "          <th>$msg16 #1</th><th>$msg16 #2</th><th>$msg16 #3</th><th>$msg16 #4</th>";
 print "          <th>$msg17 #1</th><th>$msg17 #2</th><th>$msg17 #3</th><th>$msg17 #4</th>";
 print "          <th>$msg18 #1</th><th>$msg18 #2</th><th>$msg18 #3</th><th>$msg18 #4</th>";
@@ -420,18 +424,19 @@ while (<DATA>)
   print "          <td>$columns[1]</td>";
   print "          <td>$columns[2] &deg;C</td>";
   print "          <td>$columns[3] %</td>";
-  if ($columns[4] eq 1) { $columns[4] = $green } else { $columns[4] = $dark };
+  if ($columns[4] eq 1) { $columns[4] = "H" } else { $columns[4] = "M" };
   if ($columns[5] eq 1) { $columns[5] = $green } else { $columns[5] = $dark };
   if ($columns[6] eq 1) { $columns[6] = $green } else { $columns[6] = $dark };
   if ($columns[7] eq 1) { $columns[7] = $green } else { $columns[7] = $dark };
-  if ($columns[8] eq 1) { $columns[8] = $yellow } else { $columns[8] = $dark };
+  if ($columns[8] eq 1) { $columns[8] = $green } else { $columns[8] = $dark };
   if ($columns[9] eq 1) { $columns[9] = $yellow } else { $columns[9] = $dark };
   if ($columns[10] eq 1) { $columns[10] = $yellow } else { $columns[10] = $dark };
   if ($columns[11] eq 1) { $columns[11] = $yellow } else { $columns[11] = $dark };
-  if ($columns[12] eq 1) { $columns[12] = $red } else { $columns[12] = $dark };
+  if ($columns[12] eq 1) { $columns[12] = $yellow } else { $columns[12] = $dark };
   if ($columns[13] eq 1) { $columns[13] = $red } else { $columns[13] = $dark };
   if ($columns[14] eq 1) { $columns[14] = $red } else { $columns[14] = $dark };
   if ($columns[15] eq 1) { $columns[15] = $red } else { $columns[15] = $dark };
+  if ($columns[16] eq 1) { $columns[16] = $red } else { $columns[16] = $dark };
   print "          <td>$columns[4]</td>";
   print "          <td>$columns[5]</td>";
   print "          <td>$columns[6]</td>";
@@ -444,6 +449,7 @@ while (<DATA>)
   print "          <td>$columns[13]</td>";
   print "          <td>$columns[14]</td>";
   print "          <td>$columns[15]</td>";
+  print "          <td>$columns[16]</td>";
   print "        </tr>";
   $line = $line + 1;
   if ($line eq $web_lines) { last };

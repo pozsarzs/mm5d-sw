@@ -38,7 +38,7 @@ file_pipe="/var/tmp/matrixdisplayfifo"
 def initports():
   writetodebuglog("i","Initializing GPIO ports.")
   writecodetodisplay("D","03")
-  GPIO.setwarnings(False)
+  GPIO.setwarnings(True)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(prt_in1,GPIO.IN)
   GPIO.setup(prt_in2,GPIO.IN)

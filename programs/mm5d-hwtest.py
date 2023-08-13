@@ -94,7 +94,7 @@ def writetodisplay(txt):
   time.sleep(1)
 
 #conffile='/etc/mm5d/mm5d.ini'
-conffile='/usr/local/etc/mm5d/mm5d.ini'
+conffile='/etc/mm5d/mm5d.ini'
 print("\nMM5D hardware test utility * (C)2019-2020 Pozsar Zsolt")
 print("======================================================")
 print(" * load configuration: %s..." % conffile)
@@ -137,11 +137,11 @@ while True:
    5: Check T/RH sensor\n \
    6: Check speaker\n \
    q: Quit\n")
-  if selection is "Q" or selection is "q":
+  if selection == "Q" or selection == "q":
         print(" * Quitting.")
         GPIO.cleanup()
         sys.exit(0)
-  if selection is "1":
+  if selection == "1":
     print(" * Check input ports")
     print("   used ports:")
     print("     In #1:  GPIO", prt_in1)
@@ -176,7 +176,7 @@ while True:
         writetodisplay(s)
     except KeyboardInterrupt:
         print()
-  if selection is "2":
+  if selection == "2":
     print(" * Check LEDs")
     print("   used ports:")
     print("     Act:    GPIO", prt_act)
@@ -210,7 +210,7 @@ while True:
       GPIO.output(prt_err4,1)
       print()
 
-  if selection is "3":
+  if selection == "3":
     print(" * Check controlling outputs")
     print("   used ports:")
     print("     Out #1: GPIO", prt_out1)
@@ -239,7 +239,7 @@ while True:
       GPIO.output(prt_out4,1)
       print()
 
-  if selection is "4":
+  if selection == "4":
     print(" * Check signal light outputs")
     print("   used ports:")
     print("     Green:  GPIO", prt_twrgreen)
@@ -264,7 +264,7 @@ while True:
       GPIO.output(prt_out4,1)
       print()
 
-  if selection is "5":
+  if selection == "5":
     print(" * Check T/RH sensor")
     print("   used ports:")
     print("     Data:  GPIO", prt_sensor)
@@ -282,7 +282,7 @@ while True:
     except KeyboardInterrupt:
       print()
 
-  if selection is "6":
+  if selection == "6":
     print(" * Check speaker")
     print("   used ports:")
     print("     Data:  GPIO", prt_speaker)

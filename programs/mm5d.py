@@ -127,6 +127,7 @@ def loadconfiguration(conffile):
   global prt_twrred
   global prt_twryellow
   global sensor
+  global builtin_thermostat
   try:
     with open(conffile) as f:
       mm5d_config=f.read()
@@ -167,6 +168,8 @@ def loadconfiguration(conffile):
       sensor=Adafruit_DHT.DHT11
     if sensor_type=='DHT22':
       sensor=Adafruit_DHT.DHT22
+    builtin_thermostat=0
+    builtin_thermostat=int(config.get(C,'sensors','builtin_thermostat'))
     writetodebuglog("i","Configuration is loaded.")
     writecodetodisplay("D","00")
   except:
@@ -227,6 +230,7 @@ def loadenvirchars(conffile):
   global mvent_lowtemp
   global mvent_off
   global mvent_on
+  C="common"
   H="hyphae"
   M="mushroom"
   hheater_disable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
@@ -416,10 +420,13 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   if swi==1: # growing hyphae
     # heaters
     out1=0
-    if (wrongvalues==0) and (temperature<hheater_on):
+    if builtin_thermostat==0:
+      if (wrongvalues==0) and (temperature<hheater_on):
+        out1=1
+      if (wrongvalues==0) and (temperature>hheater_off):
+        out1=0
+    else:
       out1=1
-    if (wrongvalues==0) and (temperature>hheater_off):
-      out1=0
     if hheater_disable[h]==1:
       out1=0
     # lights
@@ -453,10 +460,13 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   else: # growing mushroom
     # heaters
     out1=0
-    if (wrongvalues==0) and (temperature<mheater_on):
+    if builtin_thermostat==0:
+      if (wrongvalues==0) and (temperature<mheater_on):
+        out1=1
+      if (wrongvalues==0) and (temperature>mheater_off):
+        out1=0
+    else:
       out1=1
-    if (wrongvalues==0) and (temperature>mheater_off):
-      out1=0
     if mheater_disable[h]==1:
       out1=0
     # lights
@@ -498,14 +508,20 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err1=1
     if err1==1:
       writecodetodisplay("E","51")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # overcurrent protection
     err2=0 if in2==1 else 1
     if err2==1:
       writecodetodisplay("E","52")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # bad water pressure error light
     err3=0 if in3==1 else 1
     if err3==1:
       writecodetodisplay("E","53")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<hhumidity_min):
@@ -514,6 +530,8 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err4=1
     if err4==1:
       writecodetodisplay("E","54")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
   else: # growing mushroom
     # bad temperature
     err1=0
@@ -523,14 +541,20 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err1=1
     if err1==1:
       writecodetodisplay("E","51")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # MM4A overcurrent proctection
     err2=0 if in2==1 else 1
     if err2==1:
       writecodetodisplay("E","52")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # bad water pressure error light
     err3=0 if in3==1 else 1
     if err3==1:
       writecodetodisplay("E","53")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
     # bad relative humidity
     err4=0
     if (wrongvalues==0) and (humidity<mhumidity_min):
@@ -539,6 +563,8 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
       err4=1
     if err4==1:
       writecodetodisplay("E","54")
+      time.sleep(1)
+      writetexttodisplay(stemp+' '+shum)
   # -----------------------------------------------------------------------------
   # In this case, we use twrg output to restart (off and on again) T/RH sensor.
   # The green light is switch by NC contacts of the twry and twrr relays.
@@ -551,10 +577,14 @@ def control(temperature,humidity,inputs,exttemp,wrongvalues):
   if in1==1:
     twry=1
     writecodetodisplay("W","51")
+    time.sleep(1)
+    writetexttodisplay(stemp+' '+shum)
   # opened door/window
   if in4==0:
     twry=1
     writecodetodisplay("W","52")
+    time.sleep(1)
+    writetexttodisplay(stemp+' '+shum)
   # switch of green lights
   if twry==1:
     twrg=1

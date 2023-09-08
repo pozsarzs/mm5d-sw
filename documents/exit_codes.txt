@@ -19,4 +19,4 @@ Exit codes of executable files
  19: fatal error (ony daemon)
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>

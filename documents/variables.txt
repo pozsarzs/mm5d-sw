@@ -68,4 +68,4 @@ Output values:
   twrr			integer		red signal light, 1: switch on
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>

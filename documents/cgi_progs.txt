@@ -27,4 +27,4 @@ getpage.cgi:
   See manual pages of getenvirconf.cgi, getdata.cgi and getpage.cgi for details.
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>

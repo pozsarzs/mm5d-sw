@@ -1,6 +1,6 @@
 dnl +--------------------------------------------------------------------------+
 dnl | MM5D v0.6 * Growing house controlling and remote monitoring system       |
-dnl | Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>     |
+dnl | Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>                |
 dnl | configure.in                                                             |
 dnl | Autoconf input file for unix-like systems                                |
 dnl +--------------------------------------------------------------------------+

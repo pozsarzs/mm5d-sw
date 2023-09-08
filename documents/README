@@ -34,8 +34,8 @@ b. Download from Github
 c. Download from Debian repository
 
   set reporitory:
-  $ sudo echo "deb http://www.szerafingomba.hu/deb/ ./" >> /etc/apt/sources.list
-  $ sudo wget -q -O - http://www.szerafingomba.hu/deb/KEY.gpg | apt-key add -
+  $ sudo echo "deb http://www.pozsarzs.hu/deb/ ./" >> /etc/apt/sources.list
+  $ sudo wget -q -O - http://www.pozsarzs.hu/deb/KEY.gpg | apt-key add -
   $ sudo apt-get update
 
   install:
@@ -45,11 +45,11 @@ c. Download from Debian repository
 
 Contact
 -------
-   Homepage:             <http://www.szerafingomba.hu/softwares/>
+   Homepage:             <http://www.pozsarzs.hu>
    Author:               Pozsár Zsolt
-   E-mail:               <pozsar.zsolt@szerafingomba.hu>
+   E-mail:               <pozsarzs@gmail.com>
    Phone:                +36 56/470-272
    Mobile:               +36 30/249-5030
 
 --------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>

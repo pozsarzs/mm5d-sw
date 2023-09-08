@@ -27,4 +27,4 @@ Mode switch          swi  GPIO26  37 |o o| 38  GPIO20  err3         Error #3 LED
                              GND  39 |o o| 40  GPIO21  err4         Error #4 LED
                                      +---+
 ---------------------------------------------------------------------------------
- MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+ MM5D * Copyright (C) 2019-2023 Pozsár Zsolt <pozsarzs@gmail.com>

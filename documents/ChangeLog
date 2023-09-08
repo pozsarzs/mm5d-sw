@@ -1,4 +1,4 @@
-2023-03-23 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2023-03-23 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.6: Following important files were modified (only important and operational changes).
 	*  documents/cgi_progs.txt: new file
 	*  documents/exit_codes.txt: new file
@@ -11,7 +11,7 @@
 	*  webpage/cgi-bin/getdata.cgi: modified
 	*  webpage/cgi-bin/getpage.cgi: modified
 
-2022-03-11 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2022-03-11 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.5: Following important files were modified (only important and operational changes).
 	*  binary/mm3d-editenvirconf.bin: modified
 	*  programs/mm5d.py: modified
@@ -19,7 +19,7 @@
 	*  source/*: modified
 	*  webpage/cgi-bin/getenvirconf: modified
 
-2022-01-27 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2022-01-27 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.4: Following important files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
@@ -30,7 +30,7 @@
 	*  scripts/mm5d-webpage: modified
 	*  webpage/cgi-bin/getenvirconf: new file
 
-2021-10-31 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2021-10-31 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.3: Following important files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
@@ -49,7 +49,7 @@
 	*  webpage/cgi-bin/getdata.cgi: modified
 	*  webpage/cgi-bin/getpage.cgi: modified
 
-2020-05-23 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2020-05-23 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.2: web interface: auto-refresh, diagrams from latest record,
                 snapshots from IP cameras, the number of log rows can be set.
 	*  install: modified
@@ -64,5 +64,5 @@
 	*  webpage/header_*.html: modified
 	*  webpage/pics/ants.jpg: new file
 
-2020-04-26 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>
+2020-04-26 Pozsár Zsolt <pozsarzs@gmail.com>
 	*  0.1: initial version

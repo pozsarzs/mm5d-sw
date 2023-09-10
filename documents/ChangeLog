@@ -1,5 +1,12 @@
+2023-09-10 Pozsár Zsolt <pozsarzs@gmail.com>
+	*  0.6.1: Timer-only heating control was added for heater with built-in thermostat.
+	   Following files were modified (only important and operational changes).
+	*  programs/mm5d.py: modified
+	*  settings/mm5d/mm5d.ini: modified
+	*  webpage/cgi-bin/getpage.cgi: modified
+
 2023-03-23 Pozsár Zsolt <pozsarzs@gmail.com>
-	*  0.6: Following important files were modified (only important and operational changes).
+	*  0.6: Following files were modified (only important and operational changes).
 	*  documents/cgi_progs.txt: new file
 	*  documents/exit_codes.txt: new file
 	*  documents/log_files.txt: new file
@@ -12,7 +19,7 @@
 	*  webpage/cgi-bin/getpage.cgi: modified
 
 2022-03-11 Pozsár Zsolt <pozsarzs@gmail.com>
-	*  0.5: Following important files were modified (only important and operational changes).
+	*  0.5: Following files were modified (only important and operational changes).
 	*  binary/mm3d-editenvirconf.bin: modified
 	*  programs/mm5d.py: modified
 	*  scripts/mm5d-override: modified
@@ -20,7 +27,7 @@
 	*  webpage/cgi-bin/getenvirconf: modified
 
 2022-01-27 Pozsár Zsolt <pozsarzs@gmail.com>
-	*  0.4: Following important files were modified (only important and operational changes).
+	*  0.4: Following files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
 	*  uninstall: modified
@@ -31,7 +38,7 @@
 	*  webpage/cgi-bin/getenvirconf: new file
 
 2021-10-31 Pozsár Zsolt <pozsarzs@gmail.com>
-	*  0.3: Following important files were modified (only important and operational changes).
+	*  0.3: Following files were modified (only important and operational changes).
 	*  install: modified
 	*  prepare: modified
 	*  uninstall: modified

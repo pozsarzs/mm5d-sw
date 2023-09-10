@@ -29,6 +29,7 @@ my $usr_dt1;
 my $usr_dt3;
 my $dir_msg;
 my $dir_shr;
+my $builtin_thermostat;
 my $lang;
 open CONF, "< $conffile" or die "ERROR: Cannot open configuration file!";
 while (<CONF>)
@@ -50,6 +51,7 @@ while (<CONF>)
     case "lng" { $lang = $columns[1]; }
     case "dir_msg" { $dir_msg = $columns[1]; }
     case "dir_shr" { $dir_shr = $columns[1]; }
+    case "builtin_thermostat" { $builtin_thermostat = $columns[1]; }
   }
 }
 close CONF;
@@ -150,7 +152,13 @@ print "        <td colspan=2 align=\"center\"><b>$msg36</b></td>";
 print "      </tr>";
 print "      <tr>";
 print "        <td align=\"left\" valign=top><b>$msg37</b></td>";
+if ($builtin_thermostat eq 0)
+{
 print "        <td align=\"center\">$config->{$section}{heater_on}<br></td>";
+} else
+{
+  print "        <td align=\"center\"> - <br></td>";
+}
 print "        <td align=\"center\">°C</td>";
 print "        <td align=\"center\">$config->{$section}{humidifier_on}<br></td>";
 print "        <td align=\"center\">%</td>";
@@ -163,7 +171,13 @@ print "        <td align=\"center\">h<br></td>";
 print "      </tr>";
 print "      <tr>";
 print "        <td align=\"left\"><b>$msg38</b></td>";
-print "        <td align=\"center\">$config->{$section}{heater_off}<br></td>";
+if ($builtin_thermostat eq 0)
+{
+  print "        <td align=\"center\">$config->{$section}{heater_off}<br></td>";
+} else
+{
+  print "        <td align=\"center\"> - <br></td>";
+}
 print "        <td align=\"center\">°C</td>";
 print "        <td align=\"center\">$config->{$section}{humidifier_off}<br></td>";
 print "        <td align=\"center\">%</td>";
@@ -252,7 +266,13 @@ print "        <td colspan=2 align=\"center\"><b>$msg36</b></td>";
 print "      </tr>";
 print "      <tr>";
 print "        <td align=\"left\" valign=top><b>$msg37</b></td>";
+if ($builtin_thermostat eq 0)
+{
 print "        <td align=\"center\">$config->{$section}{heater_on}<br></td>";
+} else
+{
+  print "        <td align=\"center\"> - <br></td>";
+}
 print "        <td align=\"center\">°C</td>";
 print "        <td align=\"center\">$config->{$section}{humidifier_on}<br></td>";
 print "        <td align=\"center\">%</td>";
@@ -265,7 +285,13 @@ print "        <td align=\"center\">h<br></td>";
 print "      </tr>";
 print "      <tr>";
 print "        <td align=\"left\"><b>$msg38</b></td>";
+if ($builtin_thermostat eq 0)
+{
 print "        <td align=\"center\">$config->{$section}{heater_off}<br></td>";
+} else
+{
+  print "        <td align=\"center\"> - <br></td>";
+}
 print "        <td align=\"center\">°C</td>";
 print "        <td align=\"center\">$config->{$section}{humidifier_off}<br></td>";
 print "        <td align=\"center\">%</td>";

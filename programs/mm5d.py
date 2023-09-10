@@ -169,7 +169,7 @@ def loadconfiguration(conffile):
     if sensor_type=='DHT22':
       sensor=Adafruit_DHT.DHT22
     builtin_thermostat=0
-    builtin_thermostat=int(config.get(C,'sensors','builtin_thermostat'))
+    builtin_thermostat=int(config.get('sensors','builtin_thermostat'))
     writetodebuglog("i","Configuration is loaded.")
     writecodetodisplay("D","00")
   except:
@@ -230,7 +230,6 @@ def loadenvirchars(conffile):
   global mvent_lowtemp
   global mvent_off
   global mvent_on
-  C="common"
   H="hyphae"
   M="mushroom"
   hheater_disable=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
